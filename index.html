@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bicer | Portfolio</title>
+
+  <link rel="icon" href="img/favicon3.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="global-bg"></div>
+
+  <!-- NAVBAR -->
+  <nav class="topbar">
+  <div class="logo">Onur Gökhan Bicer</div>
+  <button class="menu-toggle" aria-label="Menü Aç/Kapat" id="menuToggle">☰</button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#startseite">Startseite</a></li>
+    <li><a href="#uber-mich">Über mich</a></li>
+    <li><a href="#fahigkeiten">Fähigkeiten</a></li>
+    <li><a href="#projekte">Projekte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+
+  <!-- HERO -->
+  <header class="hero-section" id="startseite">
+    <div class="hero-content">
+      <h1>Hallo, ich bin Gökhan</h1>
+      <p>Full-Stack Anwendungsentwickler</p>
+      <p>Ein kreativer Kopf mit Leidenschaft für Code.</p>
+    </div>
+  </header>
+
+  <!-- SECTIONS (JS ile oluşur) -->
+
+  <!-- OVERLAY -->
+  <section class="cv-cards-wrapper" id="cvCardsWrapper">
+    <div class="cv-modal">
+      <button class="close-btn">✕</button>
+      <div class="container" id="cvCardContainer"></div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
