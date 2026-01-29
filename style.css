@@ -5,8 +5,8 @@
 :root {
   --accent: #ffc107;
   --bg: #0b0b0b;
-  --card: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.18);
+  --card: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.18);
   --font: "Montserrat", sans-serif;
 }
 
@@ -23,23 +23,22 @@ body {
   overflow-x: hidden;
 }
 
-
 /* =========================================================
    GLOBAL BACKGROUND
    ========================================================= */
 
 .global-bg {
   position: fixed;
-  top: -10%;
-  left: -10%;
-  right: -10%;
-  bottom: -60%;
-  background: url("img/Moon.png") no-repeat center bottom / cover;
-  filter: brightness(0.45);
+  margin-left: 20px !important;
+  inset: -10%;
+  background: url("img/Moon.png") no-repeat center / cover;
+  filter: brightness(0.65) saturate(1.05);
+  bottom: -70%;
+  transition: transform 0.1s linear;
   transform: scale(1.1);
+  will-change: transform;
   z-index: -10;
 }
-
 
 /* =========================================================
    NAVBAR
@@ -53,7 +52,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(12px);
   z-index: 1000;
 }
@@ -85,7 +84,6 @@ body {
   padding: 0.4rem 0;
 }
 
-/* underline hover */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -93,7 +91,7 @@ body {
   bottom: -2px;
   width: 100%;
   height: 1px;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -103,13 +101,12 @@ body {
   transform: scaleX(1);
 }
 
-
 /* =========================================================
    HERO
    ========================================================= */
 
 .hero-section {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +122,6 @@ body {
   color: var(--accent);
 }
 
-
 /* =========================================================
    SECTIONS
    ========================================================= */
@@ -137,22 +133,23 @@ body {
   align-items: center;
 }
 
-
 /* =========================================================
-   Durchsichtige-Card
+   Durchsichtige Card
    ========================================================= */
 
 .cv-content {
   background: var(--card);
-  backdrop-filter: blur(2px);               /* Modern tarayıcılar için */
-  -webkit-backdrop-filter: blur(12px);       /* Safari için */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   padding: 3rem;
   border-radius: 1rem;
   text-align: center;
-  max-width: 420px;
-  min-width: 420px;
-  
+  max-width: 400px;
+  min-width: 400px;
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .cv-content button {
@@ -164,21 +161,26 @@ body {
   cursor: pointer;
 }
 
+.cv-content:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
 
 /* =========================================================
-   OVERLAY (REAL WORLD UX)
+   OVERLAY (YENİ TASARIM)
    ========================================================= */
 
 .cv-cards-wrapper {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
 
   display: flex;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
 
-  padding: 6rem 2rem 3rem;
+  padding: 8rem 2rem 3rem;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -197,35 +199,66 @@ body {
 .cv-modal {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
 }
 
 .close-btn {
-  position: sticky;
-  top: 0;
-  margin-left: auto;
-  display: block;
+  position: fixed;
+  top: 4.5rem;
+  right: 4.5rem;
+
   background: none;
   border: none;
-  color: #fff;
+  color: var(--accent);
   font-size: 1.8rem;
   cursor: pointer;
 }
 
 .close-btn:hover {
+  color: red;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.close-btn::after {
+  content: "✕";
+  /* ikon aynı */
+  position: absolute;
+  inset: 0;
+
   color: var(--accent);
+  transform: scale(1);
+  opacity: 0;
+
+  transition: color 0.8s ease, transform 0.8s ease, opacity 0.3s ease;
+}
+
+.close-btn:hover::after {
+  color: red;
+  transform: scale(1.15);
+  opacity: 1;
 }
 
 
+.cv-cards-wrapper.active~.cv-section .cv-content {
+  z-index: -1;
+}
+
 /* =========================================================
-   CARDS
+   CARD
    ========================================================= */
 
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 0.5rem;
+  position: relative;
 }
 
 .title {
@@ -241,7 +274,6 @@ body {
   margin-top: 1rem;
 }
 
-
 /* =========================================================
    GRID (FÄHIGKEITEN / PROJEKTE)
    ========================================================= */
@@ -252,9 +284,8 @@ body {
   gap: 1.6rem;
 }
 
-
 /* =========================================================
-   FOCUS INTERACTION (DESKTOP ONLY)
+   HOVER UX (DESKTOP)
    ========================================================= */
 
 .grid-layout .card {
@@ -268,11 +299,9 @@ body {
 .grid-layout .card:hover {
   opacity: 1;
   z-index: 5;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.85);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
 }
 
-
-/* Disable hover UX on touch devices */
 @media (hover: none) {
   .grid-layout:hover .card {
     opacity: 1;
@@ -283,20 +312,22 @@ body {
   }
 }
 
-
 /* =========================================================
    PDF PREVIEW UX
    ========================================================= */
 
 .pdf-wrapper {
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .pdf-open {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
   color: #fff;
   font-size: 0.75rem;
@@ -311,7 +342,6 @@ body {
   opacity: 1;
 }
 
-
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -320,9 +350,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 3rem;
-  color: rgba(255,255,255,0.6);
+  padding-top: 1.5rem;
+  padding-bottom: 15px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+  color: rgba(255, 255, 255, 0.6);
+  
   font-size: 0.9rem;
+
 }
 
 .footer-right {
@@ -331,7 +367,7 @@ body {
 }
 
 .footer-right a {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.4rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -341,10 +377,10 @@ body {
   transform: translateY(-2px);
 }
 
-
 /* =========================================================
    MOBILE NAV
    ========================================================= */
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -355,34 +391,25 @@ body {
     z-index: 1001;
   }
 
-.nav-links {
-  /* display: none; ❌ kaldırıldı */
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-12px) scale(0.92);
-
-  flex-direction: row;
-  gap: 1rem;
-
-  background: rgba(33, 33, 33, 0.9);
-  backdrop-filter: blur(90px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-
-  transition:
-    opacity 0.5s,
-    transform 0.5s,
-    visibility 0.5s;
-
-  z-index: 1000;
-}
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-12px) scale(0.92);
+    flex-direction: row;
+    gap: 1rem;
+    background: rgba(33, 33, 33, 0.9);
+    backdrop-filter: blur(90px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+    z-index: 1000;
+  }
 
   .nav-links.open {
     opacity: 1;
@@ -390,12 +417,111 @@ body {
     pointer-events: auto;
     transform: translateX(-50%) translateY(0) scale(1);
   }
+
+  .cv-cards-wrapper {
+    align-items: flex-start;
+    padding-top: 9rem;
+  }
 }
 
+@media (min-width: 769px) and (max-width: 1104px) {
+  .cv-cards-wrapper {
+    padding-top: 9rem;
+  }
+}
 
 /* ===== OVERLAY OPEN → NAVBAR DISABLED ===== */
-.cv-cards-wrapper.active ~ .topbar,
-.cv-cards-wrapper.active + .topbar {
-  
-  opacity: 0.6; /* görsel olarak da pasif hissi */
+
+body.overlay-open .topbar,
+body.overlay-open #menu-toggle {
+  pointer-events: none;
+  opacity: 0.5;
+
 }
+
+
+
+/* ============================= */
+/* Footer Social Icons - Genel */
+/* ============================= */
+.footer-right i {
+  font-size: 1.6rem;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.footer-right a:hover i {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+
+/* ============================= */
+/* GitHub Icon (Gradient) */
+/* ============================= */
+.footer-right .bxl-github {
+  background: linear-gradient(45deg,
+      #d3d3d3,
+      #d3d3d3,
+      #d3d3d3,
+      #d3d3d3);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ============================= */
+/* LinkedIn Icon (Gradient) */
+/* ============================= */
+.footer-right .bxl-linkedin {
+  background:
+
+    #0a66c2;
+
+
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ============================= */
+/* Twitter (X) Icon (Eski Mavi) */
+/* ============================= */
+.footer-right .bxl-twitter {
+  color: #1DA1F2;
+}
+
+
+/* ============================= */
+/* Gmail Icon (Multi Color Gradient) */
+/* ============================= */
+.footer-right .bxl-gmail {
+  background: linear-gradient(
+    45deg,
+    #fa2121
+    
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================= */
+/* GMX Mail Icon - Size Fix */
+/* ============================= */
+.footer-right img.mail-icon {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  vertical-align:middle;
+}
+

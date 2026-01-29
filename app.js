@@ -8,6 +8,8 @@ const dom = {
   bg: document.querySelector(".global-bg")
 };
 
+
+
 // Menü toggle butonu
 dom.menuToggle.addEventListener("click", () => {
   const isOpen = dom.navLinks.classList.toggle("open");
@@ -206,7 +208,13 @@ document.addEventListener("click",e=>{
 
   const type=btn.dataset.type;
 
+// ✅ EKLENDİ: Toggle menü açıksa kapat
+  dom.navLinks.classList.remove("open");
+  document.body.style.overflow = "";
+
  dom.wrapper.classList.add("active");
+ document.body.classList.add("overlay-open");
+
 
 
 /* önce sıfırla */
@@ -233,6 +241,8 @@ document.addEventListener("keydown",e=>{
 
 function closeOverlay(){
   dom.wrapper.classList.remove("active");
+  document.body.classList.remove("overlay-open");
+
   dom.container.innerHTML="";
   document.body.style.overflow="";
 }
@@ -259,19 +269,32 @@ footer.innerHTML = `
   </div>
 
   <div class="footer-right">
-    <a href="https://github.com/USERNAME" target="_blank" aria-label="GitHub">
-      <i class='bx bxl-github'></i>
-    </a>
-    <a href="https://linkedin.com/in/USERNAME" target="_blank" aria-label="LinkedIn">
-      <i class='bx bxl-linkedin'></i>
-    </a>
-    <a href="https://x.com/USERNAME" target="_blank" aria-label="X">
-      <i class='bx bxl-twitter'></i>
-    </a>
-    <a href="mailto:ornekmail@eposta.com" aria-label="Mail">
-      <i class='bx bxl-gmail'></i>
-    </a>
-  </div>
+  <a href="https://github.com/Daddarios" target="_blank" aria-label="GitHub">
+    <i class='bx bxl-github' ></i>
+  </a>
+
+  <a href="https://www.linkedin.com/in/onur-g%C3%B6khan-bicer-b011b1380/" target="_blank" aria-label="LinkedIn">
+    <i class='bx bxl-linkedin' ></i>
+  </a>
+
+  <a href="https://x.com/yokhannn" target="_blank" aria-label="X">
+    <i class='bx bxl-twitter' "></i>
+  </a>
+
+  <a href="mailto:onurgoekhanbicer@gmail.com" aria-label="Mail">
+    <i class='bx bxl-gmail' ></i>
+  </a>
+  
+  <a href="mailto:ongb@gmx.com" aria-label="GMX ">
+  <img
+    src="img/gmx1.png"
+    alt="GMX Mail"
+    class="mail-icon"
+  />
+</a>
+  
+</div>
+
 `;
 
 document.body.appendChild(footer);
