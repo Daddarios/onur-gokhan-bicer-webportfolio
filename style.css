@@ -152,15 +152,31 @@ body {
   transition: background 0.6s ease, box-shadow 0.6s ease;
   position: relative;
   z-index: 1;
+
+}
+
+.section-title {
+  font-family: var(--font);
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem !important;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.4px;
 }
 
 .cv-content button {
-  margin-top: 1rem;
+  margin-top: 1.7rem;
   padding: 0.6rem 1.2rem;
   background: var(--accent);
   border: none;
   border-radius: 0.6rem;
   cursor: pointer;
+  color: #000000 !important;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.cv-content button:hover {
+  transform: scale(1.07);
 }
 
 .cv-content:hover {
@@ -266,6 +282,8 @@ body {
 .title {
   color: var(--accent);
   margin-bottom: 1rem;
+  font-size: 1.2rem;
+
 }
 
 .card iframe {
@@ -277,71 +295,167 @@ body {
 }
 
 /* =========================================================
-   GRID (FÄHIGKEITEN / PROJEKTE)
+   FÄHIGKEITEN SECTION 
    ========================================================= */
 
-#cvCardContainer.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+.lebenslauf-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+#cvCardContainer {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.6rem;
-}
-
-/* =========================================================
-   HOVER UX (DESKTOP)
-   ========================================================= */
-
-.grid-layout .card {
-  transition: box-shadow 0.35s ease, opacity 0.35s ease;
-}
-
-.grid-layout:hover .card {
-  opacity: 0.45;
-}
-
-.grid-layout .card:hover {
-  opacity: 1;
-  z-index: 5;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
-}
-
-@media (hover: none) {
-  .grid-layout:hover .card {
-    opacity: 1;
-  }
-
-  .grid-layout .card:hover {
-    box-shadow: none;
-  }
-}
-
-/* =========================================================
-   PDF PREVIEW UX
-   ========================================================= */
-
-.pdf-wrapper {
-  position: relative;
+  justify-content: center;
+  max-width: 1200px;
   width: 100%;
+  margin-top: 3rem;
   overflow-x: hidden;
   box-sizing: border-box;
 }
 
-.pdf-open {
+#cvCardContainer .card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 520px;
+  height: 620px;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  filter: none;
+  opacity: 1;
+  padding: 1rem;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#cvCardContainer .title {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+#cvCardContainer .pdf-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+#cvCardContainer .pdf-wrapper iframe {
+  width: 100%;
+  height: 520px;
+  max-width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: none;
+  overflow-x: hidden;
+}
+
+#cvCardContainer .pdf-open {
   position: absolute;
-  bottom: 10px;
+  bottom: -1px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.65);
+
   backdrop-filter: blur(6px);
-  color: #fff;
+  color: var(--accent);
   font-size: 0.75rem;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   text-decoration: none;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover .pdf-open {
+#cvCardContainer .card:hover .pdf-open {
   opacity: 1;
+
+
+}
+
+#cvCardContainer:hover .card {
+  opacity: 0.35;
+}
+
+#cvCardContainer .card:hover {
+  opacity: 1;
+  z-index: 5;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+}
+
+/* =========================================================
+   HINWEIS BÖLÜMÜ
+   ========================================================= */
+
+#hinweis {
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hinweis-inner {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background: rgba(168, 168, 168, 0.3);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 1.07rem;
+  max-width: 90%;
+  backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   RESPONSIVE – MOBILE 
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .lebenslauf-wrapper {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  #cvCardContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+
+
+  #cvCardContainer .card {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hinweis-inner {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+  }
+
 }
 
 /* =========================================================
@@ -594,20 +708,24 @@ body.overlay-open #menu-toggle {
 .project-card {
 
   background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
-  max-width: 900px; /* dikdörtgen form */
+  max-width: 900px;
+  /* dikdörtgen form */
   margin: 0 auto 1.5rem;
   transition: transform .9s ease, box-shadow .9s ease;
   filter: none;
   opacity: 2;
 
 }
+
 /* Container'da hover varsa ama kart hover DEĞİLSE */
 #cvCardContainer:hover .project-card {
-  
+
   opacity: 0.35;
 }
 
@@ -617,17 +735,27 @@ body.overlay-open #menu-toggle {
   opacity: 1;
   z-index: 5;
 }
+
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
-  
+
 }
 
 .project-image {
   width: 100%;
-  height: 160px;
+  height: 250px;
+  object-fit: cover;
   overflow: hidden;
   background: #111;
+  display: flex !important;
+  gap: 3px;
+}
+
+.project-image a {
+  flex: 1;
+  /* her resim %50 yer kaplar */
+  display: block;
 }
 
 .project-image img {
@@ -635,6 +763,7 @@ body.overlay-open #menu-toggle {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+
 }
 
 .project-card:hover .project-image img {
@@ -663,27 +792,231 @@ body.overlay-open #menu-toggle {
 .project-tech {
   padding-top: 10px;
   padding-bottom: 5px;
-  gap:21px !important;
+  gap: 21px !important;
   opacity: 1;
 }
 
 .project-links {
-  
+
   display: flex;
-  
-  justify-content: right; /* ← asıl gereken */
+  align-items: center;
+  /* aynı hizada */
 }
 
+.project-links #noch {
+  color: #bdbdbde5;
+  animation: blink 3s infinite;
+  --font: "Montserrat", sans-serif;
+
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.01;
+  }
+}
 
 .project-links a {
+  margin-left: auto;
+  /* SAĞA iter */
   font-size: 27px;
-  color: var(--accent) !important;
+  color: var(--accent);
   text-decoration: none;
-  
-  
-  
+
 }
 
 .project-links a:hover {
   opacity: 0.8;
+}
+
+/* =============================
+   WEITERBILDUNG / EDUCATION
+============================= */
+
+/* Outer section */
+.education-section {
+  width: 100%;
+  padding: 3rem 0;
+}
+
+/* Glass container */
+.education-container {
+  max-width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Grid → YAN YANA */
+.education-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+#wb {
+  color: var(--accent);
+  font-size: 1.1rem !important;
+  margin-bottom: 50px;
+}
+
+/* Single card */
+.education-card {
+  background: --card;
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(204, 204, 204, 0.05);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  flex: 0 1 22%;
+  
+  box-sizing: border-box;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+/* Hover effect (hafif) */
+.education-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.immernoch {
+
+  margin-bottom: auto;
+
+  font-size: 0.7rem;
+  font-family: "Montserrat", sans-serif;
+  
+  color: var(--accent);
+  animation: blink 3s infinite;
+
+  opacity: 0.12;
+}
+
+/* Card title */
+.education-card .card-title {
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Card text */
+.education-card .card-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #f1f1f1;
+}
+
+/* List (Python & KI) */
+.education-list {
+  margin-top: 8px;
+
+}
+
+.education-list li {
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+
+@media (max-width: 1024px) {
+  .education-container {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-container {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .education-card {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* ================================
+   KONTAKT KART - ÖZEL STİL
+================================== */
+.card.kontakt-card {
+  max-width: 400px;
+  max-height: 220px !important;
+  margin: 2rem auto;
+  padding: 1.5rem 1.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  text-align: left;
+  margin-top: 10% !important;
+}
+
+/* Başlık sola hizalı */
+.card.kontakt-card .title {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+
+}
+
+/* Paragraflar – ortada ve alt alta */
+.card.kontakt-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #f7f7f7;
+  margin: 0.6rem auto;
+  text-align: center;
+  gap:5px;
+  width: 100%;
+}
+
+/* E-posta alanı ortalı */
+#kontaktMail {
+  text-align: center;
+  margin-left: 3px;
+  font-family: var(--font);
+}
+
+/* E-posta linki */
+#kontaktMail a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  word-break: break-word;
+  display: inline-block;
+  margin-top: 3.5rem;
+  margin-bottom: 5.9rem;
+  transition: transform 0.3s ease, text-decoration 0.3s ease;
+  /* ✅ Geçiş efekti */
+}
+
+#kontaktMail a:hover {
+  text-decoration: underline;
+  transform: scale(1.07);
+
 }

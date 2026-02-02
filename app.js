@@ -24,6 +24,11 @@ function renderProjectTechIcons() {
     "jQuery": "devicon-jquery-plain colored",
     "React": "devicon-react-plain colored",
     "GitHub": "devicon-github-plain white",
+    "Python": "devicon-python-plain colored",
+    "NumPy": "devicon-numpy-plain colored",
+    "Pandas": "devicon-pandas-original colored",
+    "Matplotlib":"devicon-matplotlib-plain white",
+    "scikit-learn": "devicon-scikitlearn-plain colored",
     "AJAX": "",       // ikon yok, fallback gösterilecek
     "MailKit": "",    // ikon yok
     "JWT": ""         // ikon yok
@@ -127,9 +132,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ===== SECTIONS ===== */
 const sections = [
   { id: "uber-mich", title: "Über mich", desc: "Kurze persönliche Vorstellung" },
-  { id: "fahigkeiten", title: "Dokumente & Nachweise", desc: "Alle wichtigen Unterlagen" },
+  { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Wichtige Unterlagen" },
   { id: "projekte", title: "Entwicklung & Projekte", desc: "Abgeschlossene & laufende Projekte" },
-  { id: "kontakt", title: "Kontakt", desc: "Kontakt" }
+  {id:"kurs", title:"Weiterbildungen", desc:"Online-Kurse & Fortbildungen"},
+  { id: "kontakt", title: "Kontakt", desc: "" }
 ];
 
 const frag = document.createDocumentFragment();
@@ -140,7 +146,7 @@ sections.forEach(s => {
   sec.id = s.id;
   sec.innerHTML = `
     <div class="cv-content">
-      <h2>${s.title}</h2>
+      <h2 class="section-title">${s.title}</h2>
       <p>${s.desc}</p>
       <button class="cv-open-btn" data-type="${s.id}">
         Mehr dazu
@@ -156,8 +162,8 @@ document.body.appendChild(frag);
 const contentMap = {
 
 
-        /* ===== üBER MICH ===== */
-        "uber-mich": `
+  /* ===== üBER MICH ===== */
+  "uber-mich": `
           <div class="card">
 
           
@@ -181,27 +187,28 @@ const contentMap = {
           </div>
         `,
 
-        /* ===== LEBENSLAUF ===== */
-        "fahigkeiten": `
+  /* ===== LEBENSLAUF ===== */
+  "fahigkeiten": `
         <div class="card">
           <h3 class="title">Lebenslauf</h3>
 
           <!-- ✅ PDF PREVIEW WRAPPER -->
           <div class="pdf-wrapper">
             <iframe
-              src="dokumente/lebenslauf/Lebenslauf1.4_Onur Gökhan Bicer.pdf"
+              src="dokumente/lebenslauf/Lebenslauf.pdf"
               loading="lazy"
             ></iframe>
 
             <!-- ✅ GERÇEK PDF (_blank) -->
             <a
-              href="dokumente/lebenslauf/Lebenslauf1.4_Onur Gökhan Bicer.pdf"
+              href="dokumente/lebenslauf/Lebenslauf.pdf"
               target="_blank"
               rel="noopener"
               class="pdf-open"
             >
               Vollansicht öffnen
             </a>
+            
           </div>
         </div>
 
@@ -230,12 +237,12 @@ const contentMap = {
 
           <div class="pdf-wrapper">
             <iframe
-              src="dokumente/schulische_akademische/Schulische_akademi_Urkunde_compressed.pdf"
+              src="dokumente/schulische_akademische/Bildung.pdf"
               loading="lazy"
             ></iframe>
 
             <a
-              href="dokumente/schulische_akademische/Schulische_akademi_Urkunde_compressed.pdf"
+              href="dokumente/schulische_akademische/Bildung.pdf"
               target="_blank"
               rel="noopener noreferrer"
               class="pdf-open"
@@ -244,7 +251,7 @@ const contentMap = {
             </a>
           </div>
         </div>
-
+       
         <div class="card">
           <h3 class="title">Ehrenamtlich</h3>
 
@@ -264,26 +271,42 @@ const contentMap = {
             </a>
           </div>
         </div>
+       <p id="hinweis">
+          <span class="hinweis-inner">
+            Hinweis: Aus Sicherheitsgründen wurden bestimmte Dokumente nicht öffentlich hochgeladen.
+          </span>
+        </p>
+       
+
+</div>
+ 
       `
-        ,
+  ,
 
 
-        /* ===== PROJEKTE ===== */
-        "projekte": `
+  /* ===== PROJEKTE ===== */
+  "projekte": `
 
              <!-- CRM -->
 
             <div class="project-card">
               <div class="project-image">
-                <img src="img/Moon.png" alt="CRM Anwendung Vorschau">
+                <a href="projekte/crmlogin.png" target="_blank">
+                  <img src="projekte/crmlogin.png" alt="CRM Anwendung Vorschau">
+                </a>
+                <a href="projekte/crmpanel.png" target="_blank">
+                  <img src="projekte/crmpanel.png" alt="CRM Anwendung Vorschau">
+                </a>
               </div>
+
 
               <div class="project-content">
                   <h4 class="project-title">CRM-Anwendung Kunden & Projektverwaltung</h4> 
 
                   <p class="project-desc">
-                    Webbasierte CRM-Lösung mit Benutzerverwaltung, Rollen, Mail-/SMS-Benachrichtigung, Datenanalyse & Excel-Export.
+                    CRM-System mit ASP.NET MVC: rollenbasierte Zugriffskontrolle, Zwei-Faktor-Authentifizierung (2FA), Modulbasierte Verwaltung von Kunden, Mitarbeitern und Projektaktivitäten, Echtzeit-Dashboard, Visualisierungen, Formularvalidierung, Excel/PDF-Export und API-Erweiterbarkeit.
                   </p>
+
 
                   <div class="project-tech">
                    
@@ -292,6 +315,7 @@ const contentMap = {
                   </div>
 
                 <div class="project-links">
+                <span id="noch">in der Entwicklung</span>
                   <a id="linksse" href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -302,14 +326,25 @@ const contentMap = {
 
             <div class="project-card">
               <div class="project-image">
-                <img src="img/projects/portfolio-preview.png" alt="Portfolio Vorschau">
+                 <a href="projekte/portfolio1.png" target="_blank">
+                  <img src="projekte/portfolio1.png" alt="Portfolio Vorschau">
+                </a>
+                <a href="projekte/portfolio2.png" target="_blank">
+                  <img src="projekte/portfolio2.png" alt="Portfolio Vorschau">
+                </a>
               </div>
 
               <div class="project-content">
                 <h4 class="project-title">Portfolio Website</h4>
 
                 <p class="project-desc">
-                  Persönliche Online-CV- und Portfolio-Anwendung.
+                  <p class="project-desc">
+                     <p class="project-desc">
+                      Meine erste persönliche Portfolio-Seite, um Projekte, Lebenslauf und wichtige Unterlagen übersichtlich zu zeigen – schlicht, mobilfreundlich und ganz mein Stil.
+                    </p>
+
+                  </p>
+
                 </p>
 
                 <div class="project-tech">
@@ -326,42 +361,61 @@ const contentMap = {
             <!-- VISTA -->
             <div class="project-card">
               <div class="project-image">
-                <img src="img/projects/crm-preview.png" alt="VISTA Vorschau">
+                 <a href="projekte/vistaperson.png" target="_blank">
+                  <img src="projekte/vistaperson.png" alt="Portfolio Vorschau">
+                </a>
+                <a href="projekte/vistakanban.png" target="_blank">
+                  <img src="projekte/vistakanban.png" alt="Portfolio Vorschau">
+                </a>
               </div>
 
               <div class="project-content">
                 <h4 class="project-title">VISTA</h4>
 
                 <p class="project-desc">
-                  React basierend zur Verwaltung von REST API.
+                VISTA wurde entwickelt, um ein ASP.NET-basiertes CRM-System in ein modernes React-Frontend zu integrieren und REST-API-Prinzipien praktisch anzuwenden.
+                Ziel ist es, eine modulare React-SPA zu realisieren, kontinuierlich praktische Erfahrung in der REST-API-Integration zu sammeln und mich dabei stetig weiterzuentwickeln.
+                Das Frontend wurde als Client-Side-Rendering (CSR) React-Anwendung umgesetzt und kommuniziert über eine REST-API mit dem Backend.
                 </p>
 
+                
+
+
                 <div class="project-tech">
-                  React
+                  
+                  React, JavaScript, CSS,
                 </div>
 
                 <div class="project-links">
+                
+                  <span id="noch">in der Entwicklung</span>
                   <a href="https://github.com/USERNAME" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
 
 
-            <!-- KLINIKUM STUTTGART -->
+            <!-- KLINIK RAUM  STUTTGART -->
             <div class="project-card">
               <div class="project-image">
-                <img src="img/projects/crm-preview.png" alt="Klinikum Stuttgart Vorschau">
+                 <a href="projekte/klinikall.png" target="_blank">
+                  <img src="projekte/klinikall.png" alt="Portfolio Vorschau">
+                </a>
+                <a href="projekte/klinik3.png" target="_blank">
+                  <img src="projekte/klinik3.png" alt="Portfolio Vorschau">
+                </a>
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Klinikum Stuttgart</h4>
+                <h4 class="project-title">Klinik Raum Stuttgart</h4>
 
                 <p class="project-desc">
-                  React basierend zur Verwaltung von REST API.
+                  Klinik Raum Stuttgart ist ein PC-Desktop-Anwendung(Lernprojekt) zur Entwicklung einer Klinikverwaltungssoftware mit C# und .NET Framework.
+                  Die Anwendung richtet sich an Arztpraxen, medizinische Einrichtungen und ähnliche Gesundheitseinrichtungen und orientiert sich an der in diesen Bereichen weit verbreiteten Windows-PC- und Server-Infrastruktur.
                 </p>
 
                 <div class="project-tech">
-                  C#, ASP.NET MVC, SQL, Bootstrap
+                  C#, ASP.NET, SQL Server
                 </div>
 
                 <div class="project-links">
@@ -375,18 +429,23 @@ const contentMap = {
             <!-- Photo BLOG-Personal PAGE (Photocamera & REISE) -->
             <div class="project-card">
               <div class="project-image">
-                <img src="img/projects/crm-preview.png" alt="BLOG Vorschau">
+                 <a href="projekte/perpage1.png" target="_blank">
+                  <img src="projekte/perpage1.png" alt="Portfolio Vorschau">
+                </a>
+                <a href="projekte/perpage2.png" target="_blank">
+                  <img src="projekte/perpage2.png" alt="Portfolio Vorschau">
+                </a>
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Photo BLOG-Personal PAGE</h4>
+                <h4 class="project-title">Photo BLOG</h4>
 
-                <p class="project-desc">
-                  React basierend zur Verwaltung von REST API.
+                <p class="project-desc"> 
+                   Photo Blog ist mein erstes Frontendprojekt. In diesem Projekt habe ich die grundlegenden Bausteine des Frontends wie HTML-Struktur, CSS-Design und Responsive Design gelernt und praktisch angewendet.
                 </p>
 
                 <div class="project-tech">
-                  C#, ASP.NET MVC, SQL, Bootstrap
+                  HTML, CSS
                 </div>
 
                 <div class="project-links">
@@ -396,20 +455,161 @@ const contentMap = {
             </div>
 
 
+
+            <!-- ZIELPROJEKTE 1 -->
+                <div class="project-card">
+                  <div class="project-image">
+                   
+                      <img src="projekte/plan.png" alt="Zielprojekte Vorschau">
+                    
+                  </div>
+
+                  <div class="project-content">
+                    <h4 class="project-title">Zielprojekte: Data Science & Business Intelligence</h4>
+
+                    <p class="project-desc">
+                      <strong>1. Produkt-Nachfrageprognose:</strong> Entwicklung eines Modells zur Vorhersage zukünftiger Produktverkäufe mittels Zeitreihenanalyse (z.&nbsp;B. Prophet, XGBoost), 
+                      um Lagerbestände zu optimieren und Kosten zu reduzieren.<br><br>
+
+                      <strong>2. Kundensegmentierung:</strong> Anwendung von RFM-Analyse und Clustering (z.&nbsp;B. K-Means), um Kunden in Zielgruppen zu segmentieren und personalisierte Marketingstrategien zu entwickeln.
+                    </p>
+
+                    <div class="project-tech">
+                      Python, Pandas, NumPy , Matplotlib, scikit-learn, Prophet, K-Means,  Seaborn
+                    </div>
+
+                    <div class="project-links">
+                      <span id="noch">in Planung</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ZIELPROJEKT 2 -->
+                  <div class="project-card">
+                    <div class="project-image">
+                      
+                        <img src="projekte/plan.png" alt="Zielprojekt 2 Vorschau">
+                     
+                    </div>
+
+                    <div class="project-content">
+                      <h4 class="project-title">Zielprojekt: Predictive Analytics im Bankwesen</h4>
+
+                      <p class="project-desc">
+                        <strong>1. Produktnutzungsprognose:</strong> Entwicklung eines ML-Modells zur Vorhersage, welche Bankprodukte (z.&nbsp;B. Kredit, Anlagekonto) ein Kunde wahrscheinlich in den nächsten Monaten nutzen wird. Ziel ist es, Cross-Selling zu optimieren und Kundenabwanderung zu reduzieren.<br><br>
+
+                        <strong>2. Feature-Auswertung & Kundenverhalten:</strong> Analyse der wichtigsten Einflussfaktoren (z.&nbsp;B. Einkommen, Transaktionshistorie, digitale Nutzung), um Kundenverhalten besser zu verstehen und Marketingmaßnahmen zu personalisieren.
+                      </p>
+
+                      <div class="project-tech">
+                        Python, Pandas, NumPy, Matplotlib, scikit-learn, XGBoost, Logistic Regression, SHAP, Seaborn
+                      </div>
+
+                      <div class="project-links">
+                        <span id="noch">in Planung</span>
+                      </div>
+                    </div>
+                  </div>
+
+
       `
 
-        ,
-        /* ===== KONTAKT ===== */
+  ,
+/* ===== Weiterbildung ===== */
+"kurs": `
+<section class="education-section">
+  <div class="education-container">
+    <h2 id="wb" class="section-title">Weiterbildungen</h2>
 
-        "kontakt": `
-          <div class="card">
-            <h3 class="title">Kontakt</h3>
-            <p>E-Mail: ornekmail@eposta.com</p>
-          </div>
+    <div class="education-grid">
+      
+      <div class="education-card">
+        <h4 class="card-title">C# & ASP.NET Core</h4>
+        <p class="card-text">OOP, Entity Framework & ASP.NET Core (Version 6 / 7 / 8)</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">Netzwerktechnik Grundlagen</h4>
+        <p class="card-text">IP-Adressierung, Subnetting & Netzwerkarchitektur</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">IP-Adressierung & Subnetting</h4>
+        <p class="card-text">Teil 1 & 2 – Netzwerkgrundlagen</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">Projektmanagement</h4>
+        <p class="card-text">.NET MVC5 – Anwendung von Grund auf</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">Frontend Camp</h4>
+        <p class="card-text">HTML5, CSS3, Bootstrap & Tailwind CSS, JavaScript & React</p>
+        <span class="immernoch">in der Lernphase</span>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">RESTful APIs</h4>
+        <p class="card-text">RESTful API Fundamentals – Architektur & Design Patterns</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">GitHub Schulung</h4>
+        <p class="card-text">Versionskontrolle & Projektverwaltung mit GitHub</p>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">Swift & iOS 16</h4>
+        <p class="card-text">MVVM Detailkurs – Ohne Storyboard</p>
+        <span class="immernoch">in der Lernphase</span>
+      </div>
+
+      <div class="education-card">
+        <h4 class="card-title">Python & KI</h4>
+        <ul class="education-list">
+          <li>Python – Grundlagen für KI & Datenanalyse</li>
+          <li>NumPy – Numerische Berechnungen für Machine Learning</li>
+          <li>pandas – Datenaufbereitung und Analyse</li>
+          <li>Matplotlib & Seaborn – Datenvisualisierung</li>
+          <li>scikit-learn – Regression, Klassifikation und Clustering</li>
+          <li>Machine-Learning-Modelle – Decision Trees, SVM, K-Means</li>
+          <li>Praxisprojekte – Arbeiten mit realen Datensätzen</li>
+          <li>Projektworkflow – Struktur von Data-Science-Projekten</li>
+
+        </ul>
+        <span class="immernoch">in der Lernphase</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+`
+
+,
+  /* ===== KONTAKT ===== */
+
+  "kontakt": `
+           <div class="card kontakt-card">
+            <h2 class="title">Kontakt</h2>
+            
+            <p>
+              <strong><i class='bx bx-mail-send' style='color:#ffffff' ></i> E-Mail :</strong> <span id="kontaktMail"></span>
+            </p>
+         </div>
         `
 };
 
 
+function renderKontaktMail() {
+  const user = "ongb";
+  const domain = "gmx.de";
+  const mail = `${user}@${domain}`;
+  const span = document.getElementById("kontaktMail");
+  if (span) {
+    span.innerHTML = `<a href="mailto:${mail}">${mail}</a>`;
+  }
+}
 
 
 
@@ -445,6 +645,7 @@ document.addEventListener("click", e => {
   dom.container.innerHTML = contentMap[type] || "";
   document.body.style.overflow = "hidden";
   renderProjectTechIcons();
+   renderKontaktMail(); 
 });
 
 
@@ -501,17 +702,7 @@ footer.innerHTML = `
     <i class='bx bxl-twitter' "></i>
   </a>
 
-  <a href="mailto:onurgoekhanbicer@gmail.com" aria-label="Mail">
-    <i class='bx bxl-gmail' ></i>
-  </a>
-  
-  <a href="mailto:ongb@gmx.com" aria-label="GMX ">
-  <img
-    src="img/gmx1.png"
-    alt="GMX Mail"
-    class="mail-icon"
-  />
-</a>
+
   
 </div>
 
