@@ -164,26 +164,30 @@ const contentMap = {
 
   /* ===== üBER MICH ===== */
   "uber-mich": `
-          <div class="card">
+          <div class="card uber-mich">
+             <img src="./img/DSC_0169.JPG" alt="Gökhan" class="profile-image" />
 
-          
 
             <h3 class="title">Über mich</h3>
-            <p  style="font-size:13px;line-height:1.6;">
 
-              Nach meinem erfolgreichen Abschluss als Fachinformatiker für Anwendungsentwicklung
-              habe ich erste praktische Erfahrungen in der Anwendungsentwicklung gesammelt
-              und entwickle meine Kenntnisse kontinuierlich weiter.
+            <p>Hallo, mein Name ist Gökhan. Ich bin 35 Jahre alt und in Balıkesir geboren. Schon seit meiner Kindheit war ich ein neugieriger Mensch – ein Kind, das Dinge auseinandernahm, um zu verstehen: „Wie funktioniert das eigentlich?“</p>
 
-              Ich arbeite strukturiert, verantwortungsbewusst und lösungsorientiert
-              und lege Wert auf saubere sowie nachvollziehbare Lösungen.
-              Eigenständiges Lernen, das Lesen von Dokumentationen
-              und die kontinuierliche Weiterentwicklung gehören für mich selbstverständlich dazu.
+            <p>Viele Jahre später führte mich mein Weg nach Deutschland, einem meiner Kindheitsträume. Vor etwa neun Jahren kam ich nach Stuttgart, um mein Universitätsstudium fortzusetzen. Seitdem baue ich mir hier ein neues Leben auf und komme Schritt für Schritt dem Bereich näher, von dem ich sagen kann: Ja, genau das ist mein Ding.</p>
 
-              Ich ziele darauf ab, mich fachlich weiterzuentwickeln
-              und in professionellen Projekten langfristig Mehrwert zu schaffen.
+            <p>Anfangs war vieles noch recht allgemein ausgerichtet: Universität, eine neue Kultur, ein anderes System und eine neue Lebensordnung. Während meines Studiums erhielt ich die Möglichkeit, bei Daimler als Werkstudent und Ferienbeschäftigter zu arbeiten – ein weiterer Kindheitstraum. Dadurch konnte ich die internen Abläufe eines großen Unternehmens aus nächster Nähe kennenlernen. Doch schon damals war mir eines stets bewusst: Ich arbeite lieber mit konkreten Ergebnissen als mit abstrakten Plänen. Ein Problem zu nehmen und zu sagen „Okay, machen wir daraus ein funktionierendes System“ fühlt sich für mich ganz natürlich an.</p>
 
-            </p>
+            <p>Im Laufe meines Studiums stellte sich heraus, dass das Studienfach für mich nicht geeignet war, sodass ich mein Studium nicht zu Ende geführt habe.
+             Daraufhin entschied ich mich bewusst für einen praktischeren, stärker berufsorientierten Weg und begann eine Ausbildung im IT-Bereich. In diesem Rahmen bildete ich mich intensiv in der Softwareentwicklung weiter und schloss die Ausbildung zum IT-Anwendungsentwickler erfolgreich ab.</p>
+
+            <p>Heute motiviert mich meine Arbeit als Junior Full-Stack-Entwickler vor allem eines: ein zunächst chaotisch wirkendes Problem zu analysieren, es Schritt für Schritt zu vereinfachen und am Ende zu einer Lösung zu bringen, bei der man sagen kann: „Jetzt passt es.“
+
+            oder von Grund auf zu entdecken, wie man ein vielseitiges System aufbaut und wirklich funktional macht. Ich arbeite kontinuierlich daran, meine Backend-Kenntnisse zu vertiefen, während es mir im Frontend besonders Freude bereitet, dem Nutzer eine klare und verständliche Erfahrung zu bieten. Für mich geht es nicht nur darum, ein Projekt zu starten, sondern es wirklich zu übernehmen und bis zum Ende zu begleiten. Deshalb scheue ich keine Verantwortung. Strukturiertes Arbeiten motiviert mich, Zuverlässigkeit ist mir wichtig, und ich lege großen Wert auf offene Kommunikation im Team.</p>
+
+            <p>Neben der Arbeit gibt es einen weiteren wichtigen Bereich, der mich prägt: die Musik. Meine Reise mit der Gitarre begann etwa im Jahr 2003 und begleitet mich bis heute auf professioneller Ebene. Musik ist für mich zugleich eine Pause und eine starke Energiequelle. Eine Zeit lang war ich zudem ehrenamtlich als Gitarrenlehrer tätig, was meine Geduld und meine Fähigkeit, Inhalte verständlich zu vermitteln, erheblich gestärkt hat. Ich lerne gerne neue Kulturen kennen, tausche mich mit unterschiedlichen Menschen aus und gewinne neue Perspektiven.</p>
+
+            <p>Kurz gesagt: Ich bin jemand, dessen Reise in Deutschland weitergeht, der sich jeden Tag weiterentwickelt, um bessere Software zu schreiben, der seine Arbeit ernst nimmt und Freude daran hat, gemeinsam etwas zu schaffen.</p>
+
+           
           </div>
         `,
 

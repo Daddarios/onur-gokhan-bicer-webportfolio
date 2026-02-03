@@ -294,6 +294,99 @@ body {
   margin-top: 1rem;
 }
 
+/* ============================= */
+/* ÜBER MICH CARD STİLİ         */
+/* ============================= */
+
+.card.uber-mich {
+  display: flex;
+  flex-direction: column;
+  background: rgba(53, 53, 53, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  max-width: 1000px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.8;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  padding: 90px !important;
+  margin: 60px auto !important;
+  
+}
+
+/* Profil resmi üstte, yazılar altında */
+.card.uber-mich .profile-image {
+  width: 520px;
+  height: 390px;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 6rem;
+  align-self:center;
+   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+
+
+
+.card.uber-mich .title {
+  color: var(--accent);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.card.uber-mich p {
+  margin-bottom: 1.5rem;
+  text-indent: 1.5em;
+  
+  text-align: justify;
+  
+}
+
+.card.uber-mich p::first-letter {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .card.uber-mich {
+    padding: 1.5rem;
+    font-size: 13px;
+  }
+
+  .card.uber-mich .profile-image {
+    align-self: center;
+    width: auto;
+    height: auto;
+    margin-bottom: 3rem;
+  }
+
+  .card.uber-mich .title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .card.uber-mich p {
+    text-align: justify;
+  }
+}
+
+/* Sabit Container Override */
+#cvCardContainer .card.uber-mich {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  width: 90% !important;
+}
+
+
+
 /* =========================================================
    FÄHIGKEITEN SECTION 
    ========================================================= */
@@ -611,33 +704,6 @@ body.overlay-open #menu-toggle {
 }
 
 
-/* ============================= */
-/* Gmail Icon (Multi Color Gradient) */
-/* ============================= */
-.footer-right .bxl-gmail {
-  background: linear-gradient(45deg,
-      #fa2121);
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ============================= */
-/* GMX Mail Icon - Size Fix */
-/* ============================= */
-.footer-right img.mail-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  vertical-align: middle;
-}
-
 /* ============================= 
   Mouse
 ============================= */
@@ -835,6 +901,7 @@ body.overlay-open #menu-toggle {
   opacity: 0.8;
 }
 
+
 /* =============================
    WEITERBILDUNG / EDUCATION
 ============================= */
@@ -851,59 +918,64 @@ body.overlay-open #menu-toggle {
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
   -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   padding: 2rem;
   box-sizing: border-box;
 }
 
-/* Grid → YAN YANA */
+/* GRID LAYOUT */
 .education-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
+/* Section title */
 #wb {
   color: var(--accent);
-  font-size: 1.1rem !important;
+  font-size: 1.1rem;
   margin-bottom: 50px;
 }
 
 /* Single card */
 .education-card {
-  background: --card;
-  backdrop-filter: blur(1px);
-  border: 1px solid rgba(204, 204, 204, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   padding: 1.2rem 1.4rem;
-  flex: 0 1 22%;
-  
+  min-height: 60%;
+   
+   
+
   box-sizing: border-box;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   position: relative;
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Hover effect (hafif) */
+/* Hover effect */
 .education-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
+/* "in progress" text */
 .immernoch {
-
-  margin-bottom: auto;
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
 
   font-size: 0.7rem;
   font-family: "Montserrat", sans-serif;
-  
   color: var(--accent);
-  animation: blink 3s infinite;
 
   opacity: 0.12;
+  animation: blink 3s infinite;
 }
 
 /* Card title */
@@ -924,7 +996,7 @@ body.overlay-open #menu-toggle {
 /* List (Python & KI) */
 .education-list {
   margin-top: 8px;
-
+  padding-left: 18px;
 }
 
 .education-list li {
@@ -947,10 +1019,6 @@ body.overlay-open #menu-toggle {
   .education-container {
     max-width: 100%;
     padding: 1.5rem;
-  }
-
-  .education-card {
-    flex: 1 1 100%;
   }
 }
 
