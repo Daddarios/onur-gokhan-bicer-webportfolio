@@ -197,8 +197,9 @@ body {
   }
   
   .cv-content button {
-    width: 25% !important;
-    padding: 0.4rem 0.6rem !important;
+    display: inline-block;
+    width: auto !important;
+    padding: 0.4rem 0.9rem !important;
     font-size: 0.9rem !important;
   }
 }
