@@ -197,18 +197,9 @@ body {
   }
   
   .cv-content button {
+    width: 75% !important;
+    padding: 0.1rem 0.3rem;
     font-size: 1rem;
-    padding: 0.5rem 1.2rem;
-    width: auto;
-    min-width: 140px;
-    border-radius: 0.5rem;
-
-    appearance: none;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
-    white-space: nowrap;
   }
 }
 
@@ -224,18 +215,9 @@ body {
   }
 
   .cv-content button {
-   font-size: 1rem;
-    padding: 0.5rem 1.2rem;
-    width: auto;
-    min-width: 140px;
-    border-radius: 0.5rem;
-
-    appearance: none;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
-    white-space: nowrap;
+    width: 25% !important;
+    padding: 0.1rem 0.3rem;
+    font-size: 1rem;
   }
 }
 
