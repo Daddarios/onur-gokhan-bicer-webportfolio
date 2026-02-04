@@ -1,6 +1,4 @@
 
-
-
 /* =====================================================
    PROJECT TECH ICONS (AUTO)
    Her .project-tech alanındaki yazıyı ikonlara çevirir
@@ -14,7 +12,7 @@ function renderProjectTechIcons() {
     "C#": "devicon-csharp-plain colored",
     "ASP.NET MVC": "devicon-dot-net-plain colored",
     "ASP.NET": "devicon-dot-net-plain-wordmark colored",
-    "Entitiy Framework": "devicon-entityframeworkcore-plain colored",
+    "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
     "Mysql": "devicon-mysql-original colored",
     "SQL": "devicon-microsoftsqlserver-plain colored",
@@ -83,6 +81,14 @@ const dom = {
 dom.menuToggle.addEventListener("click", () => {
   const isOpen = dom.navLinks.classList.toggle("open");
   document.body.style.overflow = isOpen ? "hidden" : "";
+});
+
+// ESC tuşuna basınca menüyü kapat
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    dom.navLinks.classList.remove("open");
+    document.body.style.overflow = "";
+  }
 });
 
 // Responsive geçişlerde menüyü sıfırla + sıçrama önle
@@ -314,7 +320,7 @@ const contentMap = {
 
                   <div class="project-tech">
                    
-                    C#, ASP.NET, ASP.NET MVC, Entitiy Framework, SQL Server, HTML, CSS , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub
+                    C#, ASP.NET, ASP.NET MVC, Entity Framework, SQL Server, HTML, CSS , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub
                     
                   </div>
 
@@ -356,7 +362,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                  <a href="https://github.com/USERNAME" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
+                  <a href="https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
@@ -393,7 +399,7 @@ const contentMap = {
                 <div class="project-links">
                 
                   <span id="noch">in der Entwicklung</span>
-                  <a href="https://github.com/USERNAME" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
+                  <a href="https://github.com/Daddarios/Vista.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
@@ -423,7 +429,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                  <a href="https://github.com/USERNAME" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
+                  <a href="https://github.com/Daddarios/Klinikum_Stuttgart.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
@@ -453,7 +459,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                  <a href="https://github.com/USERNAME" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
+                  <a href="https://github.com/Daddarios/Personal-Page.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
