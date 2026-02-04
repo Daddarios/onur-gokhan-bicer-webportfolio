@@ -184,68 +184,6 @@ body {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 480px) {
-  .cv-content {
-    max-width: 100%;
-    min-width: unset;
-    width: 70%;
-    padding: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.2rem !important;
-  }
-
-  .cv-content button {
-    width: 70% !important;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-  }
-
-  /* Tüm mobil tarayıcılar için (Safari, Chrome, Samsung, vs.) */
-  @supports (-webkit-touch-callout: none) {
-    .cv-content button {
-      appearance: none;
-      -webkit-appearance: none;
-      line-height: 1.2;
-      white-space: nowrap;
-      border-radius: 0.5rem;
-      box-sizing: border-box;
-      text-align: center;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .cv-content {
-    max-width: 90%;
-    min-width: unset;
-    padding: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.3rem !important;
-  }
-
-  .cv-content button {
-    width: 70% !important;
-    padding: 0.7rem 1rem;
-    font-size: 1rem;
-  }
-
-  /* Tüm mobil tarayıcılar için destek */
-  @supports (-webkit-touch-callout: none) {
-    .cv-content button {
-      appearance: none;
-      -webkit-appearance: none;
-      line-height: 1.2;
-      white-space: nowrap;
-      border-radius: 0.5rem;
-      box-sizing: border-box;
-      text-align: center;
-    }
-  }
-}
 
 
 /* =========================================================
