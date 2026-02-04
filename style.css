@@ -201,6 +201,19 @@ body {
     padding: 0.8rem 1rem;
     font-size: 1rem;
   }
+
+  /* Tüm mobil tarayıcılar için (Safari, Chrome, Samsung, vs.) */
+  @supports (-webkit-touch-callout: none) {
+    .cv-content button {
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1.2;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -219,7 +232,21 @@ body {
     padding: 0.7rem 1rem;
     font-size: 1rem;
   }
+
+  /* Tüm mobil tarayıcılar için destek */
+  @supports (-webkit-touch-callout: none) {
+    .cv-content button {
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1.2;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  }
 }
+
 
 /* =========================================================
    OVERLAY (YENİ TASARIM)
