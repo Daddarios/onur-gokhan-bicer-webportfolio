@@ -184,25 +184,31 @@ body {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
+/* Tablet boyutları için (örnek: iPad, Galaxy Tab, 768px ve altı) */
+@media (max-width: 768px) {
+  .cv-content {
+    max-width: 90%; /* Ekranın %90’ını kaplasın */
+    min-width: unset; /* Sabit genişlik zorlamasını kaldır */
+    padding: 2rem; /* Daha kompakt görünüm */
+  }
+}
+
+/* Küçük telefon ekranları için (örnek: iPhone SE, Galaxy A20, 480px ve altı) */
 @media (max-width: 480px) {
   .cv-content {
-    max-width: 100%;
-    min-width: unset;
-    width: 70%;
+    max-width: 95%;
     padding: 1.5rem;
   }
 
   .section-title {
-    font-size: 1.2rem !important;
+    font-size: 1.2rem !important; /* Başlığı biraz küçült */
   }
 
   .cv-content button {
-    width: 70% !important;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
 }
-
+/*#012 
 @media (max-width: 768px) {
   .cv-content {
     max-width: 90%;
@@ -219,8 +225,7 @@ body {
     padding: 0.7rem 1rem;
     font-size: 1rem;
   }
-}
-
+}*/
 /* =========================================================
    OVERLAY (YENİ TASARIM)
    ========================================================= */
