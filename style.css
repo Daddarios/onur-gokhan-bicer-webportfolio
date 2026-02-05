@@ -225,7 +225,7 @@ body {
     padding: 0.7rem 1rem;
     font-size: 1rem;
   }
-}*/
+
 /* =========================================================
    OVERLAY (YENİ TASARIM)
    ========================================================= */
@@ -942,6 +942,7 @@ body.overlay-open #menu-toggle {
   color: var(--accent);
   font-size: 1.1rem;
   margin-bottom: 0.4rem;
+  margin-left: 10px;
 }
 
 .project-desc {
@@ -950,6 +951,8 @@ body.overlay-open #menu-toggle {
   opacity: 0.95;
   margin-bottom: 0.6rem;
   color: white;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .project-tech {
@@ -957,6 +960,8 @@ body.overlay-open #menu-toggle {
   padding-bottom: 5px;
   gap: 21px !important;
   opacity: 1;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .project-links {
@@ -970,6 +975,7 @@ body.overlay-open #menu-toggle {
   color: #bdbdbde5;
   animation: blink 3s infinite;
   --font: "Montserrat", sans-serif;
+  margin-left: 10px;
 
 }
 

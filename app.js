@@ -1,11 +1,12 @@
 
 /* =====================================================
-   PROJECT TECH ICONS (AUTO)
-   Her .project-tech alanındaki yazıyı ikonlara çevirir
+   PROJECT TECH ICONS  ##013 05.02
    ===================================================== */
 
 function renderProjectTechIcons() {
   const iconMap = {
+    "Visual Studio": "devicon-visualstudio-plain colored",
+    "Visual Studio Code": "devicon-vscode-plain colored",
     "HTML": "devicon-html5-plain-wordmark colored",
     "CSS": "devicon-css3-plain-wordmark colored",
     "JavaScript": "devicon-javascript-plain colored",
@@ -311,16 +312,29 @@ const contentMap = {
 
 
               <div class="project-content">
-                  <h4 class="project-title">CRM-Anwendung Kunden & Projektverwaltung</h4> 
+                  <h4 class="project-title">CRM-Anwendung</h4> 
 
                   <p class="project-desc">
-                    CRM-System mit ASP.NET MVC: rollenbasierte Zugriffskontrolle, Zwei-Faktor-Authentifizierung (2FA), Modulbasierte Verwaltung von Kunden, Mitarbeitern und Projektaktivitäten, Echtzeit-Dashboard, Visualisierungen, Formularvalidierung, Excel/PDF-Export und API-Erweiterbarkeit.
+                   Entwicklung eines vollwertigen CRM-Systems mit ASP.NET MVC zur Verwaltung von Kunden, Mitarbeitern 
+                    und Projekten sowie deren Berichten. Enthält ein rollenbasiertes Zugriffssystem, Zwei-Faktor-Authentifizierung (2FA), 
+                    ein interaktives Dashboard mit Visualisierungen, sowie Funktionen für Excel- und PDF-Export 
+                    (inkl. eine REST-API). Die Anwendung ist modular aufgebaut und durch eine API erweiterbar.
                   </p>
 
+                  <p class="project-desc">
+                  <strong>Rolle & Beitrag :</strong>  
+                  Dieses Full-Stack-Projekt habe ich mit professionellem Anspruch eigenverantwortlich umgesetzt von der Softwarearchitektur über Backend 
+                  (inkl. Entity Framework, API-Schnittstellen, 2FA-Sicherheit) bis hin zum vollständigen Frontend-Layout und der Benutzeroberfläche.  
+                  
+                  Dabei habe ich u. a. die Datenbankstruktur entworfen, die Anwendungsarchitektur definiert 
+                  und alle Backend- und Frontend-Komponenten implementiert.  
+                  Es entstand im Rahmen eines IHK-Projekts unter realitätsnahen Bedingungen und wurde vollständig von mir konzipiert und entwickelt.
+                </p>
+                   
 
                   <div class="project-tech">
                    
-                    C#, ASP.NET, ASP.NET MVC, Entity Framework, SQL Server, HTML, CSS , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub
+                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML, CSS , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub 
                     
                   </div>
 
@@ -350,15 +364,21 @@ const contentMap = {
                 <p class="project-desc">
                   <p class="project-desc">
                      <p class="project-desc">
-                      Meine erste persönliche Portfolio-Seite, um Projekte, Lebenslauf und wichtige Unterlagen übersichtlich zu zeigen – schlicht, mobilfreundlich und ganz mein Stil.
+                      <strong>Ein selbstständig entwickeltes UI-Projekt</strong> zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
                     </p>
 
-                  </p>
+                    <p class="project-desc">
+                      <strong>Rolle:</strong> Konzeption, UI-Design, technische Umsetzung, Deployment
+                    </p>
 
+                    <p class="project-desc">
+                      <strong>Fokus:</strong> Responsives Layout, benutzerfreundliche Navigation, saubere Code-Struktur
+                    </p>
+                  </p>
                 </p>
 
                 <div class="project-tech">
-                  HTML, CSS, JavaScript
+                 Visual Studio Code, HTML, CSS, JavaScript
                 </div>
 
                 <div class="project-links">
@@ -380,20 +400,27 @@ const contentMap = {
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">VISTA</h4>
+                <h4 class="project-title">VISTA – React SPA für ASP.NET CRM</h4>
 
-                <p class="project-desc">
-                VISTA wurde entwickelt, um ein ASP.NET-basiertes CRM-System in ein modernes React-Frontend zu integrieren und REST-API-Prinzipien praktisch anzuwenden.
-                Ziel ist es, eine modulare React-SPA zu realisieren, kontinuierlich praktische Erfahrung in der REST-API-Integration zu sammeln und mich dabei stetig weiterzuentwickeln.
-                Das Frontend wurde als Client-Side-Rendering (CSR) React-Anwendung umgesetzt und kommuniziert über eine REST-API mit dem Backend.
-                </p>
+                      <p class="project-desc">
+                        <strong>VISTA</strong> ist ein persönliches Projekt zur Integration eines <strong>ASP.NET-basierten CRM-Systems</strong> in ein modernes <strong>React-Frontend</strong>.
+                        Ziel war es, <strong>REST-API-Integration</strong> praxisnah umzusetzen und Frontend-Kompetenz mit <strong>Client-Side-Rendering (CSR)</strong> zu vertiefen.
+                      </p>
 
+                      <p class="project-desc">
+                        Die Anwendung wurde als <strong>modulare Single Page Application (SPA)</strong> mit React entwickelt.
+                        Das <strong>Frontend</strong> kommuniziert über eine selbst entwickelte <strong>REST-API</strong> mit dem Backend.
+                      </p>
+
+                      <p class="project-desc">
+                        <strong>Rolle:</strong> UI-Design, technische Umsetzung, API-Anbindung, Continuous Learning
+                      </p>
                 
 
 
                 <div class="project-tech">
                   
-                  React, JavaScript, CSS,
+                  Visual Studio Code, HTML, CSS, JavaScript, React ,React Router, JWT 
                 </div>
 
                 <div class="project-links">
@@ -425,7 +452,7 @@ const contentMap = {
                 </p>
 
                 <div class="project-tech">
-                  C#, ASP.NET, SQL Server
+                     Visual Studio, C#,  SQL Server
                 </div>
 
                 <div class="project-links">
@@ -448,14 +475,19 @@ const contentMap = {
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Photo BLOG</h4>
+                <h4 class="project-title">Photo BLOG – Responsive UI mit HTML & CSS</h4>
 
                 <p class="project-desc"> 
-                   Photo Blog ist mein erstes Frontendprojekt. In diesem Projekt habe ich die grundlegenden Bausteine des Frontends wie HTML-Struktur, CSS-Design und Responsive Design gelernt und praktisch angewendet.
+                  Ein persönliches Frontend-Projekt zur praktischen Anwendung von <strong>HTML</strong>, <strong>CSS</strong> und <strong>Responsive Design</strong>. Ziel war es, eine visuell ansprechende, mobilfreundliche Benutzeroberfläche für einen Foto-Blog zu gestalten und umzusetzen.
                 </p>
 
+                <p class="project-desc">
+                  <strong>Rolle:</strong> UI-Konzeption, Layoutstruktur, CSS-Design, Responsive Umsetzung mit Media Queries
+                </p>
+
+
                 <div class="project-tech">
-                  HTML, CSS
+                  Visual Studio Code , HTML, CSS,
                 </div>
 
                 <div class="project-links">
@@ -473,24 +505,45 @@ const contentMap = {
                       <img src="projekte/plan.png" alt="Zielprojekte Vorschau">
                     
                   </div>
+                           <div class="project-content">
+                              <h4 class="project-title">Zielprojekt: Data Science & KI-gestützte Business Intelligence</h4>
 
-                  <div class="project-content">
-                    <h4 class="project-title">Zielprojekte: Data Science & Business Intelligence</h4>
+                                <p class="project-desc">
+                                  Dieses Projekt befindet sich aktuell in der <strong>Planungsphase</strong> und ist als persönliches Lernziel 
+                                  im Bereich <strong>Data Science</strong>, <strong>Künstliche Intelligenz (KI)</strong> und 
+                                  <strong>Business Intelligence</strong> konzipiert.
+                                </p>
 
-                    <p class="project-desc">
-                      <strong>1. Produkt-Nachfrageprognose:</strong> Entwicklung eines Modells zur Vorhersage zukünftiger Produktverkäufe mittels Zeitreihenanalyse (z.&nbsp;B. Prophet, XGBoost), 
-                      um Lagerbestände zu optimieren und Kosten zu reduzieren.<br><br>
+                                <p class="project-desc">
+                                  Ziel ist die Entwicklung eines intelligenten Analyse-Tools für datengetriebene Branchen wie 
+                                  <strong>Einzelhandel</strong> oder <strong>E-Commerce</strong>. 
+                                  Das Tool soll <strong>Absatzprognosen</strong> (z. B. mit Prophet oder XGBoost), 
+                                  <strong>Kundensegmentierung</strong> (z. B. mit RFM-Analyse und K-Means) 
+                                  sowie <strong>datenbasierte Entscheidungsunterstützung</strong> ermöglichen.
+                                </p>
 
-                      <strong>2. Kundensegmentierung:</strong> Anwendung von RFM-Analyse und Clustering (z.&nbsp;B. K-Means), um Kunden in Zielgruppen zu segmentieren und personalisierte Marketingstrategien zu entwickeln.
-                    </p>
+                                <p class="project-desc">
+                                  Dadurch sollen Unternehmen in der Lage sein, <strong>Lagerkosten zu reduzieren</strong>, 
+                                  <strong>Marketingkampagnen gezielter zu gestalten</strong> und 
+                                  <strong>strategische Entscheidungen auf Basis realer Daten</strong> zu treffen.
+                                </p>
 
-                    <div class="project-tech">
-                      Python, Pandas, NumPy , Matplotlib, scikit-learn, Prophet, K-Means,  Seaborn
-                    </div>
+                                <p class="project-desc">
+                                  In einer späteren Phase ist geplant, das Projekt um <strong>Machine Learning</strong>- und 
+                                  <strong>Natural Language Processing (NLP)</strong>-Komponenten zu erweitern – z. B. zur Analyse von 
+                                  Kundenfeedback, Bewertungen oder Supportanfragen aus unstrukturierten Datenquellen.
+                                </p>
 
-                    <div class="project-links">
-                      <span id="noch">in Planung</span>
-                    </div>
+                             <div class="project-tech">
+                              Python, Pandas, NumPy , Matplotlib, scikit-learn, Prophet, K-Means,  Seaborn
+                            </div>
+
+                            <div class="project-links">
+                              <span id="noch">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
+                            </div>
+                            </div>
+
+                 
                   </div>
                 </div>
 
@@ -503,20 +556,39 @@ const contentMap = {
                     </div>
 
                     <div class="project-content">
-                      <h4 class="project-title">Zielprojekt: Predictive Analytics im Bankwesen</h4>
+                     <h4 class="project-title">Zielprojekt: Predictive Analytics im Bankwesen</h4>
 
-                      <p class="project-desc">
-                        <strong>1. Produktnutzungsprognose:</strong> Entwicklung eines ML-Modells zur Vorhersage, welche Bankprodukte (z.&nbsp;B. Kredit, Anlagekonto) ein Kunde wahrscheinlich in den nächsten Monaten nutzen wird. Ziel ist es, Cross-Selling zu optimieren und Kundenabwanderung zu reduzieren.<br><br>
+                            <p class="project-desc">
+                              Dieses Projekt befindet sich aktuell in der <strong>Planungsphase</strong> und ist als persönliches Lernziel im Bereich 
+                              <strong>Predictive Analytics</strong>, <strong>Machine Learning</strong> und <strong>Data Science</strong> für den 
+                              <strong>Banken- und Finanzsektor</strong> konzipiert.
+                            </p>
 
-                        <strong>2. Feature-Auswertung & Kundenverhalten:</strong> Analyse der wichtigsten Einflussfaktoren (z.&nbsp;B. Einkommen, Transaktionshistorie, digitale Nutzung), um Kundenverhalten besser zu verstehen und Marketingmaßnahmen zu personalisieren.
-                      </p>
+                            <p class="project-desc">
+                              Ziel ist die Entwicklung eines <strong>Vorhersagemodells</strong>, das prognostiziert, 
+                              welche <strong>Bankprodukte</strong> (z.&nbsp;B. Kredit, Anlagekonto oder Sparprodukt) ein Kunde mit hoher Wahrscheinlichkeit 
+                              in den kommenden Monaten nutzen wird. Dadurch sollen <strong>Cross-Selling-Potenziale</strong> identifiziert und 
+                              <strong>Kundenabwanderung</strong> frühzeitig erkannt werden.
+                            </p>
+
+                            <p class="project-desc">
+                              Zusätzlich werden <strong>Kundenmerkmale</strong> wie Einkommen, Transaktionshistorie und digitale Nutzung analysiert, 
+                              um <strong>Einflussfaktoren auf das Kundenverhalten</strong> zu verstehen. 
+                              Auf dieser Basis können <strong>personalisierte Marketing- und Beratungsstrategien</strong> entwickelt werden.
+                            </p>
+
+                            <p class="project-desc">
+                              Ein besonderer Fokus liegt auf der <strong>Erklärbarkeit der Modelle</strong> (z.&nbsp;B. mit SHAP), 
+                              um Vorhersagen transparent darzustellen und die Ergebnisse sowohl für Fachabteilungen als auch für das Management 
+                              nachvollziehbar zu machen.
+                            </p>
 
                       <div class="project-tech">
                         Python, Pandas, NumPy, Matplotlib, scikit-learn, XGBoost, Logistic Regression, SHAP, Seaborn
                       </div>
 
                       <div class="project-links">
-                        <span id="noch">in Planung</span>
+                        <span id="noch">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
                       </div>
                     </div>
                   </div>
