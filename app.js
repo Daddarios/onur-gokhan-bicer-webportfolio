@@ -599,74 +599,74 @@ const contentMap = {
   ,
 /* ===== Weiterbildung ===== */
 "kurs": `
-<section class="education-section">
-  <div class="education-container">
-    <h2 id="wb" class="section-title">Weiterbildungen</h2>
+        <section class="education-section">
+          <div class="education-container">
+            <h2 id="wb" class="section-title">Weiterbildungen</h2>
 
-    <div class="education-grid">
-      
-      <div class="education-card">
-        <h4 class="card-title">C# & ASP.NET Core</h4>
-        <p class="card-text">OOP, Entity Framework & ASP.NET Core (Version 6 / 7 / 8)</p>
-      </div>
+            <div class="education-grid">
+              
+              <div class="education-card">
+                <h4 class="card-title">C# & ASP.NET Core</h4>
+                <p class="card-text">OOP, Entity Framework & ASP.NET Core (Version 6 / 7 / 8)</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">Netzwerktechnik Grundlagen</h4>
-        <p class="card-text">IP-Adressierung, Subnetting & Netzwerkarchitektur</p>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">Netzwerktechnik Grundlagen</h4>
+                <p class="card-text">IP-Adressierung, Subnetting & Netzwerkarchitektur</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">IP-Adressierung & Subnetting</h4>
-        <p class="card-text">Teil 1 & 2 – Netzwerkgrundlagen</p>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">IP-Adressierung & Subnetting</h4>
+                <p class="card-text">Teil 1 & 2 – Netzwerkgrundlagen</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">Projektmanagement</h4>
-        <p class="card-text">.NET MVC5 – Anwendung von Grund auf</p>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">Projektmanagement</h4>
+                <p class="card-text">.NET MVC5 – Anwendung von Grund auf</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">Frontend Camp</h4>
-        <p class="card-text">HTML5, CSS3, Bootstrap & Tailwind CSS, JavaScript & React</p>
-        <span class="immernoch">in der Lernphase</span>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">Frontend Camp</h4>
+                <p class="card-text">HTML5, CSS3, Bootstrap & Tailwind CSS, JavaScript & React</p>
+                <span class="immernoch">in der Lernphase</span>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">RESTful APIs</h4>
-        <p class="card-text">RESTful API Fundamentals – Architektur & Design Patterns</p>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">RESTful APIs</h4>
+                <p class="card-text">RESTful API Fundamentals – Architektur & Design Patterns</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">GitHub Schulung</h4>
-        <p class="card-text">Versionskontrolle & Projektverwaltung mit GitHub</p>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">GitHub Schulung</h4>
+                <p class="card-text">Versionskontrolle & Projektverwaltung mit GitHub</p>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">Swift & iOS 16</h4>
-        <p class="card-text">MVVM Detailkurs – Ohne Storyboard</p>
-        <span class="immernoch">in der Lernphase</span>
-      </div>
+              <div class="education-card">
+                <h4 class="card-title">Swift & iOS 16</h4>
+                <p class="card-text">MVVM Detailkurs – Ohne Storyboard</p>
+                <span class="immernoch">in der Lernphase</span>
+              </div>
 
-      <div class="education-card">
-        <h4 class="card-title">Python & KI</h4>
-        <ul class="education-list">
-          <li>Python – Grundlagen für KI & Datenanalyse</li>
-          <li>NumPy – Numerische Berechnungen für Machine Learning</li>
-          <li>pandas – Datenaufbereitung und Analyse</li>
-          <li>Matplotlib & Seaborn – Datenvisualisierung</li>
-          <li>scikit-learn – Regression, Klassifikation und Clustering</li>
-          <li>Machine-Learning-Modelle – Decision Trees, SVM, K-Means</li>
-          <li>Praxisprojekte – Arbeiten mit realen Datensätzen</li>
-          <li>Projektworkflow – Struktur von Data-Science-Projekten</li>
+              <div class="education-card">
+                <h4 class="card-title">Python & KI</h4>
+                <ul class="education-list">
+                  <li>Python – Grundlagen für KI & Datenanalyse</li>
+                  <li>NumPy – Numerische Berechnungen für Machine Learning</li>
+                  <li>pandas – Datenaufbereitung und Analyse</li>
+                  <li>Matplotlib & Seaborn – Datenvisualisierung</li>
+                  <li>scikit-learn – Regression, Klassifikation und Clustering</li>
+                  <li>Machine-Learning-Modelle – Decision Trees, SVM, K-Means</li>
+                  <li>Praxisprojekte – Arbeiten mit realen Datensätzen</li>
+                  <li>Projektworkflow – Struktur von Data-Science-Projekten</li>
 
-        </ul>
-        <span class="immernoch">in der Lernphase</span>
-      </div>
+                </ul>
+                <span class="immernoch">in der Lernphase</span>
+              </div>
 
-    </div>
-  </div>
-</section>
-`
+            </div>
+          </div>
+        </section>
+       `
 
 ,
   /* ===== KONTAKT ===== */
@@ -675,7 +675,7 @@ const contentMap = {
            <div class="card kontakt-card">
             <h2 class="title">Kontakt</h2>
             
-            <p>
+            <p class="project-content">
               <strong><i class='bx bx-mail-send' style='color:#ffffff' ></i> E-Mail :</strong> <span id="kontaktMail"></span>
             </p>
          </div>
