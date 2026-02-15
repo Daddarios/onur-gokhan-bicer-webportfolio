@@ -339,7 +339,7 @@ const contentMap = {
                   </div>
 
                 <div class="project-links">
-                <span id="noch">in der Entwicklung</span>
+                <span id="noch">Projekt in Entwicklung</span>
                   <a id="linksse" href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -382,6 +382,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
+                <span id="abschluss">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -456,6 +457,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
+                <span id="abschluss">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/Klinikum_Stuttgart.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -491,6 +493,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
+                <span id="abschluss">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/Personal-Page.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -628,7 +631,7 @@ const contentMap = {
               <div class="education-card">
                 <h4 class="card-title">Frontend Camp</h4>
                 <p class="card-text">HTML5, CSS3, Bootstrap & Tailwind CSS, JavaScript & React</p>
-                <span class="immernoch">in der Lernphase</span>
+                <span class="immernoch">Aktuell in Weiterbildung</span>
               </div>
 
               <div class="education-card">
@@ -644,24 +647,42 @@ const contentMap = {
               <div class="education-card">
                 <h4 class="card-title">Swift & iOS 16</h4>
                 <p class="card-text">MVVM Detailkurs – Ohne Storyboard</p>
-                <span class="immernoch">in der Lernphase</span>
+                <span class="immernoch">Aktuell in Weiterbildung</span>
               </div>
 
               <div class="education-card">
-                <h4 class="card-title">Python & KI</h4>
-                <ul class="education-list">
-                  <li>Python – Grundlagen für KI & Datenanalyse</li>
-                  <li>NumPy – Numerische Berechnungen für Machine Learning</li>
-                  <li>pandas – Datenaufbereitung und Analyse</li>
-                  <li>Matplotlib & Seaborn – Datenvisualisierung</li>
-                  <li>scikit-learn – Regression, Klassifikation und Clustering</li>
-                  <li>Machine-Learning-Modelle – Decision Trees, SVM, K-Means</li>
-                  <li>Praxisprojekte – Arbeiten mit realen Datensätzen</li>
-                  <li>Projektworkflow – Struktur von Data-Science-Projekten</li>
+                    <h4 class="card-title">Python & Data Science / Machine Learning</h4>
+                    <ul class="card-text">
+                      <li>Python – Grundlagen für Data Science</li>
+                      <li>NumPy – Numerische Berechnungen und mathematische Operationen</li>
+                      <li>Pandas – Datenaufbereitung, -manipulation und -analyse</li>
+                      <li>Matplotlib & Seaborn – Datenvisualisierung und statistische Auswertung</li>
+                      <li>Scikit-Learn – Entwicklung und Training von Machine-Learning-Modellen</li>
 
-                </ul>
-                <span class="immernoch">in der Lernphase</span>
-              </div>
+                      <li>Lineare und polynomiale Regression</li>
+                      <li>Ridge-, Lasso- und ElasticNet-Regression</li>
+                      <li>Logistische Regression</li>
+                      <li>Decision Trees und Random Forest</li>
+                      <li>AdaBoost und Gradient Boosting</li>
+                      <li>K-Nearest Neighbors (KNN)</li>
+                      <li>Support Vector Machines (SVM)</li>
+                      <li>K-Means Clustering</li>
+                      <li>Hierarchisches Clustering</li>
+                      <li>DBSCAN Clustering</li>
+
+                      <li>Machine-Learning-Methoden: Regression, Klassifikation und Clustering</li>
+                      <li>Theoretische und praktische Anwendung von ML-Algorithmen</li>
+                      <li>Arbeit mit realen Datensätzen und praxisnahen Projekten</li>
+                      <li>Entwicklung von Data-Science-Projekten im vollständigen Workflow</li>
+                    </ul>
+
+                    <p class="tech">
+                    <strong>Technologien:</strong> Python, Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn
+                    </p>
+
+                    <span class="immernoch">Aktuell in Weiterbildung</span>
+                    
+                  </div>
 
             </div>
           </div>

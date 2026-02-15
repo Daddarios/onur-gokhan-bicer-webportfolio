@@ -972,7 +972,7 @@ body.overlay-open #menu-toggle {
 }
 
 .project-links #noch {
-  color: #bdbdbde5;
+  color: var(--accent);
   animation: blink 3s infinite;
   --font: "Montserrat", sans-serif;
   margin-left: 10px;
@@ -1069,7 +1069,8 @@ body.overlay-open #menu-toggle {
 
 /* "in progress" text */
 .immernoch {
-  position: absolute;
+  position: static;
+  margin-top:15px;
   bottom: 12px;
   right: 14px;
 
@@ -1096,16 +1097,10 @@ body.overlay-open #menu-toggle {
   color: #f1f1f1;
 }
 
-/* List (Python & KI) */
-.education-list {
-  margin-top: 8px;
-  padding-left: 18px;
-}
-
-.education-list li {
-  font-size: 13px;
-  margin-bottom: 5px;
-  color: #ccc;
+#abschluss{
+  color: #17b312e5;
+  --font: "Montserrat", sans-serif;
+  margin-left: 10px;
 }
 
 /* =============================
