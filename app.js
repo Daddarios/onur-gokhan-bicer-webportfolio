@@ -164,6 +164,15 @@ sections.forEach(s => {
 });
 
 document.body.appendChild(frag);
+// Menüde bir linke tıklanınca 1 sn sonra menüyü kapat
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    setTimeout(() => {
+      dom.navLinks.classList.remove("open");
+      document.body.style.overflow = "";
+    }, 1000); // 1 saniye
+  });
+});
 
 /* ===== CONTENT MAP ===== */
 const contentMap = {
