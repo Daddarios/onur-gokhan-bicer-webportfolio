@@ -142,7 +142,7 @@ const sections = [
   { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Wichtige Unterlagen" },
   { id: "projekte", title: "Entwicklung & Projekte", desc: "Abgeschlossene & laufende Projekte" },
   {id:"kurs", title:"Weiterbildungen", desc:"Online-Kurse & Fortbildungen"},
-  { id: "kontakt", title: "Kontakt", desc: "" }
+  { id: "kontakt", title: "Kontakt aufnehmen", desc: "Kontaktieren Sie mich!" }
 ];
 
 const frag = document.createDocumentFragment();
@@ -694,7 +694,7 @@ const contentMap = {
 
   "kontakt": `
            <div class="card kontakt-card">
-            <h2 class="title">Kontakt aufnehmen</h2>
+            <h2 class="title">Kontakt</h2>
             
             <p class="project-content">
               <strong><i class='bx bx-mail-send' style='color:#ffffff' ></i> E-Mail :</strong> <span id="kontaktMail"></span>
