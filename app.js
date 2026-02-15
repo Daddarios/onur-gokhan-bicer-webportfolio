@@ -694,7 +694,7 @@ const contentMap = {
 
   "kontakt": `
            <div class="card kontakt-card">
-            <h2 class="title">Kontakt</h2>
+            <h2 class="title">Kontakt aufnehmen</h2>
             
             <p class="project-content">
               <strong><i class='bx bx-mail-send' style='color:#ffffff' ></i> E-Mail :</strong> <span id="kontaktMail"></span>
