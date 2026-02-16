@@ -142,7 +142,7 @@ const sections = [
   { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Wichtige Unterlagen" },
   { id: "projekte", title: "Entwicklung & Projekte", desc: "Abgeschlossene & laufende Projekte" },
   {id:"kurs", title:"Weiterbildungen", desc:"Online-Kurse & Fortbildungen"},
-  { id: "kontakt", title: "Kontakt aufnehmen", desc: "Kontaktieren Sie mich!" }
+  { id: "kontakt", title: "Kontakt ", desc: "Ich freue mich, von Ihnen zu hören" }
 ];
 
 const frag = document.createDocumentFragment();
@@ -703,12 +703,32 @@ const contentMap = {
 
   "kontakt": `
            <div class="card kontakt-card">
-            <h2 class="title">Kontakt</h2>
-            
-            <p class="project-content">
-              <strong><i class='bx bx-mail-send' style='color:#ffffff' ></i> E-Mail :</strong> <span id="kontaktMail"></span>
-            </p>
-         </div>
+              <h2 class="title">Kontakt aufnehmen</h2>
+
+              <form id="contactForm" class="modern-form">
+
+              <div class="field half">
+              <input type="text" id="name" placeholder=" " required>
+              <label>Name</label>
+              </div>
+
+              <div class="field half">
+              <input type="email" id="email" placeholder=" " required>
+              <label>E-Mail</label>
+              </div>
+
+              <div class="field">
+              <textarea id="message" placeholder=" " required></textarea>
+              <label>Nachricht</label>
+              </div>
+
+              <button type="submit">SENDEN</button>
+              </form>
+
+              <p class="mail-fallback">
+              oder direkt: <span id="kontaktMail"></span>
+              </p>
+           </div>
         `
 };
 
@@ -797,7 +817,7 @@ footer.className = "site-footer";
 
 footer.innerHTML = `
   <div style="color:white">
-    &copy; 2025 Onur Gökhan Bicer | Alle Rechte vorbehalten - Version 1.2.0
+    &copy; 2025 Onur Gökhan Bicer | Alle Rechte vorbehalten - Version 1.4.6
     
   </div>
 
@@ -822,3 +842,26 @@ footer.innerHTML = `
 
 document.body.appendChild(footer);
 
+/* ===== CONTACT FORM MAILTO ===== */
+document.addEventListener("submit", function(e){
+  if(e.target.id === "contactForm"){
+    e.preventDefault();
+
+    const name=document.getElementById("name").value;
+    const email=document.getElementById("email").value;
+    const message=document.getElementById("message").value;
+
+    const mail="ongb@gmx.de";
+
+    const subject=encodeURIComponent("Portfolio Kontakt von "+name);
+    const body=encodeURIComponent(
+`Name: ${name}
+Email: ${email}
+
+Nachricht:
+${message}`
+    );
+
+    window.location.href=`mailto:${mail}?subject=${subject}&body=${body}`;
+  }
+});

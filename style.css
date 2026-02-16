@@ -1120,69 +1120,141 @@ body.overlay-open #menu-toggle {
   }
 }
 
-
 /* ================================
-   KONTAKT KART - ÖZEL STİL
+   PREMIUM CONTACT FORM (ENTEGRE)
+   body & card dahil DEĞİL
 ================================== */
-.card.kontakt-card {
-  max-width: 400px;
-  max-height: 220px !important;
-  margin: 2rem auto;
-  padding: 1.5rem 1.8rem;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(4px);
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.8rem;
-  text-align: left;
-  margin-top: 10% !important;
+
+.kontakt-card .modern-form{
+  display:flex;
+  flex-wrap:wrap;
+  gap:45px;
+  margin-top:95px;
+  justify-content:center;
+  
+}
+.kontakt-card{
+  
+  max-height:85%;
 }
 
-/* Başlık sola hizalı */
-.card.kontakt-card .title {
-  color: var(--accent);
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-
+.kontakt-card .field{
+  position:relative;
+  width:100%;
+  
 }
 
-/* Paragraflar – ortada ve alt alta */
-.card.kontakt-card p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #f7f7f7;
-  margin: 0.6rem auto;
-  text-align: center;
-  gap:5px;
-  width: 100%;
+.kontakt-card .half{
+  width:calc(49% - 22px);
 }
 
-/* E-posta alanı ortalı */
-#kontaktMail {
-  text-align: center;
-  margin-left: 3px;
-  font-family: var(--font);
+/* INPUT */
+.kontakt-card .modern-form input,
+.kontakt-card .modern-form textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,0.4);
+  padding:6px 0;
+  color:white;
+  font-size:12px;
+  font-family:var(--font);
+  font-weight:300;
+  letter-spacing:.4px;
 }
 
-/* E-posta linki */
-#kontaktMail a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  word-break: break-word;
-  display: inline-block;
-  margin-top: 3.5rem;
-  margin-bottom: 5.9rem;
-  transition: transform 0.3s ease, text-decoration 0.3s ease;
-  /* ✅ Geçiş efekti */
+/* TEXTAREA */
+.kontakt-card .modern-form textarea{
+  min-height:60px;
+  resize:none;
+  padding:4px 0 2px 0;
+  line-height:1.3;
 }
 
-#kontaktMail a:hover {
-  text-decoration: underline;
-  transform: scale(1.07);
+/* FOCUS */
+.kontakt-card .modern-form input:focus,
+.kontakt-card .modern-form textarea:focus{
+  outline:none;
+  border-bottom:1px solid var(--accent);
+}
 
+/* LABEL */
+.kontakt-card .field label{
+  position:absolute;
+  left:0;
+  top:2px;
+  font-size:12px;
+  opacity:0.55;
+  transition:.3s;
+  pointer-events:none;
+  font-weight:300;
+  letter-spacing:.4px;
+  color:#aaa;
+}
+
+/* LABEL FLOAT */
+.kontakt-card .modern-form input:focus + label,
+.kontakt-card .modern-form textarea:focus + label,
+.kontakt-card .modern-form input:not(:placeholder-shown) + label,
+.kontakt-card .modern-form textarea:not(:placeholder-shown) + label{
+  top:-16px;
+  font-size:10px;
+  opacity:1;
+  color:var(--accent);
+}
+
+/* BUTTON */
+.kontakt-card .modern-form button{
+  margin:55px auto 0 auto;
+  margin-top:20px;
+  display:block;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.6);
+  color:white;
+  padding:8px 20px;
+  letter-spacing:2px;
+  font-family:var(--font);
+  font-size:9px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.35s;
+}
+
+.kontakt-card .modern-form button:hover{
+  background:var(--accent);
+  color:black;
+  border-color:var(--accent);
+}
+
+/* MAIL TEXT */
+.kontakt-card .mail-fallback{
+  text-align:center;
+  margin-top:40px;
+  margin-bottom: 10px;
+  font-size:11px;
+  opacity:.45;
+  font-weight:300;
+  
+  
+}
+
+#kontaktMail{
+  color:#ffc107;
+  font: 1em sans-serif;
+}
+/* CHROME AUTOFILL BACKGROUND FIX */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus{
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #fff;
+}
+
+/* sarı/beyaz iç glow kaldır */
+input:-webkit-autofill{
+  box-shadow: 0 0 0px 1000px transparent inset !important;
 }
