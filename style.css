@@ -1135,8 +1135,18 @@ body.overlay-open #menu-toggle {
   
 }
 .kontakt-card{
-  
+  box-shadow: none;
   max-height:85%;
+}
+/* MOBILE & TABLET → kontakt kart shadow kapat */
+@media (max-width: 768px){
+  .card.kontakt-card{
+    box-shadow:none !important;
+  }
+
+  .card.kontakt-card:hover{
+      box-shadow:0 8px 28px rgba(0,0,0,0.22) !important;
+  }
 }
 
 .kontakt-card .field{
