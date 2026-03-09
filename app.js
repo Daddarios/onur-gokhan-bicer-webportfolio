@@ -10,6 +10,8 @@ function renderProjectTechIcons() {
     "HTML": "devicon-html5-plain-wordmark colored",
     "CSS": "devicon-css3-plain-wordmark colored",
     "JavaScript": "devicon-javascript-plain colored",
+    "Node.js": "devicon-nodejs-line-wordmark colored",
+    "npm": "devicon-npm-plain colored",
     "C#": "devicon-csharp-plain colored",
     "ASP.NET MVC": "devicon-dot-net-plain colored",
     "ASP.NET": "devicon-dot-net-plain-wordmark colored",
@@ -23,6 +25,7 @@ function renderProjectTechIcons() {
     "jQuery": "devicon-jquery-plain colored",
     "React": "devicon-react-plain colored",
     "GitHub": "devicon-github-plain white",
+    "Git": "devicon-git-plain colored",
     "Python": "devicon-python-plain colored",
     "NumPy": "devicon-numpy-plain colored",
     "Pandas": "devicon-pandas-original colored",
@@ -306,6 +309,50 @@ const contentMap = {
 
   /* ===== PROJEKTE ===== */
   "projekte": `
+
+            <!-- GoAI Assistant -->
+            
+               <!-- GOAI-Chat-Assistant -->
+              <div class="project-card">
+                <div class="project-image">
+                  <a href="projekte/GoAI1.png" target="_blank">
+                    <img src="projekte/GoAI1.png" alt="GoAI ChatLab Vorschau">
+                  </a>
+                  <a href="projekte/GoAI3.png" target="_blank">
+                    <img src="projekte/GoAI3.png" alt="GoAI ChatLab Vorschau">
+                  </a>
+                </div>
+
+                <div class="project-content">
+                      <h4 class="project-title">GoAI ChatLab – <small>Interaktive KI & Datei-Plattform </small></h4>
+
+                      <p class="project-desc">
+                        GoAI ChatLab ist eine moderne Anwendung, die das Chatten mit KI-Agenten und das Teilen verschiedener Dateitypen (PDF, Excel, CSV) in einer einheitlichen Oberfläche ermöglicht. GoAI ChatLab leitet hochgeladene Dateien oder Texte direkt an angebundene externe KI-Dienste weiter (z.B. via OpenRouter API), um analysierte Antworten oder intelligente Auswertungen zurückzugeben.
+                        
+                      </p>
+
+                      <p class="project-desc">
+                        <strong>Rolle & Beitrag:</strong>
+                        Eigenverantwortliche Entwicklung von Frontend-Komponenten mit React, Einrichtung des Node.js-Backends zur Weiterleitung von Datei- und Texteingaben an KI-APIs, Integration sicherer Umgebungsvariablen-Verwaltung (.env) sowie regelmäßige Code- und Sicherheitsscans auf GitHub.<br>
+                        <strong>Fokus:</strong> Die Lösung kann als flexibler Assistent nahtlos in bestehende Web- und Mobile-Anwendungen von Unternehmen integriert werden. Dadurch profitieren sowohl Unternehmen als auch ihre Kunden von schnelleren Problemlösungen und einem deutlich verbesserten Serviceerlebnis.
+                      </p>
+
+                      <div class="project-tech">
+                        React, JavaScript, CSS, HTML, Node.js,  Git, GitHub, .env, Datei-Parse (PDF, Excel, CSV), Security-Scanning
+                      </div>
+                    </div>
+
+                  <div class="project-links">
+                    <span id="abschluss">Abgeschlossen</span>
+                    <a href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub">
+                      <i class='bx bxl-github'></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+
 
              <!-- CRM -->
 
