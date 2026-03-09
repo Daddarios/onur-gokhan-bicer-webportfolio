@@ -338,7 +338,7 @@ const contentMap = {
                       </p>
 
                       <div class="project-tech">
-                        React, JavaScript, CSS, HTML, Node.js,  Git, GitHub, .env, Datei-Parse (PDF, Excel, CSV), Security-Scanning
+                       Visual Studio Code, React, JavaScript, CSS, HTML, Node.js,  Git, GitHub, .env, Datei-Parse (PDF, Excel, CSV), Security-Scanning
                       </div>
                     </div>
 
