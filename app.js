@@ -344,9 +344,7 @@ const contentMap = {
 
                   <div class="project-links">
                     <span id="abschluss">Abgeschlossen</span>
-                   
                     <a id="linksse" href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
-                      
                   </div>
                 </div>
               </div>
