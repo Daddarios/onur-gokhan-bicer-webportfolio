@@ -312,7 +312,7 @@ const contentMap = {
 
             <!-- GoAI Assistant -->
             
-               <!-- GOAI-Chat-Assistant -->
+              
               <div class="project-card">
                 <div class="project-image">
                   <a href="projekte/GoAI1.png" target="_blank">
@@ -340,14 +340,13 @@ const contentMap = {
                       <div class="project-tech">
                        Visual Studio Code, React, JavaScript, CSS, HTML, Node.js,  Git, GitHub, .env, Datei-Parse (PDF, Excel, CSV), Security-Scanning
                       </div>
-                    </div>
+                 
 
                   <div class="project-links">
                     <span id="abschluss">Abgeschlossen</span>
                    
                     <a id="linksse" href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
                       
-                   
                   </div>
                 </div>
               </div>
