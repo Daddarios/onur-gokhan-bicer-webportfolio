@@ -309,8 +309,7 @@ const contentMap = {
 
   /* ===== PROJEKTE ===== */
   "projekte": `
-
-            <!-- GoAI Assistant -->
+                <!-- GoAI Assistant -->
             
               
               <div class="project-card">
@@ -348,8 +347,6 @@ const contentMap = {
                   </div>
                 </div>
               </div>
-
-
 
 
              <!-- CRM -->
