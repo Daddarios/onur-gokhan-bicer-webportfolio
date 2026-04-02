@@ -11,17 +11,17 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  
+
   <link rel="stylesheet" href="https://code.iconify.design/2/2.2.1/iconify.min.css">
-  
-          
+
+
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  
- 
+
+
   <div class="global-bg"></div>
 
   <!-- NAVBAR -->
@@ -39,7 +39,7 @@
     </ul>
   </nav>
 
-  
+
   <!-- HERO -->
   <header class="hero-section" id="startseite">
     <div class="hero-content">
@@ -66,12 +66,38 @@
   </section>
 
   <script src="app.js"></script>
+
+
+
+ <!-- COOKIE BANNER BASLANGICI -->
+  <div class="cookie-banner hidden" id="cookieBanner">
+    <div class="cookie-content">
+      <h3 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; text-align: left;">
+        ich schätze Ihre Privatsphäre
+      </h3>
+      <p style="text-align: justify; font-size: 0.85rem;">
+        Ich verwende Cookies gemäß der DSGVO, um Statistiken über die Besuche auf meiner Website zu erfassen und mein Portfolio kontinuierlich zu verbessern. 
+        Zu diesem Zweck nutze ich Google Analytics. Die Zugriffe werden dabei anonymisiert und 
+        vollständig im Einklang mit der europäischen Datenschutz-Grundverordnung (DSGVO) ausgewertet.
+      </p>
+      
+      <div class="cookie-buttons" style="flex-direction: column; gap: 8px;">
+       
+        <button id="acceptCookies" class="btn-accept">Alle akzeptieren</button>
+        <button id="rejectCookies" class="btn-reject">Ablehnen</button>
+      </div>
+
+      <!--  Alt Linkler -->
+      <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 0.8rem;">
+        <a href="#datenschutz" style="color: #ffffff; text-decoration: none;">Datenschutzerklärung</a>
+        <a href="#impressum" style="color: #ffffff; text-decoration: none;">Impressum</a>
+      </div>
+    </div>
+  </div>
   
-  
+
+
 </body>
+ 
 
 </html>
-
-
-
-

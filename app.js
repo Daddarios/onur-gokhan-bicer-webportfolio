@@ -920,3 +920,59 @@ ${message}`
     window.location.href=`mailto:${mail}?subject=${subject}&body=${body}`;
   }
 });
+
+
+
+/* =========================================
+   COOKIE BANNER & GOOGLE ANALYTICS (DSGVO)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const cookieBanner = document.getElementById("cookieBanner");
+  const btnAccept = document.getElementById("acceptCookies");
+  const btnReject = document.getElementById("rejectCookies");
+
+  // Local Storage Kontrolü
+  const consent = localStorage.getItem("cookieConsent");
+
+  if (!consent) {
+    cookieBanner.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // EKLENDİ: Arkada kaydırmayı (scroll) KİLİTLER
+  } else if (consent === "accepted") {
+    loadGoogleAnalytics();
+  }
+
+  // Kabul Et Butonu (Alle akzeptieren)
+  btnAccept.addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "accepted");
+    cookieBanner.classList.add("hidden");
+    document.body.style.overflow = ""; // EKLENDİ: Arkada kaydırmayı açar
+    loadGoogleAnalytics();
+  });
+
+  // Sadece Gerekli Olanlar Butonu (Nur technisch notwendige)
+  btnReject.addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "rejected");
+    cookieBanner.classList.add("hidden");
+    document.body.style.overflow = ""; // EKLENDİ: Arkada kaydırmayı açar
+  });
+
+  // Google Analytics Yükleyici
+  function loadGoogleAnalytics() {
+    if (document.getElementById("ga-script")) return;
+
+    const script1 = document.createElement("script");
+    script1.id = "ga-script";
+    script1.async = true;
+    script1.src = "https://www.googletagmanager.com/gtag/js?id=G-3J196S7JM3";
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement("script");
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3J196S7JM3');
+    `;
+    document.head.appendChild(script2);
+  }
+});
