@@ -7,9 +7,10 @@ function renderProjectTechIcons() {
   const iconMap = {
     "Visual Studio": "devicon-visualstudio-plain colored",
     "Visual Studio Code": "devicon-vscode-plain colored",
-    "HTML": "devicon-html5-plain-wordmark colored",
-    "CSS": "devicon-css3-plain-wordmark colored",
+    "HTML5": "devicon-html5-plain-wordmark colored",
+    "CSS3": "devicon-css3-plain-wordmark colored",
     "JavaScript": "devicon-javascript-plain colored",
+    "Express.js": "devicon-express-original",
     "Node.js": "devicon-nodejs-line-wordmark colored",
     "npm": "devicon-npm-plain colored",
     "C#": "devicon-csharp-plain colored",
@@ -316,31 +317,43 @@ const contentMap = {
                 <div class="project-image">
                   <a href="projekte/GoAI1.png" target="_blank">
                     <img src="projekte/GoAI1.png" alt="GoAI ChatLab Vorschau">
+                   
                   </a>
+                  
                   <a href="projekte/GoAI3.png" target="_blank">
                     <img src="projekte/GoAI3.png" alt="GoAI ChatLab Vorschau">
                   </a>
                 </div>
-
+               
                 <div class="project-content">
-                      <h4 class="project-title">GoAI ChatLab – <small>Interaktive KI & Datei-Plattform </small></h4>
+                <span class="vscode-icons--file-type-gemini"></span>
+                      <h4 class="project-title" ">GoAI ChatLab    <small style="margin-left: 10px;">AI-Agent & Chat Assistant</small></h4>  
+                      
+                     <p class="project-desc">  
+                      GoAI ChatLab ist eine performante Full-Stack-Anwendung, die als moderne Brücke zwischen Nutzern und leistungsstarken Open-Source-Sprachmodellen (LLMs) fungiert.
+                    </p>
+                    
+                    <p class="project-desc">
+                      <strong>Fokus:</strong> 
+                      
+                      Der Schwerpunkt liegt auf Architektur-Sicherheit durch einen dedizierten Express.js-Proxy-Server sowie auf dynamischer File-Analyse in Echtzeit. 
+                      Die flexible Backend-Architektur ist strategisch so konzipiert, dass sie nahtlos durch ein <b>RAG-System</b>  (Retrieval-Augmented Generation) erweitert werden kann, um beispielsweise als 100% datensicherer <b>24/7 Chat-Assistent  für den Unternehmens-Service & Kundensupport zu operieren</b>.
+                    </p>
 
-                      <p class="project-desc">
-                        GoAI ChatLab ist eine moderne Anwendung, die das Chatten mit KI-Agenten und das Teilen verschiedener Dateitypen (PDF, Excel, CSV) in einer einheitlichen Oberfläche ermöglicht. GoAI ChatLab leitet hochgeladene Dateien oder Texte direkt an angebundene externe KI-Dienste weiter (z.B. via OpenRouter API), um analysierte Antworten oder intelligente Auswertungen zurückzugeben.
-                        
-                      </p>
+                  
 
-                      <p class="project-desc">
-                        <strong>Rolle & Beitrag:</strong>
-                        Eigenverantwortliche Entwicklung von Frontend-Komponenten mit React, Einrichtung des Node.js-Backends zur Weiterleitung von Datei- und Texteingaben an KI-APIs, Integration sicherer Umgebungsvariablen-Verwaltung (.env) sowie regelmäßige Code- und Sicherheitsscans auf GitHub.<br>
-                        <strong>Fokus:</strong> Die Lösung kann als flexibler Assistent nahtlos in bestehende Web- und Mobile-Anwendungen von Unternehmen integriert werden. Dadurch profitieren sowohl Unternehmen als auch ihre Kunden von schnelleren Problemlösungen und einem deutlich verbesserten Serviceerlebnis.
-                      </p>
+                    <p class="project-desc">
+                      <strong>Rolle & Beitrag:</strong>
+                      
+                      Konzeption, Architektur-Design und End-to-End Full-Stack-Umsetzung (React Front-End & Node.js Backend). Das Ergebnis ist eine hoch skalierbare Web-Applikation, die demonstriert, wie die Implementierung fortschrittlicher KI-APIs und robuster Proxy-Server reibungslos In bestehende Support-Infrastrukturen integriert werden kann.
+                    </p>
 
-                      <div class="project-tech">
-                       Visual Studio Code, React, JavaScript, CSS, HTML, Node.js,  Git, GitHub, .env, Datei-Parse (PDF, Excel, CSV), Security-Scanning
-                      </div>
+                    <div class="project-tech">
+                      Visual Studio Code, React, Node.js, Express.js, JavaScript, .env, HTML5, CSS3, Git, GitHub, RESTful APIs, Client-side File Parsing (PDF-CSV), OpenRouter AI Integration
+                    </div>
+                   
                  
-
+                     
                   <div class="project-links">
                     <span id="abschluss">Abgeschlossen</span>
                     <a id="linksse" href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
@@ -385,7 +398,7 @@ const contentMap = {
 
                   <div class="project-tech">
                    
-                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML, CSS , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub 
+                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3 , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub 
                     
                   </div>
 
@@ -429,7 +442,7 @@ const contentMap = {
                 </p>
 
                 <div class="project-tech">
-                 Visual Studio Code, HTML, CSS, JavaScript
+                 Visual Studio Code, HTML5, CSS3, JavaScript
                 </div>
 
                 <div class="project-links">
@@ -472,7 +485,7 @@ const contentMap = {
 
                 <div class="project-tech">
                   
-                  Visual Studio Code, HTML, CSS, JavaScript, React ,React Router, JWT 
+                  Visual Studio Code, HTML5, CSS3, JavaScript, React ,React Router, JWT 
                 </div>
 
                 <div class="project-links">
@@ -540,7 +553,7 @@ const contentMap = {
 
 
                 <div class="project-tech">
-                  Visual Studio Code , HTML, CSS,
+                  Visual Studio Code , HTML5, CSS3,
                 </div>
 
                 <div class="project-links">
