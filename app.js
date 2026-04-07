@@ -18,6 +18,7 @@ function renderProjectTechIcons() {
     "ASP.NET": "devicon-dot-net-plain-wordmark colored",
     "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
+    "Twilio": "devicon-twilio-plain colored",
     "Mysql": "devicon-mysql-original colored",
     "SQL": "devicon-microsoftsqlserver-plain colored",
     "SQL Server": "devicon-microsoftsqlserver-plain colored",
@@ -26,12 +27,16 @@ function renderProjectTechIcons() {
     "jQuery": "devicon-jquery-plain colored",
     "React": "devicon-react-plain colored",
     "GitHub": "devicon-github-plain white",
+    "GitHub Actions": "devicon-githubactions-plain",
     "Git": "devicon-git-plain colored",
+    "Cloud": "devicon-googlecloud-plain",
     "Python": "devicon-python-plain colored",
     "NumPy": "devicon-numpy-plain colored",
     "Pandas": "devicon-pandas-original colored",
     "Matplotlib":"devicon-matplotlib-plain white",
     "scikit-learn": "devicon-scikitlearn-plain colored",
+    "Docker": "devicon-docker-plain-wordmark colored",
+    "Docker2": "devicon-docker-plain colored",
     "AJAX": "",       // ikon yok, fallback gösterilecek
     "MailKit": "",    // ikon yok
     "JWT": ""         // ikon yok
@@ -345,19 +350,27 @@ const contentMap = {
                     <p class="project-desc">
                       <strong>Rolle & Beitrag:</strong>
                       
-                      Konzeption, Architektur-Design und End-to-End Full-Stack-Umsetzung (React Front-End & Node.js Backend). Das Ergebnis ist eine hoch skalierbare Web-Applikation, die demonstriert, wie die Implementierung fortschrittlicher KI-APIs und robuster Proxy-Server reibungslos In bestehende Support-Infrastrukturen integriert werden kann.
+                      Konzeption, Architektur-Design und End-to-End Full-Stack-Umsetzung (React Front-End & Node.js Backend).
+                      Das Ergebnis ist eine hoch skalierbare Web-Applikation, die demonstriert, wie die Implementierung fortschrittlicher KI-APIs
+                      und robuster Proxy-Server reibungslos In bestehende Support-Infrastrukturen integriert werden kann.
+                      Gestützt wird diese Architektur durch einen modernen <strong>DevOps-Workflow</strong>: Docker-Containerisierung
+                      und vollautomatisierte <strong>CI/CD-Pipelines</strong> unter Einsatz von GitHub Actions gewährleisten dabei ein stabiles und nahtloses Cloud-Deployment.
                     </p>
 
                     <div class="project-tech">
-                      Visual Studio Code, React, Node.js, Express.js, JavaScript, .env, HTML5, CSS3, Git, GitHub, RESTful APIs, Client-side File Parsing (PDF-CSV), OpenRouter AI Integration
+                      Visual Studio Code, React, Node.js, Express.js, JavaScript, .env, HTML5, CSS3, Git, GitHub, GitHub Actions,Docker , Cloud,
+                       RESTful APIs, Client-side File Parsing (PDF-CSV), OpenRouter AI Integration
                     </div>
                    
                  
                      
                   <div class="project-links">
-                    <span id="abschluss">Abgeschlossen</span>
+                    <span id="abschluss">Abgeschlossen   <button id="linklab" onclick="window.open('https://huggingface.co/spaces/Daddarios/GoAI-Lab', '_blank')"> GoAI-Lab</button>  </span>
+                   
                     <a id="linksse" href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
                   </div>
+                  
+                  </div>  
                 </div>
               </div>
 
@@ -398,7 +411,7 @@ const contentMap = {
 
                   <div class="project-tech">
                    
-                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3 , Bootstrap, Tailwind CSS, JavaScript, jQuery,  GitHub 
+                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3 , Bootstrap, JavaScript, jQuery, JWT ,  GitHub, Twilio, RESTful APIs, MailKit
                     
                   </div>
 

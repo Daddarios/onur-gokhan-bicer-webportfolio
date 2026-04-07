@@ -1383,3 +1383,38 @@ input:-webkit-autofill{
 .btn-reject:hover {
   background: rgba(255, 255, 255, 0.08); /* Çerçeve şeffaflığı */
 }
+#linklab{
+  font-size: large;
+  color:#ff9307;
+  margin-left: 10px;
+
+  
+}
+
+#linklab {
+      display: inline-block;
+      font-size: medium;
+      font-weight:bolder;
+      color: #ffffff;
+      background-color: #fa8e00d7;
+      padding: 4px 8px;
+      margin-left: 10px;
+      text-decoration: none;
+      border-radius: 0.6rem;
+      animation: blink-effect 4s infinite; 
+      transition: all 0.3s ease-in-out; 
+    }
+
+    #linklab:hover {
+      background-color: #ff8c00;
+      color:rgb(0, 0, 0);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      animation: none; /* Hover olunca yanıp sönmeyi durdurur */
+      transform: translateY(-2px);
+    }
+
+    @keyframes blink-effect {
+      0% { opacity: 1; }
+      50% { opacity: 0.1; }
+      100% { opacity: 1; }
+    }
