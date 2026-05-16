@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    ROOT & RESET
    ========================================================= */
 
@@ -208,23 +208,7 @@ body {
     padding: 0.5rem 1rem;
   }
 }
-/*#012 
-@media (max-width: 768px) {
-  .cv-content {
-    max-width: 90%;
-    min-width: unset;
-    padding: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.3rem !important;
-  }
-
-  .cv-content button {
-    width: 70% !important;
-    padding: 0.7rem 1rem;
-    font-size: 1rem;
-  }
+/*#012 */
 
 /* =========================================================
    OVERLAY (YENİ TASARIM)
@@ -743,7 +727,7 @@ body {
 /* ===== OVERLAY OPEN → NAVBAR DISABLED ===== */
 
 body.overlay-open .topbar,
-body.overlay-open #menu-toggle {
+body.overlay-open #menuToggle {
   pointer-events: none;
   opacity: 0.5;
 
@@ -827,27 +811,27 @@ body.overlay-open #menu-toggle {
   position: relative;
   left: 0;
   transition: opacity .1s;
+}
 
-  &:before,
-  &:after {
-    content: '';
-    background: #ffffff9f;
-    border-radius: 50%;
-    margin-left: -2px;
-    height: 6px;
-    position: absolute;
-    top: 5px;
-    transition: top .5s, height .5s, opacity .5s;
-    width: 4px;
-  }
+.help-mouse-wheel::before,
+.help-mouse-wheel::after {
+  content: '';
+  background: #ffffff9f;
+  border-radius: 50%;
+  margin-left: -2px;
+  height: 6px;
+  position: absolute;
+  top: 5px;
+  transition: top .5s, height .5s, opacity .5s;
+  width: 4px;
+}
 
-  &:before {
-    animation: scroll 1.5s .75s infinite ease-in-out;
-  }
+.help-mouse-wheel::before {
+  animation: scroll 1.5s .75s infinite ease-in-out;
+}
 
-  &:after {
-    animation: scroll 1.5s infinite ease-in-out;
-  }
+.help-mouse-wheel::after {
+  animation: scroll 1.5s infinite ease-in-out;
 }
 
 @keyframes scroll {
@@ -960,9 +944,13 @@ body.overlay-open #menu-toggle {
 }
 
 .project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 8px !important;
   padding-top: 10px;
   padding-bottom: 5px;
-  gap: 21px !important;
+  column-gap: 2px !important;
   opacity: 1;
   margin-left: 10px;
   margin-right: 10px;
@@ -1418,3 +1406,4 @@ input:-webkit-autofill{
       50% { opacity: 0.1; }
       100% { opacity: 1; }
     }
+

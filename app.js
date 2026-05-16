@@ -1,7 +1,8 @@
-
+﻿
 /* =====================================================
    PROJECT TECH ICONS  ##013 05.02
    ===================================================== */
+
 
 function renderProjectTechIcons() {
   const iconMap = {
@@ -16,16 +17,22 @@ function renderProjectTechIcons() {
     "C#": "devicon-csharp-plain colored",
     "ASP.NET MVC": "devicon-dot-net-plain colored",
     "ASP.NET": "devicon-dot-net-plain-wordmark colored",
+    "ASP.NET Core":"devicon-dotnetcore-plain",
+    "EF Core": "devicon-entityframeworkcore-plain colored",
     "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
     "Twilio": "devicon-twilio-plain colored",
     "Mysql": "devicon-mysql-original colored",
+    
     "SQL": "devicon-microsoftsqlserver-plain colored",
     "SQL Server": "devicon-microsoftsqlserver-plain colored",
     "Bootstrap": "devicon-bootstrap-plain colored",
     "Tailwind CSS": "devicon-tailwindcss-plain colored",
     "jQuery": "devicon-jquery-plain colored",
     "React": "devicon-react-plain colored",
+    "Vite 8": "devicon-vitejs-plain colored",
+    "React Router 7": "devicon-reactrouter-plain colored",
+    "Axios": "devicon-axios-plain colored",
     "GitHub": "devicon-github-plain white",
     "GitHub Actions": "devicon-githubactions-plain",
     "Git": "devicon-git-plain colored",
@@ -34,13 +41,24 @@ function renderProjectTechIcons() {
     "NumPy": "devicon-numpy-plain colored",
     "Pandas": "devicon-pandas-original colored",
     "Matplotlib":"devicon-matplotlib-plain white",
+    "Redis":"devicon-redis-plain-wordmark colored",
     "scikit-learn": "devicon-scikitlearn-plain colored",
     "Docker": "devicon-docker-plain-wordmark colored",
     "Docker2": "devicon-docker-plain colored",
+    "Swagger":"devicon-swagger-plain  colored",
     "AJAX": "",       // ikon yok, fallback gösterilecek
     "MailKit": "",    // ikon yok
+    "SignalR": "",    // ikon yok
+    "Semantic Kernel": "", // ikon yok
+    "Kernel Memory": "",   // ikon yok
+    "Ollama": "",     // ikon yok
+    "Qdrant": "",     // ikon yok
+    "Identity/JWT": "", // ikon yok
+    "Recharts": "",   // ikon yok
+    "Serilog": "",    // ikon yok
     "JWT": ""         // ikon yok
   };
+  const ollamaIconCdn = "https://cdn.jsdelivr.net/npm/simple-icons/icons/ollama.svg";
 
   document.querySelectorAll(".project-tech").forEach(div => {
     const techs = div.textContent.split(",").map(t => t.trim());
@@ -53,8 +71,22 @@ function renderProjectTechIcons() {
         div.innerHTML += `
           <i class="${className}" 
              title="${t}" 
-             style="font-size:28px;margin-right:10px; opacity:1"></i>
+             style="font-size:30px;margin-right:10px; opacity:1"></i>
         `;
+      } else if (t === "Ollama") {
+        const img = document.createElement("img");
+        img.src = ollamaIconCdn;
+        img.alt = t;
+        img.title = t;
+        img.style.cssText = `
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+          vertical-align: middle;
+          filter: brightness(0) invert(1);
+          opacity: 0.95;
+        `;
+        div.appendChild(img);
       } else {
         // ikon yoksa yazıyla sade etiket
         const span = document.createElement("span");
@@ -315,6 +347,43 @@ const contentMap = {
 
   /* ===== PROJEKTE ===== */
   "projekte": `
+              <!-- Vista.Core + Vista.CoreX -->
+              <div class="project-card">
+                <div class="project-image">
+                  <a href="projekte/plan.png" target="_blank">
+                    <img src="projekte/plan.png" alt="SaaS Plattform Vorschau">
+                  </a>
+                  <a href="projekte/plan.png" target="_blank">
+                    <img src="projekte/plan.png" alt="SaaS Plattform Vorschau">
+                  </a>
+                </div>
+
+                <div class="project-content">
+                  <h4 class="project-title">Vista.Core + Vista.CoreX <small style="margin-left: 10px;">Full-Stack SaaS mit RAG-AI Assistent</small></h4>
+
+                  <p class="project-desc">
+                    <strong>Vista.Core / Saas.CoreX</strong> ist eine modulare Full-Stack-SaaS-Plattform für CRM- und operative Geschäftsprozesse mit Multi-Tenant-Architektur.
+                  </p>
+
+                  <p class="project-desc">
+                    <strong>Fokus:</strong> Der Schwerpunkt liegt auf einer sicheren und skalierbaren Backend-Architektur (.NET 9 Web API, Identity/JWT, Redis, SignalR) sowie auf RAG-gestützter KI mit Semantic Kernel, Kernel Memory, Ollama und Qdrant. Die Plattform kombiniert Echtzeit-Kommunikation, strukturierte Datenverarbeitung und AI-gestützte Assistenz in einer produktionsnahen Systemlandschaft.
+                  </p>
+
+                  <p class="project-desc">
+                    <strong>Rolle & Beitrag:</strong> Konzeption, Architektur-Design und End-to-End-Umsetzung über Backend und Frontend hinweg (C#/.NET + React/Vite). Umsetzung von Datenmodellierung (EF Core/SQL Server), API-Sicherheit, Realtime-Features, Docker-Containerisierung und CI/CD mit GitHub Actions inkl. automatisierter Tests (xUnit, Moq, EF InMemory, Coverlet).
+                  </p>
+
+                  <div class="project-tech">
+                    C# , ASP.NET , ASP.NET Core, EF Core, SQL Server, React, Bootstrap, Swagger, Redis, Vite 8, React Router 7, Axios, Docker, Ollama, (qwen2.5:3b) + Qdrant, MailKit, SignalR, Semantic Kernel, Kernel Memory, Qdrant, JWT, Recharts, Serilog, Live-Chat
+                  </div>
+
+                  <div class="project-links">
+                    <span id="noch">Projekt in Entwicklung</span>
+                     <a id="linksse" href="https://github.com/Daddarios/vista-saas-backend" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
+                  </div>
+                </div>
+              </div>
+
                 <!-- GoAI Assistant -->
             
               
@@ -834,11 +903,11 @@ document.addEventListener("click", e => {
   dom.container.classList.remove("grid-layout");
 
   /* SADECE bu bölümlerde grid olsun */
-  if (type === "fahigkeiten" || type === "fahigkeiten") {
+  if (type === "fahigkeiten") {
     dom.container.classList.add("grid-layout");
   }
 
-  if (type === "projekte" || type === "projekte") {
+  if (type === "projekte") {
     dom.container.classList.remove("grid-layout");
   }
 
@@ -899,7 +968,7 @@ footer.innerHTML = `
   </a>
 
   <a href="https://x.com/yokhannn" target="_blank" aria-label="X">
-    <i class='bx bxl-twitter' "></i>
+    <i class='bx bxl-twitter'></i>
   </a>
 
 
@@ -989,3 +1058,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(script2);
   }
 });
+
