@@ -71,7 +71,7 @@ function renderProjectTechIcons() {
         div.innerHTML += `
           <i class="${className}" 
              title="${t}" 
-             style="font-size:30px;margin-right:10px; opacity:1"></i>
+             style="font-size:20px;margin-right:10px; opacity:1"></i>
         `;
       } else if (t === "Ollama") {
         const img = document.createElement("img");
@@ -79,8 +79,8 @@ function renderProjectTechIcons() {
         img.alt = t;
         img.title = t;
         img.style.cssText = `
-          width: 30px;
-          height: 30px;
+          width: 20px;
+          height: 20px;
           margin-right: 10px;
           vertical-align: middle;
           filter: brightness(0) invert(1);
@@ -95,7 +95,7 @@ function renderProjectTechIcons() {
         span.style.cssText = `
           color: #f0f0f0;
           
-          font-size: 12px;
+          font-size: 10px;
           
           margin-right: 10px;
           display: inline-block;
@@ -128,7 +128,12 @@ dom.menuToggle.addEventListener("click", () => {
 // ESC tuşuna basınca menüyü kapat
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
+    const overlayIsOpen = dom.wrapper.classList.contains("active");
     dom.navLinks.classList.remove("open");
+    if (overlayIsOpen) {
+      closeOverlay();
+      return;
+    }
     document.body.style.overflow = "";
   }
 });
@@ -250,97 +255,111 @@ const contentMap = {
 
   /* ===== LEBENSLAUF ===== */
   "fahigkeiten": `
-        <div class="card">
-          <h3 class="title">Lebenslauf</h3>
-
-          <!-- ✅ PDF PREVIEW WRAPPER -->
-          <div class="pdf-wrapper">
-            <iframe
-              src="dokumente/lebenslauf/Lebenslauf.pdf"
-              loading="lazy"
-            ></iframe>
-
-            <!-- ✅ GERÇEK PDF (_blank) -->
-            <a
-              href="dokumente/lebenslauf/Lebenslauf.pdf"
-              target="_blank"
-              rel="noopener"
-              class="pdf-open"
-            >
-              Vollansicht öffnen
-            </a>
-            
+        <section class="docs-showcase">
+          <div class="docs-intro">
+            <h3 class="docs-title">Lebenslauf & Dokumente</h3>
+            <p class="docs-subtitle">
+              Diese Unterlagen geben einen klaren Überblick über meinen beruflichen Hintergrund,
+              meine Qualifikationen und meine praktische Erfahrung.
+            </p>
           </div>
-        </div>
 
-        <div class="card">
-          <h3 class="title">Arbeitszeugnisse</h3>
+          <div class="docs-grid">
+            <article class="card doc-card">
+              <div class="doc-card-head">
+                <span class="doc-badge">Profil</span>
+                <h4 class="title">Lebenslauf</h4>
+              </div>
+              <div class="pdf-wrapper">
+                <iframe
+                  src="dokumente/lebenslauf/Lebenslauf.pdf"
+                  loading="lazy"
+                  title="Lebenslauf Vorschau"
+                ></iframe>
+                <a
+                  href="dokumente/lebenslauf/Lebenslauf.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  class="pdf-open"
+                >
+                  Vollansicht öffnen
+                </a>
+              </div>
+            </article>
 
-          <div class="pdf-wrapper">
-            <iframe
-              src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
-              loading="lazy"
-            ></iframe>
+            <article class="card doc-card">
+              <div class="doc-card-head">
+                <span class="doc-badge">Erfahrung</span>
+                <h4 class="title">Arbeitszeugnisse</h4>
+              </div>
+              <div class="pdf-wrapper">
+                <iframe
+                  src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
+                  loading="lazy"
+                  title="Arbeitszeugnisse Vorschau"
+                ></iframe>
+                <a
+                  href="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  class="pdf-open"
+                >
+                  Vollansicht öffnen
+                </a>
+              </div>
+            </article>
 
-            <a
-              href="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
-              target="_blank"
-              rel="noopener"
-              class="pdf-open"
-            >
-              Vollansicht öffnen
-            </a>
+            <article class="card doc-card">
+              <div class="doc-card-head">
+                <span class="doc-badge">Bildung</span>
+                <h4 class="title">Bildung</h4>
+              </div>
+              <div class="pdf-wrapper">
+                <iframe
+                  src="dokumente/schulische_akademische/Bildung.pdf"
+                  loading="lazy"
+                  title="Bildung Vorschau"
+                ></iframe>
+                <a
+                  href="dokumente/schulische_akademische/Bildung.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="pdf-open"
+                >
+                  Vollansicht öffnen
+                </a>
+              </div>
+            </article>
+
+            <article class="card doc-card">
+              <div class="doc-card-head">
+                <span class="doc-badge">Engagement</span>
+                <h4 class="title">Ehrenamtlich</h4>
+              </div>
+              <div class="pdf-wrapper">
+                <iframe
+                  src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
+                  loading="lazy"
+                  title="Ehrenamtliche Nachweise Vorschau"
+                ></iframe>
+                <a
+                  href="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="pdf-open"
+                >
+                  Vollansicht öffnen
+                </a>
+              </div>
+            </article>
           </div>
-        </div>
 
-        <div class="card">
-          <h3 class="title">Bildung</h3>
-
-          <div class="pdf-wrapper">
-            <iframe
-              src="dokumente/schulische_akademische/Bildung.pdf"
-              loading="lazy"
-            ></iframe>
-
-            <a
-              href="dokumente/schulische_akademische/Bildung.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="pdf-open"
-            >
-              Vollansicht öffnen
-            </a>
-          </div>
-        </div>
-       
-        <div class="card">
-          <h3 class="title">Ehrenamtlich</h3>
-
-          <div class="pdf-wrapper">
-            <iframe
-              src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
-              loading="lazy"
-            ></iframe>
-
-            <a
-              href="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="pdf-open"
-            >
-              Vollansicht öffnen
-            </a>
-          </div>
-        </div>
-       <p id="hinweis">
-          <span class="hinweis-inner">
-            Hinweis: Aus Sicherheitsgründen wurden bestimmte Dokumente nicht öffentlich hochgeladen.
-          </span>
-        </p>
-       
-
-</div>
- 
+          <p id="hinweis">
+            <span class="hinweis-inner">
+              Hinweis: Aus Sicherheitsgründen wurden bestimmte Dokumente nicht öffentlich hochgeladen.
+            </span>
+          </p>
+        </section>
       `
   ,
 
@@ -378,8 +397,8 @@ const contentMap = {
                   </div>
 
                   <div class="project-links">
-                    <span id="noch">Projekt in Entwicklung</span>
-                     <a id="linksse" href="https://github.com/Daddarios/vista-saas-backend" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
+                    <span class="status-ongoing">Projekt in Entwicklung</span>
+                     <a href="https://github.com/Daddarios/vista-saas-backend" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
                   </div>
                 </div>
               </div>
@@ -400,8 +419,18 @@ const contentMap = {
                 </div>
                
                 <div class="project-content">
-                <span class="vscode-icons--file-type-gemini"></span>
-                      <h4 class="project-title" ">GoAI ChatLab    <small style="margin-left: 10px;">AI-Agent & Chat Assistant</small></h4>  
+                  <div class="project-top-meta">
+                    <span class="vscode-icons--file-type-gemini"></span>
+                    <a
+                      class="lab-link lab-link--mini"
+                      href="https://huggingface.co/spaces/Daddarios/GoAI-Lab"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GoAI-Lab
+                    </a>
+                  </div>
+                  <h4 class="project-title">GoAI ChatLab    <small style="margin-left: 10px;">AI-Agent & Chat Assistant</small></h4>  
                       
                      <p class="project-desc">  
                       GoAI ChatLab ist eine performante Full-Stack-Anwendung, die als moderne Brücke zwischen Nutzern und leistungsstarken Open-Source-Sprachmodellen (LLMs) fungiert.
@@ -434,9 +463,9 @@ const contentMap = {
                  
                      
                   <div class="project-links">
-                    <span id="abschluss">Abgeschlossen   <button id="linklab" onclick="window.open('https://huggingface.co/spaces/Daddarios/GoAI-Lab', '_blank')"> GoAI-Lab</button>  </span>
+                    <span class="status-completed">Abgeschlossen</span>
                    
-                    <a id="linksse" href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
+                    <a href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
                   </div>
                   
                   </div>  
@@ -485,8 +514,8 @@ const contentMap = {
                   </div>
 
                 <div class="project-links">
-                <span id="noch">Projekt in Entwicklung</span>
-                  <a id="linksse" href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
+                  <span class="status-ongoing">Projekt in Entwicklung</span>
+                  <a href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
             </div>
@@ -528,7 +557,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                <span id="abschluss">Abgeschlossen </span>
+                  <span class="status-completed">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -572,7 +601,7 @@ const contentMap = {
 
                 <div class="project-links">
                 
-                  <span id="noch">in der Entwicklung</span>
+                  <span class="status-ongoing">in der Entwicklung</span>
                   <a href="https://github.com/Daddarios/Vista.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -603,7 +632,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                <span id="abschluss">Abgeschlossen </span>
+                <span class="status-completed">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/Klinikum_Stuttgart.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -639,7 +668,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                <span id="abschluss">Abgeschlossen </span>
+                <span class="status-completed">Abgeschlossen </span>
                   <a href="https://github.com/Daddarios/Personal-Page.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -688,7 +717,7 @@ const contentMap = {
                             </div>
 
                             <div class="project-links">
-                              <span id="noch">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
+                              <span class="status-ongoing">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
                             </div>
                             </div>
 
@@ -737,7 +766,7 @@ const contentMap = {
                       </div>
 
                       <div class="project-links">
-                        <span id="noch">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
+                        <span class="status-ongoing">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
                       </div>
                     </div>
                   </div>
@@ -880,6 +909,14 @@ function renderKontaktMail() {
   }
 }
 
+function enhanceProjectMedia() {
+  document.querySelectorAll(".project-image").forEach((media) => {
+    if (media.querySelectorAll("a").length > 1) {
+      media.classList.add("project-image--carousel");
+    }
+  });
+}
+
 
 
 
@@ -899,22 +936,11 @@ document.addEventListener("click", e => {
 
 
 
-  /* önce sıfırla */
-  dom.container.classList.remove("grid-layout");
-
-  /* SADECE bu bölümlerde grid olsun */
-  if (type === "fahigkeiten") {
-    dom.container.classList.add("grid-layout");
-  }
-
-  if (type === "projekte") {
-    dom.container.classList.remove("grid-layout");
-  }
-
   dom.container.innerHTML = contentMap[type] || "";
   document.body.style.overflow = "hidden";
   renderProjectTechIcons();
-   renderKontaktMail(); 
+  renderKontaktMail();
+  enhanceProjectMedia();
 });
 
 
@@ -923,10 +949,6 @@ dom.closeBtn.addEventListener("click", closeOverlay);
 
 dom.wrapper.addEventListener("click", e => {
   if (e.target === dom.wrapper) closeOverlay();
-});
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeOverlay();
 });
 
 function closeOverlay() {
