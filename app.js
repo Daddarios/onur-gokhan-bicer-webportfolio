@@ -180,21 +180,38 @@ window.addEventListener("resize", () => {
 
 
 // Tüm sayfa içi anchor linkler için smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
+function smoothScrollTo(targetY, duration = 780) {
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  const startTime = performance.now();
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = easeInOutCubic(progress);
+    window.scrollTo(0, startY + distance * eased);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href");
     const target = document.querySelector(targetId);
+    if (!target) return;
 
-    if (target) {
-      e.preventDefault(); // Atlamayı engelle
-      const yOffset = -60; // Navbar yüksekliği (isteğe bağlı)
-      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    e.preventDefault();
+    const header = document.querySelector(".topbar");
+    const headerOffset = header ? header.offsetHeight + 10 : 80;
+    const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
-    }
+    smoothScrollTo(y, 820);
   });
 });
 

@@ -896,6 +896,13 @@ body.overlay-scroll-lock {
    ========================================================= */
 
 @media (max-width: 768px) {
+  .close-btn {
+    top: calc(70px + 8px);
+    right: 0.7rem;
+    font-size: 1.45rem;
+    z-index: 10030;
+  }
+
   .menu-toggle {
     display: flex;
     background: none;
