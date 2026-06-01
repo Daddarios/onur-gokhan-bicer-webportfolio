@@ -117,6 +117,23 @@ const dom = {
   bg: document.querySelector(".global-bg")
 };
 
+const MENU_MOTION_PRESET = "fast"; // "fast" | "heavy"
+dom.navLinks.classList.add(MENU_MOTION_PRESET === "heavy" ? "menu-motion-heavy" : "menu-motion-fast");
+
+let lockedScrollY = 0;
+
+function lockMainPageScroll() {
+  lockedScrollY = window.scrollY;
+  document.body.classList.add("overlay-scroll-lock");
+  document.body.style.top = `-${lockedScrollY}px`;
+}
+
+function unlockMainPageScroll() {
+  document.body.classList.remove("overlay-scroll-lock");
+  document.body.style.top = "";
+  window.scrollTo(0, lockedScrollY);
+}
+
 
 
 // Menü toggle butonu
@@ -198,7 +215,7 @@ sections.forEach(s => {
   sec.className = "cv-section";
   sec.id = s.id;
   sec.innerHTML = `
-    <div class="cv-content">
+    <div class="cv-content scroll-animation">
       <h2 class="section-title">${s.title}</h2>
       <p>${s.desc}</p>
       <button class="cv-open-btn" data-type="${s.id}">
@@ -210,13 +227,77 @@ sections.forEach(s => {
 });
 
 document.body.appendChild(frag);
+
+const observedSections = document.querySelectorAll(".cv-section");
+let lastScrollY = window.scrollY;
+let scrollDirection = "down";
+
+window.addEventListener("scroll", () => {
+  const currentY = window.scrollY;
+  scrollDirection = currentY >= lastScrollY ? "down" : "up";
+  lastScrollY = currentY;
+});
+
+observedSections.forEach((section) => {
+  const animatedItems = section.querySelectorAll(".scroll-animation");
+
+  animatedItems.forEach((item, index) => {
+    item.style.setProperty("--delay", `${index * 0.09}s`);
+  });
+});
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("reveal-from-top", "reveal-from-bottom");
+        entry.target.classList.add(
+          scrollDirection === "down" ? "reveal-from-bottom" : "reveal-from-top"
+        );
+        entry.target.classList.add("is-active");
+      } else {
+        entry.target.classList.remove("is-active");
+      }
+    });
+  },
+  {
+    threshold: 0.35
+  }
+);
+
+observedSections.forEach((section) => {
+  sectionObserver.observe(section);
+});
+
+function createCustomScrollBar() {
+  const bar = document.createElement("div");
+  bar.className = "custom-scrollbar";
+  bar.setAttribute("aria-hidden", "true");
+
+  const fill = document.createElement("div");
+  fill.className = "custom-scrollbar-fill";
+  bar.appendChild(fill);
+  document.body.appendChild(bar);
+
+  const update = () => {
+    const doc = document.documentElement;
+    const scrollTop = window.scrollY;
+    const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+    const ratio = scrollTop / maxScroll;
+    fill.style.height = `${ratio * 100}%`;
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+}
+
+createCustomScrollBar();
 // Menüde bir linke tıklanınca 1 sn sonra menüyü kapat
 document.querySelectorAll("#navLinks a").forEach(link => {
   link.addEventListener("click", () => {
-    setTimeout(() => {
-      dom.navLinks.classList.remove("open");
-      document.body.style.overflow = "";
-    }, 1000); // 1 saniye
+    dom.navLinks.classList.remove("open");
+    document.body.style.overflow = "";
   });
 });
 
@@ -267,7 +348,7 @@ const contentMap = {
           <div class="docs-grid">
             <article class="card doc-card">
               <div class="doc-card-head">
-                <span class="doc-badge">Profil</span>
+                
                 <h4 class="title">Lebenslauf</h4>
               </div>
               <div class="pdf-wrapper">
@@ -289,11 +370,12 @@ const contentMap = {
 
             <article class="card doc-card">
               <div class="doc-card-head">
-                <span class="doc-badge">Erfahrung</span>
+                
                 <h4 class="title">Arbeitszeugnisse</h4>
               </div>
               <div class="pdf-wrapper">
                 <iframe
+                
                   src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
                   loading="lazy"
                   title="Arbeitszeugnisse Vorschau"
@@ -311,7 +393,7 @@ const contentMap = {
 
             <article class="card doc-card">
               <div class="doc-card-head">
-                <span class="doc-badge">Bildung</span>
+                
                 <h4 class="title">Bildung</h4>
               </div>
               <div class="pdf-wrapper">
@@ -333,7 +415,7 @@ const contentMap = {
 
             <article class="card doc-card">
               <div class="doc-card-head">
-                <span class="doc-badge">Engagement</span>
+                
                 <h4 class="title">Ehrenamtlich</h4>
               </div>
               <div class="pdf-wrapper">
@@ -366,6 +448,7 @@ const contentMap = {
 
   /* ===== PROJEKTE ===== */
   "projekte": `
+              <div class="project-grid">
               <!-- Vista.Core + Vista.CoreX -->
               <div class="project-card">
                 <div class="project-image">
@@ -378,6 +461,9 @@ const contentMap = {
                 </div>
 
                 <div class="project-content">
+                  <div class="project-top-meta">
+                    <span class="vscode-icons--file-type-gemini"></span>
+                  </div>
                   <h4 class="project-title">Vista.Core + Vista.CoreX <small style="margin-left: 10px;">Full-Stack SaaS mit RAG-AI Assistent</small></h4>
 
                   <p class="project-desc">
@@ -397,9 +483,9 @@ const contentMap = {
                   </div>
 
                   <div class="project-links">
-                    <span class="status-ongoing">Projekt in Entwicklung</span>
+                    <span class="status-completed">Abgeschlossen</span>
                      <a href="https://github.com/Daddarios/vista-saas-backend" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
-                  </div>
+                  </div>  
                 </div>
               </div>
 
@@ -429,6 +515,9 @@ const contentMap = {
                     >
                       GoAI-Lab
                     </a>
+                    <span class="lab-arrow-flow" aria-hidden="true">
+                      <span>›</span><span>›</span><span>›</span>
+                    </span>
                   </div>
                   <h4 class="project-title">GoAI ChatLab    <small style="margin-left: 10px;">AI-Agent & Chat Assistant</small></h4>  
                       
@@ -470,7 +559,6 @@ const contentMap = {
                   
                   </div>  
                 </div>
-              </div>
 
 
              <!-- CRM -->
@@ -537,19 +625,15 @@ const contentMap = {
                 <h4 class="project-title">Portfolio Website</h4>
 
                 <p class="project-desc">
-                  <p class="project-desc">
-                     <p class="project-desc">
-                      <strong>Ein selbstständig entwickeltes UI-Projekt</strong> zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
-                    </p>
+                  <strong>Ein selbstständig entwickeltes UI-Projekt</strong> zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
+                </p>
 
-                    <p class="project-desc">
-                      <strong>Rolle:</strong> Konzeption, UI-Design, technische Umsetzung, Deployment
-                    </p>
+                <p class="project-desc">
+                  <strong>Rolle:</strong> Konzeption, UI-Design, technische Umsetzung, Deployment
+                </p>
 
-                    <p class="project-desc">
-                      <strong>Fokus:</strong> Responsives Layout, benutzerfreundliche Navigation, saubere Code-Struktur
-                    </p>
-                  </p>
+                <p class="project-desc">
+                  <strong>Fokus:</strong> Responsives Layout, benutzerfreundliche Navigation, saubere Code-Struktur
                 </p>
 
                 <div class="project-tech">
@@ -600,7 +684,7 @@ const contentMap = {
                 </div>
 
                 <div class="project-links">
-                
+                 
                   <span class="status-ongoing">in der Entwicklung</span>
                   <a href="https://github.com/Daddarios/Vista.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
@@ -723,7 +807,6 @@ const contentMap = {
 
                  
                   </div>
-                </div>
 
                 <!-- ZIELPROJEKT 2 -->
                   <div class="project-card">
@@ -772,6 +855,7 @@ const contentMap = {
                   </div>
 
 
+              </div>
       `
 
   ,
@@ -917,6 +1001,51 @@ function enhanceProjectMedia() {
   });
 }
 
+let overlayCardObserver = null;
+
+function setupOverlayCardReveal(type) {
+  if (overlayCardObserver) {
+    overlayCardObserver.disconnect();
+  }
+
+  const selectors = {
+    "uber-mich": ".uber-mich",
+    "fahigkeiten": ".docs-intro, .doc-card, #hinweis",
+    "projekte": ".project-grid .project-card",
+    "kurs": ".education-card",
+    "kontakt": ".kontakt-card"
+  };
+
+  const targets = dom.container.querySelectorAll(selectors[type] || "");
+  targets.forEach((el, index) => {
+    el.classList.add("overlay-scroll-animation");
+    if (type === "projekte") {
+      el.classList.add("project-scroll-animation");
+    }
+    el.style.setProperty("--delay", `${index * 0.08}s`);
+  });
+
+  overlayCardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-active");
+        } else {
+          entry.target.classList.remove("is-active");
+        }
+      });
+    },
+    {
+      root: dom.wrapper,
+      threshold: 0.28
+    }
+  );
+
+  targets.forEach((el) => {
+    overlayCardObserver.observe(el);
+  });
+}
+
 
 
 
@@ -937,10 +1066,25 @@ document.addEventListener("click", e => {
 
 
   dom.container.innerHTML = contentMap[type] || "";
-  document.body.style.overflow = "hidden";
+  lockMainPageScroll();
+  dom.container.classList.toggle("project-mode", type === "projekte");
   renderProjectTechIcons();
   renderKontaktMail();
   enhanceProjectMedia();
+  setupOverlayCardReveal(type);
+});
+
+dom.container.addEventListener("click", (e) => {
+  const card = e.target.closest(".project-grid .project-card");
+  if (!card) return;
+  if (e.target.closest("a, button")) return;
+
+  const activeCard = dom.container.querySelector(".project-grid .project-card.is-focused");
+  if (activeCard && activeCard !== card) {
+    activeCard.classList.remove("is-focused");
+  }
+
+  card.classList.toggle("is-focused");
 });
 
 
@@ -952,19 +1096,38 @@ dom.wrapper.addEventListener("click", e => {
 });
 
 function closeOverlay() {
+  if (overlayCardObserver) {
+    overlayCardObserver.disconnect();
+    overlayCardObserver = null;
+  }
+
   dom.wrapper.classList.remove("active");
   document.body.classList.remove("overlay-open");
 
+  dom.container.classList.remove("project-mode");
   dom.container.innerHTML = "";
-  document.body.style.overflow = "";
+  unlockMainPageScroll();
 }
 
 /* ===== PARALLAX ===== */
-let cur = 0, tgt = 0;
+let cur = 0;
+let tgt = 0;
+let vel = 0;
 function animate() {
   tgt = window.scrollY;
-  cur += (tgt - cur) * 0.05;
-  dom.bg.style.transform = `translateY(${-cur * .12}px) scale(1.1)`;
+  const diff = tgt - cur;
+  vel += diff * 0.04;
+  vel *= 0.82;
+  cur += vel;
+
+  const bgY = -cur * 0.06;
+  const midY = -cur * 0.12;
+  const frontY = -cur * 0.2;
+
+  dom.bg.style.setProperty("--bg-y", `${bgY}px`);
+  dom.bg.style.setProperty("--mid-y", `${midY}px`);
+  dom.bg.style.setProperty("--front-y", `${frontY}px`);
+
   requestAnimationFrame(animate);
 }
 animate();
