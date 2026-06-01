@@ -303,6 +303,7 @@ body.overlay-scroll-lock {
 
   padding: 8rem 2rem 3rem;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 
   opacity: 0;
@@ -911,22 +912,21 @@ body.overlay-scroll-lock {
 
   .nav-links {
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
-  transform: translateY(-10px) scaleY(0.96);
-  transform-origin: top;
+  right: 0;
+  transform: translateY(-10px);
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
 
   width: 100%;
   max-width: 100%;
-  height: auto;
-  padding: 5.2rem 1.5rem 1.2rem;
-  border-radius: 0 0 1rem 1rem;
+  height: calc(100vh - 70px);
+  padding: 1rem 1rem 1.25rem;
+  border-radius: 0;
   
   background:
     radial-gradient(circle at 86% 14%, rgba(255, 193, 7, 0.16), rgba(255, 193, 7, 0) 34%),
@@ -934,17 +934,18 @@ body.overlay-scroll-lock {
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
   border: none;
-  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.56);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.48);
 
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition:
-    transform var(--menu-panel-dur, 0.42s) var(--menu-panel-ease, cubic-bezier(0.22, 1, 0.36, 1)),
-    opacity var(--menu-fade-dur, 0.3s) ease,
-    visibility var(--menu-fade-dur, 0.3s) ease;
+    transform 0.28s ease,
+    opacity 0.22s ease,
+    visibility 0.22s ease;
   z-index: 1000;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   }
 
  
@@ -952,59 +953,28 @@ body.overlay-scroll-lock {
   .nav-links li a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: block;
-    padding: 0.3rem 0.45rem;
-    opacity: 0;
-    transform: translateY(-12px);
-    transition:
-      opacity var(--menu-link-fade, 0.28s) ease,
-      transform var(--menu-link-move, 0.34s) var(--menu-panel-ease, cubic-bezier(0.22, 1, 0.36, 1));
+    padding: 0.55rem 0.5rem;
+    opacity: 1;
+    transform: none;
+    transition: color 0.2s ease;
   }
 
   .nav-links.open {
-    transform: translateY(0) scaleY(1);
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     
   }
 
-  .nav-links.open li a {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .nav-links.open li:nth-child(1) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 0); }
-  .nav-links.open li:nth-child(2) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 1); }
-  .nav-links.open li:nth-child(3) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 2); }
-  .nav-links.open li:nth-child(4) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 3); }
-  .nav-links.open li:nth-child(5) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 4); }
-  .nav-links.open li:nth-child(6) a { transition-delay: calc(var(--menu-stagger-start, 0.05s) + var(--menu-stagger-step, 0.04s) * 5); }
-
-  .nav-links.menu-motion-fast {
-    --menu-panel-dur: 0.4s;
-    --menu-fade-dur: 0.28s;
-    --menu-link-fade: 0.24s;
-    --menu-link-move: 0.32s;
-    --menu-stagger-start: 0.04s;
-    --menu-stagger-step: 0.035s;
-    --menu-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .nav-links.menu-motion-heavy {
-    --menu-panel-dur: 0.62s;
-    --menu-fade-dur: 0.42s;
-    --menu-link-fade: 0.34s;
-    --menu-link-move: 0.5s;
-    --menu-stagger-start: 0.08s;
-    --menu-stagger-step: 0.06s;
-    --menu-panel-ease: cubic-bezier(0.2, 0.88, 0.28, 1);
-  }
-
   .cv-cards-wrapper {
     align-items: flex-start;
-    padding-top: 9rem;
+    padding-top: 5.6rem;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    overflow-x: hidden;
   }
 }
 
@@ -1436,15 +1406,21 @@ body.overlay-open #menuToggle {
   #cvCardContainer .project-grid {
     grid-template-columns: 1fr;
     gap: 0.95rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   #cvCardContainer .project-grid .project-card {
     min-height: 750px;
     height: auto;
+    width: 100%;
+    max-width: 100%;
+    transform: none !important;
   }
 
   .project-card:hover{
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 10px 24px rgba(0,0,0,0.32);
   }
 
@@ -1469,6 +1445,25 @@ body.overlay-open #menuToggle {
     width: 1.9rem;
     height: 1.9rem;
     font-size: 1.32rem;
+  }
+
+  #cvCardContainer .project-grid:hover .project-card:not(:hover):not(.is-focused) {
+    opacity: 1;
+  }
+
+  #cvCardContainer .project-grid .project-card.is-focused {
+    transform: none !important;
+  }
+
+  #cvCardContainer .overlay-scroll-animation {
+    transform: none;
+    opacity: 1;
+  }
+
+  #cvCardContainer .project-grid .project-card.project-scroll-animation .project-tech,
+  #cvCardContainer .project-grid .project-card.project-scroll-animation .project-links {
+    opacity: 1;
+    transform: none;
   }
 }
 
