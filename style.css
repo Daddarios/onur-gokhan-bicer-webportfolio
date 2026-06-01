@@ -340,6 +340,8 @@ body.overlay-scroll-lock {
   color: var(--accent);
   font-size: 1.8rem;
   cursor: pointer;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .close-btn:hover {
@@ -916,15 +918,17 @@ body.overlay-scroll-lock {
   left: 0;
   right: 0;
   transform: translateY(-10px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
   align-items: center;
+  row-gap: 0.35rem;
+  column-gap: 0.2rem;
   text-align: center;
 
   width: 100%;
   max-width: 100%;
-  height: calc(100vh - 70px);
+  height: auto;
   padding: 1rem 1rem 1.25rem;
   border-radius: 0;
   
@@ -955,7 +959,7 @@ body.overlay-scroll-lock {
     text-decoration: none;
     font-size: 1rem;
     display: block;
-    padding: 0.55rem 0.5rem;
+    padding: 0.45rem 0.25rem;
     opacity: 1;
     transform: none;
     transition: color 0.2s ease;
