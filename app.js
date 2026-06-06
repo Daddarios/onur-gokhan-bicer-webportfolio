@@ -447,19 +447,19 @@ const contentMap = {
   "projekte": `
               <div class="project-grid">
               <!-- Vista.Core + Vista.CoreX -->
-              <div class="project-card">
-                <div class="project-image">
-                  <a href="projekte/plan.png" target="_blank">
-                    <img src="projekte/plan.png" alt="SaaS Plattform Vorschau">
-                  </a>
-                  <a href="projekte/plan.png" target="_blank">
-                    <img src="projekte/plan.png" alt="SaaS Plattform Vorschau">
-                  </a>
+                <div class="project-card">
+                  <div class="project-image">
+                    <a href="projekte/CoreXDark.png" target="_blank">
+                      <img src="projekte/CoreXDark.png" alt="SaaS Plattform Vorschau">
+                    </a>
+                    <a href="projekte/CoreXLight.png" target="_blank">
+                      <img src="projekte/CoreXLight.png" alt="SaaS Plattform Vorschau">
+                    </a>
                 </div>
 
                 <div class="project-content">
                   <div class="project-top-meta">
-                    <span class="vscode-icons--file-type-gemini"></span>
+                    <span class="vscode-icons--file-type-gemini notification-ai-icon"></span>
                   </div>
                   <h4 class="project-title">Vista.Core + Vista.CoreX <small style="margin-left: 10px;">Full-Stack SaaS mit RAG-AI Assistent</small></h4>
 
@@ -503,7 +503,7 @@ const contentMap = {
                
                 <div class="project-content">
                   <div class="project-top-meta">
-                    <span class="vscode-icons--file-type-gemini"></span>
+                    <span class="vscode-icons--file-type-gemini notification-ai-icon notification-ai-icon--delayed"></span>
                     <a
                       class="lab-link lab-link--mini"
                       href="https://huggingface.co/spaces/Daddarios/GoAI-Lab"
@@ -1135,8 +1135,8 @@ const footer = document.createElement("footer");
 footer.className = "site-footer";
 
 footer.innerHTML = `
-  <div style="color:white">
-    &copy; 2025 Onur Gökhan Bicer | Alle Rechte vorbehalten - Version 1.4.6
+  <div class="footer-left">
+    <span class="copyright-brand">&copy; 2025  Onur Gökhan Bicer </span> - Alle Rechte vorbehalten | Version 1.4.6
     
   </div>
 
