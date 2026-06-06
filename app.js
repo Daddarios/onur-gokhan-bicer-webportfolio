@@ -363,17 +363,14 @@ const contentMap = {
           </div>
 
           <div class="docs-grid">
-            <article class="card doc-card">
-              <div class="doc-card-head">
-                
-                <h4 class="title">Lebenslauf</h4>
-              </div>
               <div class="pdf-wrapper">
-                <iframe
+                 <iframe 
+                 class="cv-pdf-frame"
                   src="dokumente/lebenslauf/Lebenslauf.pdf"
                   loading="lazy"
                   title="Lebenslauf Vorschau"
-                ></iframe>
+                >
+                </iframe>
                 <a
                   href="dokumente/lebenslauf/Lebenslauf.pdf"
                   target="_blank"
@@ -382,21 +379,15 @@ const contentMap = {
                 >
                   Vollansicht öffnen
                 </a>
-              </div>
-            </article>
+             </div>
 
-            <article class="card doc-card">
-              <div class="doc-card-head">
-                
-                <h4 class="title">Arbeitszeugnisse</h4>
-              </div>
               <div class="pdf-wrapper">
-                <iframe
-                
-                  src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
-                  loading="lazy"
-                  title="Arbeitszeugnisse Vorschau"
-                ></iframe>
+                 <iframe
+                   class="cv-pdf-frame"
+                   src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
+                   loading="lazy"
+                   title="Arbeitszeugnisse Vorschau"
+                 ></iframe>
                 <a
                   href="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
                   target="_blank"
@@ -406,18 +397,13 @@ const contentMap = {
                   Vollansicht öffnen
                 </a>
               </div>
-            </article>
 
-            <article class="card doc-card">
-              <div class="doc-card-head">
-                
-                <h4 class="title">Bildung</h4>
-              </div>
-              <div class="pdf-wrapper">
+            <div class="pdf-wrapper">
                 <iframe
-                  src="dokumente/schulische_akademische/Bildung.pdf"
-                  loading="lazy"
-                  title="Bildung Vorschau"
+                 class="cv-pdf-frame"
+                 src="dokumente/schulische_akademische/Bildung.pdf"
+                 loading="lazy"
+                 title="Bildung Vorschau"
                 ></iframe>
                 <a
                   href="dokumente/schulische_akademische/Bildung.pdf"
@@ -428,18 +414,13 @@ const contentMap = {
                   Vollansicht öffnen
                 </a>
               </div>
-            </article>
 
-            <article class="card doc-card">
-              <div class="doc-card-head">
-                
-                <h4 class="title">Ehrenamtlich</h4>
-              </div>
-              <div class="pdf-wrapper">
+            <div class="pdf-wrapper">
                 <iframe
-                  src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
-                  loading="lazy"
-                  title="Ehrenamtliche Nachweise Vorschau"
+                 class="cv-pdf-frame"
+                 src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
+                 loading="lazy"
+                 title="Ehrenamtliche Nachweise Vorschau"
                 ></iframe>
                 <a
                   href="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
@@ -450,7 +431,6 @@ const contentMap = {
                   Vollansicht öffnen
                 </a>
               </div>
-            </article>
           </div>
 
           <p id="hinweis">
