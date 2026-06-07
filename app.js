@@ -68,41 +68,37 @@ function renderProjectTechIcons() {
       const className = iconMap[t];
 
       if (className) {
-        div.innerHTML += `
-          <i class="${className}" 
-             title="${t}" 
-             style="font-size:20px;margin-right:10px; opacity:1"></i>
-        `;
+        const icon = document.createElement("i");
+        icon.className = `${className} project-tech-icon`;
+        icon.title = t;
+        div.appendChild(icon);
       } else if (t === "Ollama") {
         const img = document.createElement("img");
         img.src = ollamaIconCdn;
         img.alt = t;
         img.title = t;
-        img.style.cssText = `
-          width: 20px;
-          height: 20px;
-          margin-right: 10px;
-          vertical-align: middle;
-          filter: brightness(0) invert(1);
-          opacity: 0.95;
-        `;
+        img.className = "project-tech-img";
         div.appendChild(img);
       } else {
         // ikon yoksa yazıyla sade etiket
         const span = document.createElement("span");
         span.textContent = t;
         span.title = t;
-        span.style.cssText = `
-          color: #f0f0f0;
-          
-          font-size: 10px;
-          
-          margin-right: 10px;
-          display: inline-block;
-        `;
+        span.className = "project-tech-fallback";
         div.appendChild(span);
       }
     });
+  });
+}
+
+function normalizeBlankLinks(root = document) {
+  root.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    link.rel = "noopener noreferrer";
+    if (!link.getAttribute("aria-label")) {
+      const img = link.querySelector("img");
+      const label = link.getAttribute("title") || img?.getAttribute("alt");
+      if (label) link.setAttribute("aria-label", label);
+    }
   });
 }
 
@@ -111,14 +107,12 @@ function renderProjectTechIcons() {
 const dom = {
   menuToggle: document.getElementById("menuToggle"),
   navLinks: document.getElementById("navLinks"),
+  topbar: document.querySelector(".topbar"),
   wrapper: document.getElementById("cvCardsWrapper"),
   container: document.getElementById("cvCardContainer"),
   closeBtn: document.querySelector(".close-btn"),
   bg: document.querySelector(".global-bg")
 };
-
-const MENU_MOTION_PRESET = "fast"; // "fast" | "heavy"
-dom.navLinks.classList.add(MENU_MOTION_PRESET === "heavy" ? "menu-motion-heavy" : "menu-motion-fast");
 
 let lockedScrollY = 0;
 
@@ -136,22 +130,36 @@ function unlockMainPageScroll() {
 
 
 
+function setMenuState(isOpen) {
+  dom.navLinks.classList.toggle("open", isOpen);
+  dom.menuToggle.setAttribute("aria-expanded", String(isOpen));
+  document.body.style.overflow = isOpen && window.innerWidth <= 768 ? "hidden" : "";
+}
+
+function closeMenu() {
+  setMenuState(false);
+}
+
 // Menü toggle butonu
 dom.menuToggle.addEventListener("click", () => {
-  const isOpen = dom.navLinks.classList.toggle("open");
-  document.body.style.overflow = isOpen ? "hidden" : "";
+  setMenuState(!dom.navLinks.classList.contains("open"));
+});
+
+document.addEventListener("click", (e) => {
+  if (!dom.navLinks.classList.contains("open")) return;
+  if (dom.topbar.contains(e.target) || dom.navLinks.contains(e.target)) return;
+  closeMenu();
 });
 
 // ESC tuşuna basınca menüyü kapat
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     const overlayIsOpen = dom.wrapper.classList.contains("active");
-    dom.navLinks.classList.remove("open");
+    closeMenu();
     if (overlayIsOpen) {
       closeOverlay();
       return;
     }
-    document.body.style.overflow = "";
   }
 });
 
@@ -166,8 +174,7 @@ window.addEventListener("resize", () => {
     dom.navLinks.style.transition = "none";
 
     // Sınıf ve scroll reset
-    dom.navLinks.classList.remove("open");
-    document.body.style.overflow = "";
+    closeMenu();
 
     // ➤ Gelecek frame'de transition geri gelsin
     requestAnimationFrame(() => {
@@ -180,20 +187,43 @@ window.addEventListener("resize", () => {
 
 
 // Tüm sayfa içi anchor linkler için smooth scroll
-function smoothScrollTo(targetY, duration = 780) {
+function smoothScrollTo(targetY) {
+  const phaseIn = 600;
+  const phaseCruise = 300;
+  const phaseOut = 1500;
+  const duration = phaseIn + phaseCruise + phaseOut;
+
   const startY = window.scrollY;
   const distance = targetY - startY;
   const startTime = performance.now();
 
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  function easeInCubic(t) {
+    return t * t * t;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function phasedProgress(elapsed) {
+    if (elapsed <= phaseIn) {
+      const t = elapsed / phaseIn;
+      return easeInCubic(t) * 0.25;
+    }
+
+    if (elapsed <= phaseIn + phaseCruise) {
+      const t = (elapsed - phaseIn) / phaseCruise;
+      return 0.25 + t * 0.5;
+    }
+
+    const t = (elapsed - phaseIn - phaseCruise) / phaseOut;
+    return 0.75 + easeOutCubic(t) * 0.25;
   }
 
   function step(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = easeInOutCubic(progress);
-    window.scrollTo(0, startY + distance * eased);
+    const elapsed = Math.min(now - startTime, duration);
+    const progress = Math.min(phasedProgress(elapsed), 1);
+    window.scrollTo(0, startY + distance * progress);
     if (progress < 1) requestAnimationFrame(step);
   }
 
@@ -211,18 +241,19 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const headerOffset = header ? header.offsetHeight + 10 : 80;
     const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
-    smoothScrollTo(y, 820);
+    smoothScrollTo(y);
   });
 });
 
 
 /* ===== SECTIONS ===== */
 const sections = [
-  { id: "uber-mich", title: "Über mich", desc: "Kurze persönliche Vorstellung" },
-  { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Wichtige Unterlagen" },
-  { id: "projekte", title: "Entwicklung & Projekte", desc: "Abgeschlossene & laufende Projekte" },
-  {id:"kurs", title:"Weiterbildungen", desc:"Online-Kurse & Fortbildungen"},
-  { id: "kontakt", title: "Kontakt ", desc: "Ich freue mich, von Ihnen zu hören" }
+  { id: "uber-mich", title: "Über mich", desc: "Beruflicher Hintergrund und Arbeitsweise" },
+  { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Unterlagen und Nachweise" },
+  { id: "kompetenzen", title: "Kompetenzbereiche", desc: "Technologien mit praktischem Einsatzkontext" },
+  { id: "projekte", title: "Entwicklung & Projekte", desc: "Ausgewählte Anwendungen und Lernprojekte" },
+  { id: "kurs", title: "Weiterbildungen", desc: "Aktuelle Lernfelder und Fortbildungen" },
+  { id: "kontakt", title: "Kontakt", desc: "Direkter Kontakt für Rückfragen" }
 ];
 
 const frag = document.createDocumentFragment();
@@ -313,9 +344,12 @@ createCustomScrollBar();
 // Menüde bir linke tıklanınca 1 sn sonra menüyü kapat
 document.querySelectorAll("#navLinks a").forEach(link => {
   link.addEventListener("click", () => {
-    dom.navLinks.classList.remove("open");
-    document.body.style.overflow = "";
+    closeMenu();
   });
+});
+
+dom.topbar.querySelector(".logo")?.addEventListener("click", () => {
+  closeMenu();
 });
 
 /* ===== CONTENT MAP ===== */
@@ -330,22 +364,19 @@ const contentMap = {
 
             <h3 class="title">Über mich</h3>
 
-            <p>Hallo, mein Name ist Gökhan. Ich bin 35 Jahre alt und in Balıkesir geboren. Schon seit meiner Kindheit war ich ein neugieriger Mensch – ein Kind, das Dinge auseinandernahm, um zu verstehen: „Wie funktioniert das eigentlich?“</p>
+            <p>Hallo, mein Name ist Gökhan. Ich bin Junior Full-Stack-Entwickler mit Schwerpunkt auf C#, ASP.NET, JavaScript und React. Mich motiviert es, fachliche Anforderungen in funktionierende Anwendungen zu übersetzen und dabei Schritt für Schritt saubere, nachvollziehbare Lösungen aufzubauen.</p>
 
-            <p>Viele Jahre später führte mich mein Weg nach Deutschland, einem meiner Kindheitsträume. Vor etwa neun Jahren kam ich nach Stuttgart, um mein Universitätsstudium fortzusetzen. Seitdem baue ich mir hier ein neues Leben auf und komme Schritt für Schritt dem Bereich näher, von dem ich sagen kann: Ja, genau das ist mein Ding.</p>
+            <p>Mein Weg in die Softwareentwicklung war bewusst praxisorientiert. Nach ersten Studien- und Berufserfahrungen in Deutschland habe ich mich für eine Ausbildung im IT-Bereich entschieden und diese als IT-Anwendungsentwickler erfolgreich abgeschlossen. Seitdem arbeite ich daran, meine Backend-Kenntnisse zu vertiefen und gleichzeitig klare, verständliche Benutzeroberflächen zu entwickeln.</p>
 
-            <p>Anfangs war vieles noch recht allgemein ausgerichtet: Universität, eine neue Kultur, ein anderes System und eine neue Lebensordnung. Während meines Studiums erhielt ich die Möglichkeit, bei Daimler als Werkstudent und Ferienbeschäftigter zu arbeiten – ein weiterer Kindheitstraum. Dadurch konnte ich die internen Abläufe eines großen Unternehmens aus nächster Nähe kennenlernen. Doch schon damals war mir eines stets bewusst: Ich arbeite lieber mit konkreten Ergebnissen als mit abstrakten Plänen. Ein Problem zu nehmen und zu sagen „Okay, machen wir daraus ein funktionierendes System“ fühlt sich für mich ganz natürlich an.</p>
+            <p>In Projekten übernehme ich Verantwortung für Analyse, Umsetzung und Weiterentwicklung. Besonders wichtig sind mir strukturierte Arbeit, offene Kommunikation und die Bereitschaft, technische Entscheidungen nachvollziehbar zu begründen. Ich arbeite zuverlässig, nehme Feedback ernst und baue meine Fähigkeiten kontinuierlich aus.</p>
 
-            <p>Im Laufe meines Studiums stellte sich heraus, dass das Studienfach für mich nicht geeignet war, sodass ich mein Studium nicht zu Ende geführt habe.
-             Daraufhin entschied ich mich bewusst für einen praktischeren, stärker berufsorientierten Weg und begann eine Ausbildung im IT-Bereich. In diesem Rahmen bildete ich mich intensiv in der Softwareentwicklung weiter und schloss die Ausbildung zum IT-Anwendungsentwickler erfolgreich ab.</p>
+            <p>Neben der Softwareentwicklung begleitet mich Musik seit vielen Jahren. Die Erfahrung als Gitarrist und zeitweise ehrenamtlicher Gitarrenlehrer hat meine Geduld, Konzentration und Fähigkeit gestärkt, komplexe Inhalte verständlich zu vermitteln.</p>
 
-            <p>Heute motiviert mich meine Arbeit als Junior Full-Stack-Entwickler vor allem eines: ein zunächst chaotisch wirkendes Problem zu analysieren, es Schritt für Schritt zu vereinfachen und am Ende zu einer Lösung zu bringen, bei der man sagen kann: „Jetzt passt es.“
-
-            oder von Grund auf zu entdecken, wie man ein vielseitiges System aufbaut und wirklich funktional macht. Ich arbeite kontinuierlich daran, meine Backend-Kenntnisse zu vertiefen, während es mir im Frontend besonders Freude bereitet, dem Nutzer eine klare und verständliche Erfahrung zu bieten. Für mich geht es nicht nur darum, ein Projekt zu starten, sondern es wirklich zu übernehmen und bis zum Ende zu begleiten. Deshalb scheue ich keine Verantwortung. Strukturiertes Arbeiten motiviert mich, Zuverlässigkeit ist mir wichtig, und ich lege großen Wert auf offene Kommunikation im Team.</p>
-
-            <p>Neben der Arbeit gibt es einen weiteren wichtigen Bereich, der mich prägt: die Musik. Meine Reise mit der Gitarre begann etwa im Jahr 2003 und begleitet mich bis heute auf professioneller Ebene. Musik ist für mich zugleich eine Pause und eine starke Energiequelle. Eine Zeit lang war ich zudem ehrenamtlich als Gitarrenlehrer tätig, was meine Geduld und meine Fähigkeit, Inhalte verständlich zu vermitteln, erheblich gestärkt hat. Ich lerne gerne neue Kulturen kennen, tausche mich mit unterschiedlichen Menschen aus und gewinne neue Perspektiven.</p>
-
-            <p>Kurz gesagt: Ich bin jemand, dessen Reise in Deutschland weitergeht, der sich jeden Tag weiterentwickelt, um bessere Software zu schreiben, der seine Arbeit ernst nimmt und Freude daran hat, gemeinsam etwas zu schaffen.</p>
+            <ul class="profile-points" aria-label="Arbeitsweise">
+              <li>Strukturierte Umsetzung statt Aktionismus</li>
+              <li>Offene Kommunikation bei Risiken und offenen Fragen</li>
+              <li>Verlässliche Übergabe von Arbeitsergebnissen</li>
+            </ul>
 
            
           </div>
@@ -363,7 +394,7 @@ const contentMap = {
           </div>
 
           <div class="docs-grid">
-              <div class="pdf-wrapper">
+              <div class="pdf-wrapper doc-card">
                  <iframe 
                  class="cv-pdf-frame"
                   src="dokumente/lebenslauf/Lebenslauf.pdf"
@@ -381,7 +412,7 @@ const contentMap = {
                 </a>
              </div>
 
-              <div class="pdf-wrapper">
+              <div class="pdf-wrapper doc-card">
                  <iframe
                    class="cv-pdf-frame"
                    src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
@@ -398,7 +429,7 @@ const contentMap = {
                 </a>
               </div>
 
-            <div class="pdf-wrapper">
+            <div class="pdf-wrapper doc-card">
                 <iframe
                  class="cv-pdf-frame"
                  src="dokumente/schulische_akademische/Bildung.pdf"
@@ -415,7 +446,7 @@ const contentMap = {
                 </a>
               </div>
 
-            <div class="pdf-wrapper">
+            <div class="pdf-wrapper doc-card">
                 <iframe
                  class="cv-pdf-frame"
                  src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
@@ -442,6 +473,49 @@ const contentMap = {
       `
   ,
 
+  /* ===== KOMPETENZBEREICHE ===== */
+  "kompetenzen": `
+        <section class="competency-showcase">
+          <div class="competency-intro">
+            <h3 class="competency-title">Kompetenzbereiche</h3>
+            <p class="competency-subtitle">
+              Keine Prozentwerte, sondern Technologien im praktischen Zusammenhang:
+              womit ich gearbeitet habe und wo der Einsatz sichtbar wird.
+            </p>
+          </div>
+
+          <div class="competency-grid">
+            <article class="competency-card">
+              <h4>Backend</h4>
+              <p class="competency-stack">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server</p>
+              <p>
+                <strong>Praktische Anwendung:</strong> CRM, SaaS-Backend, REST APIs,
+                Authentifizierung mit JWT, Datenmodellierung und serverseitige Geschäftslogik.
+              </p>
+            </article>
+
+            <article class="competency-card">
+              <h4>Frontend</h4>
+              <p class="competency-stack">React, JavaScript, HTML, CSS, Bootstrap</p>
+              <p>
+                <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
+                responsive Layouts, Portfolio-UI und API-Anbindung im Client.
+              </p>
+            </article>
+
+            <article class="competency-card">
+              <h4>Tools & Workflow</h4>
+              <p class="competency-stack">GitHub, Docker, GitHub Actions, Swagger</p>
+              <p>
+                <strong>Praktische Anwendung:</strong> Versionskontrolle, API-Dokumentation,
+                Containerisierung, Deployment-Schritte und nachvollziehbare Projektübergabe.
+              </p>
+            </article>
+          </div>
+        </section>
+      `
+  ,
+
 
   /* ===== PROJEKTE ===== */
   "projekte": `
@@ -461,22 +535,22 @@ const contentMap = {
                   <div class="project-top-meta">
                     <span class="vscode-icons--file-type-gemini notification-ai-icon"></span>
                   </div>
-                  <h4 class="project-title">Vista.Core + Vista.CoreX <small style="margin-left: 10px;">Full-Stack SaaS mit RAG-AI Assistent</small></h4>
+                  <h4 class="project-title">Vista.Core + Vista.CoreX <small>Full-Stack SaaS mit RAG-AI Assistent</small></h4>
 
                   <p class="project-desc">
-                    <strong>Vista.Core / Saas.CoreX</strong> ist eine modulare Full-Stack-SaaS-Plattform für CRM- und operative Geschäftsprozesse mit Multi-Tenant-Architektur.
+                    <strong>Vista.Core / Vista.CoreX</strong> ist eine modulare Full-Stack-SaaS-Plattform für CRM- und operative Geschäftsprozesse.
                   </p>
 
                   <p class="project-desc">
-                    <strong>Fokus:</strong> Der Schwerpunkt liegt auf einer sicheren und skalierbaren Backend-Architektur (.NET 9 Web API, Identity/JWT, Redis, SignalR) sowie auf RAG-gestützter KI mit Semantic Kernel, Kernel Memory, Ollama und Qdrant. Die Plattform kombiniert Echtzeit-Kommunikation, strukturierte Datenverarbeitung und AI-gestützte Assistenz in einer produktionsnahen Systemlandschaft.
+                    <strong>Fokus:</strong> Der Schwerpunkt liegt auf Backend-Architektur mit .NET Web API, Identity/JWT, EF Core, SQL Server und Echtzeit-Kommunikation. Ergänzend wurde ein KI-Assistent mit RAG-Ansatz integriert, um dokumenten- und kontextbezogene Antworten innerhalb der Anwendung zu ermöglichen.
                   </p>
 
                   <p class="project-desc">
-                    <strong>Rolle & Beitrag:</strong> Konzeption, Architektur-Design und End-to-End-Umsetzung über Backend und Frontend hinweg (C#/.NET + React/Vite). Umsetzung von Datenmodellierung (EF Core/SQL Server), API-Sicherheit, Realtime-Features, Docker-Containerisierung und CI/CD mit GitHub Actions inkl. automatisierter Tests (xUnit, Moq, EF InMemory, Coverlet).
+                    <strong>Rolle & Beitrag:</strong> Konzeption, Datenmodellierung, API-Umsetzung, Frontend-Anbindung mit React/Vite, Docker-Setup und CI/CD-Grundstruktur mit GitHub Actions.
                   </p>
 
                   <div class="project-tech">
-                    C# , ASP.NET , ASP.NET Core, EF Core, SQL Server, React, Bootstrap, Swagger, Redis, Vite 8, React Router 7, Axios, Docker, Ollama, (qwen2.5:3b) + Qdrant, MailKit, SignalR, Semantic Kernel, Kernel Memory, Qdrant, JWT, Recharts, Serilog, Live-Chat
+                    C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel
                   </div>
 
                   <div class="project-links">
@@ -516,17 +590,16 @@ const contentMap = {
                       <span>›</span><span>›</span><span>›</span>
                     </span>
                   </div>
-                  <h4 class="project-title">GoAI ChatLab    <small style="margin-left: 10px;">AI-Agent & Chat Assistant</small></h4>  
+                  <h4 class="project-title">GoAI ChatLab <small>AI-Agent & Chat Assistant</small></h4>  
                       
                      <p class="project-desc">  
-                      GoAI ChatLab ist eine performante Full-Stack-Anwendung, die als moderne Brücke zwischen Nutzern und leistungsstarken Open-Source-Sprachmodellen (LLMs) fungiert.
+                      GoAI ChatLab ist eine Full-Stack-Anwendung für die Arbeit mit KI-Chatfunktionen und dateibasierten Eingaben.
                     </p>
                     
                     <p class="project-desc">
                       <strong>Fokus:</strong> 
                       
-                      Der Schwerpunkt liegt auf Architektur-Sicherheit durch einen dedizierten Express.js-Proxy-Server sowie auf dynamischer File-Analyse in Echtzeit. 
-                      Die flexible Backend-Architektur ist strategisch so konzipiert, dass sie nahtlos durch ein <b>RAG-System</b>  (Retrieval-Augmented Generation) erweitert werden kann, um beispielsweise als 100% datensicherer <b>24/7 Chat-Assistent  für den Unternehmens-Service & Kundensupport zu operieren</b>.
+                      Der Schwerpunkt liegt auf einem Express.js-Proxy-Backend, sauberer API-Anbindung und der Verarbeitung von Dateien im Frontend. Die Architektur ist so vorbereitet, dass sie später um RAG-Funktionen erweitert werden kann.
                     </p>
 
                   
@@ -534,16 +607,11 @@ const contentMap = {
                     <p class="project-desc">
                       <strong>Rolle & Beitrag:</strong>
                       
-                      Konzeption, Architektur-Design und End-to-End Full-Stack-Umsetzung (React Front-End & Node.js Backend).
-                      Das Ergebnis ist eine hoch skalierbare Web-Applikation, die demonstriert, wie die Implementierung fortschrittlicher KI-APIs
-                      und robuster Proxy-Server reibungslos In bestehende Support-Infrastrukturen integriert werden kann.
-                      Gestützt wird diese Architektur durch einen modernen <strong>DevOps-Workflow</strong>: Docker-Containerisierung
-                      und vollautomatisierte <strong>CI/CD-Pipelines</strong> unter Einsatz von GitHub Actions gewährleisten dabei ein stabiles und nahtloses Cloud-Deployment.
+                      Konzeption und Umsetzung mit React, Node.js und Express. Dazu gehören UI-Struktur, Backend-Proxy, API-Integration, Docker-Containerisierung und ein GitHub-Actions-Workflow für Deployment-Schritte.
                     </p>
 
                     <div class="project-tech">
-                      Visual Studio Code, React, Node.js, Express.js, JavaScript, .env, HTML5, CSS3, Git, GitHub, GitHub Actions,Docker , Cloud,
-                       RESTful APIs, Client-side File Parsing (PDF-CSV), OpenRouter AI Integration
+                      React, Node.js, Express.js, JavaScript, HTML5, CSS3, GitHub Actions, Docker, REST APIs, Client-side File Parsing, OpenRouter AI
                     </div>
                    
                  
@@ -575,20 +643,12 @@ const contentMap = {
                   <h4 class="project-title">CRM-Anwendung</h4> 
 
                   <p class="project-desc">
-                   Entwicklung eines vollwertigen CRM-Systems mit ASP.NET MVC zur Verwaltung von Kunden, Mitarbeitern 
-                    und Projekten sowie deren Berichten. Enthält ein rollenbasiertes Zugriffssystem, Zwei-Faktor-Authentifizierung (2FA), 
-                    ein interaktives Dashboard mit Visualisierungen, sowie Funktionen für Excel- und PDF-Export 
-                    (inkl. eine REST-API). Die Anwendung ist modular aufgebaut und durch eine API erweiterbar.
+                   CRM-System mit ASP.NET MVC zur Verwaltung von Kunden, Mitarbeitern, Projekten und Berichten. Enthalten sind Rollenverwaltung, Zwei-Faktor-Authentifizierung, Dashboard-Ansichten, Excel/PDF-Export und eine REST-API.
                   </p>
 
                   <p class="project-desc">
                   <strong>Rolle & Beitrag :</strong>  
-                  Dieses Full-Stack-Projekt habe ich mit professionellem Anspruch eigenverantwortlich umgesetzt von der Softwarearchitektur über Backend 
-                  (inkl. Entity Framework, API-Schnittstellen, 2FA-Sicherheit) bis hin zum vollständigen Frontend-Layout und der Benutzeroberfläche.  
-                  
-                  Dabei habe ich u. a. die Datenbankstruktur entworfen, die Anwendungsarchitektur definiert 
-                  und alle Backend- und Frontend-Komponenten implementiert.  
-                  Es entstand im Rahmen eines IHK-Projekts unter realitätsnahen Bedingungen und wurde vollständig von mir konzipiert und entwickelt.
+                  Eigenverantwortliche Umsetzung von Datenbankstruktur, Backend-Logik, Authentifizierung, API-Schnittstellen und Benutzeroberfläche. Das Projekt entstand im Rahmen eines IHK-Projekts unter realitätsnahen Anforderungen.
                 </p>
                    
 
@@ -622,7 +682,7 @@ const contentMap = {
                 <h4 class="project-title">Portfolio Website</h4>
 
                 <p class="project-desc">
-                  <strong>Ein selbstständig entwickeltes UI-Projekt</strong> zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
+                  Selbstständig entwickeltes UI-Projekt zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
                 </p>
 
                 <p class="project-desc">
@@ -630,7 +690,7 @@ const contentMap = {
                 </p>
 
                 <p class="project-desc">
-                  <strong>Fokus:</strong> Responsives Layout, benutzerfreundliche Navigation, saubere Code-Struktur
+                  <strong>Fokus:</strong> Responsives Layout, Navigation, Animationen und saubere Präsentation der Inhalte
                 </p>
 
                 <div class="project-tech">
@@ -661,7 +721,7 @@ const contentMap = {
 
                       <p class="project-desc">
                         <strong>VISTA</strong> ist ein persönliches Projekt zur Integration eines <strong>ASP.NET-basierten CRM-Systems</strong> in ein modernes <strong>React-Frontend</strong>.
-                        Ziel war es, <strong>REST-API-Integration</strong> praxisnah umzusetzen und Frontend-Kompetenz mit <strong>Client-Side-Rendering (CSR)</strong> zu vertiefen.
+                        Ziel war es, <strong>REST-API-Integration</strong> praxisnah umzusetzen und React-Kompetenz mit Client-Side-Rendering zu vertiefen.
                       </p>
 
                       <p class="project-desc">
@@ -670,7 +730,7 @@ const contentMap = {
                       </p>
 
                       <p class="project-desc">
-                        <strong>Rolle:</strong> UI-Design, technische Umsetzung, API-Anbindung, Continuous Learning
+                        <strong>Rolle:</strong> UI-Design, technische Umsetzung und API-Anbindung
                       </p>
                 
 
@@ -704,8 +764,7 @@ const contentMap = {
                 <h4 class="project-title">Klinik Raum Stuttgart</h4>
 
                 <p class="project-desc">
-                  Klinik Raum Stuttgart ist ein PC-Desktop-Anwendung(Lernprojekt) zur Entwicklung einer Klinikverwaltungssoftware mit C# und .NET Framework.
-                  Die Anwendung richtet sich an Arztpraxen, medizinische Einrichtungen und ähnliche Gesundheitseinrichtungen und orientiert sich an der in diesen Bereichen weit verbreiteten Windows-PC- und Server-Infrastruktur.
+                  Klinik Raum Stuttgart ist eine Desktop-Anwendung als Lernprojekt zur Entwicklung einer einfachen Klinikverwaltungssoftware mit C# und .NET Framework.
                 </p>
 
                 <div class="project-tech">
@@ -736,7 +795,7 @@ const contentMap = {
                 <h4 class="project-title">Photo BLOG – Responsive UI mit HTML & CSS</h4>
 
                 <p class="project-desc"> 
-                  Ein persönliches Frontend-Projekt zur praktischen Anwendung von <strong>HTML</strong>, <strong>CSS</strong> und <strong>Responsive Design</strong>. Ziel war es, eine visuell ansprechende, mobilfreundliche Benutzeroberfläche für einen Foto-Blog zu gestalten und umzusetzen.
+                  Frontend-Projekt zur praktischen Anwendung von <strong>HTML</strong>, <strong>CSS</strong> und Responsive Design. Ziel war eine mobilfreundliche Oberfläche für einen Foto-Blog.
                 </p>
 
                 <p class="project-desc">
@@ -754,103 +813,6 @@ const contentMap = {
                 </div>
               </div>
             </div>
-
-
-
-            <!-- ZIELPROJEKTE 1 -->
-                <div class="project-card">
-                  <div class="project-image">
-                   
-                      <img src="projekte/plan.png" alt="Zielprojekte Vorschau">
-                    
-                  </div>
-                           <div class="project-content">
-                              <h4 class="project-title">Zielprojekt: Data Science & KI-gestützte Business Intelligence</h4>
-
-                                <p class="project-desc">
-                                  Dieses Projekt befindet sich aktuell in der <strong>Planungsphase</strong> und ist als persönliches Lernziel 
-                                  im Bereich <strong>Data Science</strong>, <strong>Künstliche Intelligenz (KI)</strong> und 
-                                  <strong>Business Intelligence</strong> konzipiert.
-                                </p>
-
-                                <p class="project-desc">
-                                  Ziel ist die Entwicklung eines intelligenten Analyse-Tools für datengetriebene Branchen wie 
-                                  <strong>Einzelhandel</strong> oder <strong>E-Commerce</strong>. 
-                                  Das Tool soll <strong>Absatzprognosen</strong> (z. B. mit Prophet oder XGBoost), 
-                                  <strong>Kundensegmentierung</strong> (z. B. mit RFM-Analyse und K-Means) 
-                                  sowie <strong>datenbasierte Entscheidungsunterstützung</strong> ermöglichen.
-                                </p>
-
-                                <p class="project-desc">
-                                  Dadurch sollen Unternehmen in der Lage sein, <strong>Lagerkosten zu reduzieren</strong>, 
-                                  <strong>Marketingkampagnen gezielter zu gestalten</strong> und 
-                                  <strong>strategische Entscheidungen auf Basis realer Daten</strong> zu treffen.
-                                </p>
-
-                                <p class="project-desc">
-                                  In einer späteren Phase ist geplant, das Projekt um <strong>Machine Learning</strong>- und 
-                                  <strong>Natural Language Processing (NLP)</strong>-Komponenten zu erweitern – z. B. zur Analyse von 
-                                  Kundenfeedback, Bewertungen oder Supportanfragen aus unstrukturierten Datenquellen.
-                                </p>
-
-                             <div class="project-tech">
-                              Python, Pandas, NumPy , Matplotlib, scikit-learn, Prophet, K-Means,  Seaborn
-                            </div>
-
-                            <div class="project-links">
-                              <span class="status-ongoing">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
-                            </div>
-                            </div>
-
-                 
-                  </div>
-
-                <!-- ZIELPROJEKT 2 -->
-                  <div class="project-card">
-                    <div class="project-image">
-                      
-                        <img src="projekte/plan.png" alt="Zielprojekt 2 Vorschau">
-                     
-                    </div>
-
-                    <div class="project-content">
-                     <h4 class="project-title">Zielprojekt: Predictive Analytics im Bankwesen</h4>
-
-                            <p class="project-desc">
-                              Dieses Projekt befindet sich aktuell in der <strong>Planungsphase</strong> und ist als persönliches Lernziel im Bereich 
-                              <strong>Predictive Analytics</strong>, <strong>Machine Learning</strong> und <strong>Data Science</strong> für den 
-                              <strong>Banken- und Finanzsektor</strong> konzipiert.
-                            </p>
-
-                            <p class="project-desc">
-                              Ziel ist die Entwicklung eines <strong>Vorhersagemodells</strong>, das prognostiziert, 
-                              welche <strong>Bankprodukte</strong> (z.&nbsp;B. Kredit, Anlagekonto oder Sparprodukt) ein Kunde mit hoher Wahrscheinlichkeit 
-                              in den kommenden Monaten nutzen wird. Dadurch sollen <strong>Cross-Selling-Potenziale</strong> identifiziert und 
-                              <strong>Kundenabwanderung</strong> frühzeitig erkannt werden.
-                            </p>
-
-                            <p class="project-desc">
-                              Zusätzlich werden <strong>Kundenmerkmale</strong> wie Einkommen, Transaktionshistorie und digitale Nutzung analysiert, 
-                              um <strong>Einflussfaktoren auf das Kundenverhalten</strong> zu verstehen. 
-                              Auf dieser Basis können <strong>personalisierte Marketing- und Beratungsstrategien</strong> entwickelt werden.
-                            </p>
-
-                            <p class="project-desc">
-                              Ein besonderer Fokus liegt auf der <strong>Erklärbarkeit der Modelle</strong> (z.&nbsp;B. mit SHAP), 
-                              um Vorhersagen transparent darzustellen und die Ergebnisse sowohl für Fachabteilungen als auch für das Management 
-                              nachvollziehbar zu machen.
-                            </p>
-
-                      <div class="project-tech">
-                        Python, Pandas, NumPy, Matplotlib, scikit-learn, XGBoost, Logistic Regression, SHAP, Seaborn
-                      </div>
-
-                      <div class="project-links">
-                        <span class="status-ongoing">Lern & Zielprojekt – Umsetzung nach Grundlagenphase geplant</span>
-                      </div>
-                    </div>
-                  </div>
-
 
               </div>
       `
@@ -1008,6 +970,7 @@ function setupOverlayCardReveal(type) {
   const selectors = {
     "uber-mich": ".uber-mich",
     "fahigkeiten": ".docs-intro, .doc-card, #hinweis",
+    "kompetenzen": ".competency-intro, .competency-card",
     "projekte": ".project-grid .project-card",
     "kurs": ".education-card",
     "kontakt": ".kontakt-card"
@@ -1054,8 +1017,7 @@ document.addEventListener("click", e => {
   const type = btn.dataset.type;
 
   // ✅ EKLENDİ: Toggle menü açıksa kapat
-  dom.navLinks.classList.remove("open");
-  document.body.style.overflow = "";
+  closeMenu();
 
   dom.wrapper.classList.add("active");
   document.body.classList.add("overlay-open");
@@ -1068,6 +1030,7 @@ document.addEventListener("click", e => {
   renderProjectTechIcons();
   renderKontaktMail();
   enhanceProjectMedia();
+  normalizeBlankLinks(dom.container);
   setupOverlayCardReveal(type);
 });
 
@@ -1133,23 +1096,27 @@ animate();
 /* ===== FOOTER ===== */
 const footer = document.createElement("footer");
 footer.className = "site-footer";
+const currentYear = new Date().getFullYear();
 
 footer.innerHTML = `
   <div class="footer-left">
-    <span class="copyright-brand">&copy; 2025  Onur Gökhan Bicer </span> - Alle Rechte vorbehalten | Version 1.4.6
+    <span class="copyright-brand">&copy; ${currentYear} Onur Gökhan Bicer</span> - Alle Rechte vorbehalten
     
   </div>
 
   <div class="footer-right">
-  <a href="https://github.com/Daddarios" target="_blank" aria-label="GitHub">
+  <button class="footer-legal-link" type="button" data-legal="privacy">Datenschutz</button>
+  <button class="footer-legal-link" type="button" data-legal="imprint">Impressum</button>
+
+  <a href="https://github.com/Daddarios" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
     <i class='bx bxl-github' ></i>
   </a>
 
-  <a href="https://www.linkedin.com/in/onur-g%C3%B6khan-bicer-b011b1380/" target="_blank" aria-label="LinkedIn">
+  <a href="https://www.linkedin.com/in/onur-g%C3%B6khan-bicer-b011b1380/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
     <i class='bx bxl-linkedin' ></i>
   </a>
 
-  <a href="https://x.com/yokhannn" target="_blank" aria-label="X">
+  <a href="https://x.com/yokhannn" target="_blank" rel="noopener noreferrer" aria-label="X">
     <i class='bx bxl-twitter'></i>
   </a>
 
@@ -1160,6 +1127,40 @@ footer.innerHTML = `
 `;
 
 document.body.appendChild(footer);
+normalizeBlankLinks(footer);
+
+const legalContent = {
+  privacy: `
+    <strong>Datenschutzerklärung</strong>
+    <span>Diese Website verwendet Google Analytics erst nach Ihrer ausdrücklichen Zustimmung. Ohne Zustimmung werden keine Analytics-Skripte geladen.</span>
+    <span>Die Zustimmung wird lokal im Browser gespeichert und kann durch Löschen des Browser-Speichers zurückgesetzt werden.</span>
+    <span>Kontakt für Datenschutzfragen: <a href="mailto:ongb@gmx.de">ongb@gmx.de</a></span>
+  `,
+  imprint: `
+    <strong>Impressum</strong>
+    <span>Onur Gökhan Bicer</span>
+    <span>Kontakt: <a href="mailto:ongb@gmx.de">ongb@gmx.de</a></span>
+    <span class="legal-warning">Hinweis: Die ladungsfähige Anschrift muss vor öffentlichem produktivem Betrieb ergänzt werden. Ich trage hier bewusst keine erfundene Adresse ein.</span>
+  `
+};
+
+function renderLegalPanel(type) {
+  const panel = document.getElementById("cookieLegalPanel");
+  if (!panel || !legalContent[type]) return;
+  panel.innerHTML = legalContent[type];
+  panel.classList.remove("hidden");
+}
+
+document.addEventListener("click", (e) => {
+  const legalBtn = e.target.closest(".cookie-legal-toggle, .footer-legal-link");
+  if (!legalBtn) return;
+  renderLegalPanel(legalBtn.dataset.legal);
+  const cookieBanner = document.getElementById("cookieBanner");
+  if (cookieBanner) {
+    cookieBanner.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+});
 
 /* ===== CONTACT FORM MAILTO ===== */
 document.addEventListener("submit", function(e){
@@ -1234,8 +1235,13 @@ document.addEventListener("DOMContentLoaded", () => {
     script2.innerHTML = `
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'update', {
+        analytics_storage: 'granted'
+      });
       gtag('js', new Date());
-      gtag('config', 'G-3J196S7JM3');
+      gtag('config', 'G-3J196S7JM3', {
+        anonymize_ip: true
+      });
     `;
     document.head.appendChild(script2);
   }
