@@ -21,6 +21,7 @@ function renderProjectTechIcons() {
     "EF Core": "devicon-entityframeworkcore-plain colored",
     "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
+    "Blazor": "devicon-blazor-original colored",
     "Twilio": "devicon-twilio-plain colored",
     "Mysql": "devicon-mysql-original colored",
     
@@ -115,6 +116,7 @@ const dom = {
 };
 
 let lockedScrollY = 0;
+let menuCloseTimer = null;
 
 function lockMainPageScroll() {
   lockedScrollY = window.scrollY;
@@ -131,8 +133,31 @@ function unlockMainPageScroll() {
 
 
 function setMenuState(isOpen) {
-  dom.navLinks.classList.toggle("open", isOpen);
-  dom.menuToggle.setAttribute("aria-expanded", String(isOpen));
+  clearTimeout(menuCloseTimer);
+
+  if (isOpen) {
+    dom.navLinks.classList.remove("closing");
+    dom.navLinks.classList.add("open");
+  } else if (dom.navLinks.classList.contains("open")) {
+    dom.navLinks.classList.add("closing");
+    dom.navLinks.classList.remove("open");
+    menuCloseTimer = setTimeout(() => {
+      dom.navLinks.classList.remove("closing");
+    }, 1550);
+  } else {
+    dom.navLinks.classList.remove("open", "closing");
+  }
+
+  const activeMenuToggle =
+    dom.menuToggle ||
+    document.getElementById("toggle") ||
+    document.querySelector('a[href="#menu"]');
+
+  if (activeMenuToggle) {
+    activeMenuToggle.setAttribute("aria-expanded", String(isOpen));
+    activeMenuToggle.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
+  }
+  document.body.classList.toggle("open-menu", isOpen);
   document.body.style.overflow = isOpen && window.innerWidth <= 768 ? "hidden" : "";
 }
 
@@ -141,8 +166,19 @@ function closeMenu() {
 }
 
 // Menü toggle butonu
-dom.menuToggle.addEventListener("click", () => {
-  setMenuState(!dom.navLinks.classList.contains("open"));
+const menuToggleElements = [...new Set([
+  dom.menuToggle,
+  document.getElementById("toggle"),
+  document.querySelector('a[href="#menu"]')
+].filter(Boolean))];
+
+menuToggleElements.forEach((toggleEl) => {
+  toggleEl.addEventListener("click", (e) => {
+    if (toggleEl.tagName.toLowerCase() === "a") {
+      e.preventDefault();
+    }
+    setMenuState(!dom.navLinks.classList.contains("open"));
+  });
 });
 
 document.addEventListener("click", (e) => {
@@ -341,12 +377,7 @@ function createCustomScrollBar() {
 }
 
 createCustomScrollBar();
-// Menüde bir linke tıklanınca 1 sn sonra menüyü kapat
-document.querySelectorAll("#navLinks a").forEach(link => {
-  link.addEventListener("click", () => {
-    closeMenu();
-  });
-});
+// Menü linkleri hedefe scroll ederken menü açık kalsın.
 
 dom.topbar.querySelector(".logo")?.addEventListener("click", () => {
   closeMenu();
@@ -487,7 +518,7 @@ const contentMap = {
           <div class="competency-grid">
             <article class="competency-card">
               <h4>Backend</h4>
-              <p class="competency-stack">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server</p>
+              <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
               <p>
                 <strong>Praktische Anwendung:</strong> CRM, SaaS-Backend, REST APIs,
                 Authentifizierung mit JWT, Datenmodellierung und serverseitige Geschäftslogik.
@@ -496,7 +527,7 @@ const contentMap = {
 
             <article class="competency-card">
               <h4>Frontend</h4>
-              <p class="competency-stack">React, JavaScript, HTML, CSS, Bootstrap</p>
+              <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite 8, React Router 7, Axios</p>
               <p>
                 <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
                 responsive Layouts, Portfolio-UI und API-Anbindung im Client.
@@ -505,7 +536,7 @@ const contentMap = {
 
             <article class="competency-card">
               <h4>Tools & Workflow</h4>
-              <p class="competency-stack">GitHub, Docker, GitHub Actions, Swagger</p>
+              <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Docker2, GitHub Actions, GitHub, Git, npm, Ollama</p>
               <p>
                 <strong>Praktische Anwendung:</strong> Versionskontrolle, API-Dokumentation,
                 Containerisierung, Deployment-Schritte und nachvollziehbare Projektübergabe.
@@ -961,6 +992,7 @@ function enhanceProjectMedia() {
 }
 
 let overlayCardObserver = null;
+let activeOverlaySource = null;
 
 function setupOverlayCardReveal(type) {
   if (overlayCardObserver) {
@@ -1015,17 +1047,19 @@ document.addEventListener("click", e => {
   if (!btn) return;
 
   const type = btn.dataset.type;
+  activeOverlaySource?.classList.remove("is-overlay-source");
+  activeOverlaySource = btn.closest(".cv-section");
+  activeOverlaySource?.classList.add("is-overlay-source");
 
   // ✅ EKLENDİ: Toggle menü açıksa kapat
   closeMenu();
 
-  dom.wrapper.classList.add("active");
-  document.body.classList.add("overlay-open");
-
-
-
   dom.container.innerHTML = contentMap[type] || "";
   lockMainPageScroll();
+  requestAnimationFrame(() => {
+    dom.wrapper.classList.add("active");
+    document.body.classList.add("overlay-open");
+  });
   dom.container.classList.toggle("project-mode", type === "projekte");
   renderProjectTechIcons();
   renderKontaktMail();
@@ -1063,6 +1097,8 @@ function closeOverlay() {
 
   dom.wrapper.classList.remove("active");
   document.body.classList.remove("overlay-open");
+  activeOverlaySource?.classList.remove("is-overlay-source");
+  activeOverlaySource = null;
 
   dom.container.classList.remove("project-mode");
   dom.container.innerHTML = "";
