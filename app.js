@@ -117,6 +117,19 @@ const dom = {
 
 let lockedScrollY = 0;
 let menuCloseTimer = null;
+const MENU_CLOSE_RESET_MS = 1650;
+
+function isMenuOpen() {
+  return dom.navLinks.classList.contains("open");
+}
+
+function getActiveMenuToggle() {
+  return (
+    dom.menuToggle ||
+    document.getElementById("toggle") ||
+    document.querySelector('a[href="#menu"]')
+  );
+}
 
 function lockMainPageScroll() {
   lockedScrollY = window.scrollY;
@@ -136,30 +149,41 @@ function setMenuState(isOpen) {
   clearTimeout(menuCloseTimer);
 
   if (isOpen) {
-    dom.navLinks.classList.remove("closing");
+    dom.navLinks.classList.remove("open", "closing");
+    void dom.navLinks.offsetWidth;
     dom.navLinks.classList.add("open");
-  } else if (dom.navLinks.classList.contains("open")) {
+    if (window.innerWidth <= 768) {
+      document.body.classList.add("open-menu");
+    }
+  } else if (isMenuOpen() || dom.navLinks.classList.contains("closing")) {
     dom.navLinks.classList.add("closing");
     dom.navLinks.classList.remove("open");
     menuCloseTimer = setTimeout(() => {
       dom.navLinks.classList.remove("closing");
-    }, 1550);
+      document.body.classList.remove("open-menu");
+    }, MENU_CLOSE_RESET_MS);
   } else {
     dom.navLinks.classList.remove("open", "closing");
+    document.body.classList.remove("open-menu");
   }
 
-  const activeMenuToggle =
-    dom.menuToggle ||
-    document.getElementById("toggle") ||
-    document.querySelector('a[href="#menu"]');
-
+  const activeMenuToggle = getActiveMenuToggle();
   if (activeMenuToggle) {
     activeMenuToggle.setAttribute("aria-expanded", String(isOpen));
     activeMenuToggle.setAttribute("aria-label", isOpen ? "Menü schließen" : "Menü öffnen");
   }
-  document.body.classList.toggle("open-menu", isOpen);
   document.body.style.overflow = isOpen && window.innerWidth <= 768 ? "hidden" : "";
 }
+
+dom.navLinks.addEventListener("transitionend", (e) => {
+  if (e.target !== dom.navLinks || e.propertyName !== "transform") return;
+  if (dom.navLinks.classList.contains("closing") || dom.navLinks.classList.contains("open")) {
+    return;
+  }
+
+  clearTimeout(menuCloseTimer);
+  document.body.classList.remove("open-menu");
+});
 
 function closeMenu() {
   setMenuState(false);
@@ -177,12 +201,12 @@ menuToggleElements.forEach((toggleEl) => {
     if (toggleEl.tagName.toLowerCase() === "a") {
       e.preventDefault();
     }
-    setMenuState(!dom.navLinks.classList.contains("open"));
+    setMenuState(!isMenuOpen());
   });
 });
 
 document.addEventListener("click", (e) => {
-  if (!dom.navLinks.classList.contains("open")) return;
+  if (!isMenuOpen()) return;
   if (dom.topbar.contains(e.target) || dom.navLinks.contains(e.target)) return;
   closeMenu();
 });
@@ -1283,3 +1307,82 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
+/* ===== CUSTOM CURSOR ===== */
+(function initCustomMouseCursor() {
+  const mqFine = window.matchMedia("(pointer: fine) and (hover: hover)");
+  const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!mqFine.matches || mqReduce.matches) {
+    return;
+  }
+
+  const cursor = document.createElement("span");
+  cursor.className = "mouse-cursor-dot";
+  document.body.appendChild(cursor);
+
+  let currentX = window.innerWidth / 2;
+  let currentY = window.innerHeight / 2;
+  let targetX = currentX;
+  let targetY = currentY;
+  let rafId = null;
+  const speed = 0.19;
+
+  function animateCursor() {
+    currentX += (targetX - currentX) * speed;
+    currentY += (targetY - currentY) * speed;
+
+    cursor.style.left = `${currentX}px`;
+    cursor.style.top = `${currentY}px`;
+
+    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+      rafId = requestAnimationFrame(animateCursor);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function scheduleFrame() {
+    if (rafId == null) {
+      rafId = requestAnimationFrame(animateCursor);
+    }
+  }
+
+  function onMove(e) {
+    if (e.clientX == null || e.clientY == null) return;
+    targetX = e.clientX;
+    targetY = e.clientY;
+    cursor.classList.add("is-active");
+    cursor.classList.remove("is-hidden");
+    scheduleFrame();
+  }
+
+  function onLeave() {
+    cursor.classList.remove("is-active");
+  }
+
+  function onEnter() {
+    cursor.classList.add("is-active");
+  }
+
+  function onDown() {
+    cursor.classList.add("is-press");
+  }
+
+  function onUp() {
+    cursor.classList.remove("is-press");
+  }
+
+  function onVisibilityChange() {
+    if (document.hidden) {
+      onLeave();
+    }
+  }
+
+  document.addEventListener("mousemove", onMove, { passive: true });
+  document.addEventListener("mouseleave", onLeave);
+  document.addEventListener("mouseenter", onEnter);
+  document.addEventListener("mousedown", onDown);
+  document.addEventListener("mouseup", onUp);
+  document.addEventListener("visibilitychange", onVisibilityChange);
+})();
