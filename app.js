@@ -103,6 +103,11 @@ function normalizeBlankLinks(root = document) {
   });
 }
 
+document.addEventListener("mousemove", (event) => {
+  document.documentElement.style.setProperty("--mouse-x", `${event.clientX}px`);
+  document.documentElement.style.setProperty("--mouse-y", `${event.clientY}px`);
+});
+
 
 
 const dom = {

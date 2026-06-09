@@ -99,6 +99,29 @@ body:not(.open-menu)::before {
   pointer-events: none;
 }
 
+.mouse-tracker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5vmin;
+  height: 5vmin;
+  border: 1px solid rgba(255, 255, 255, 0.301);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 10020;
+  transform: translate(-50%, -50%) translate(var(--mouse-x, 50vw), var(--mouse-y, 50vh));
+  transition: width 0.22s ease, height 0.22s ease, opacity 0.22s ease;
+  will-change: transform;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .mouse-tracker {
+    display: none;
+  }
+}
+
 
 
 /* =========================================================
