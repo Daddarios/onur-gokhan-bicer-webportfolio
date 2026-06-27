@@ -396,6 +396,7 @@ body:not(.open-menu)::before {
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
+  margin-bottom: 0.9rem;
   text-transform: uppercase;
 }
 
@@ -403,6 +404,8 @@ body:not(.open-menu)::before {
   color: var(--accent);
   font-size: 1.1rem;
   font-weight: 600;
+  padding-top: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-note {
@@ -480,6 +483,12 @@ body:not(.open-menu)::before {
 
 .cv-content button:hover {
   transform: scale(1.07);
+}
+
+.cv-content button:focus,
+.cv-content button:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .cv-content:hover {
@@ -1202,15 +1211,15 @@ body:not(.open-menu)::before {
 
 @media (max-width: 768px) {
   .close-btn {
-    top: calc(70px + 8px);
-    right: 0.7rem;
-    font-size: 1.45rem;
+    top: 4.6rem;
+    right: 1rem;
+    font-size: 1.5rem;
     z-index: 10030;
   }
 
   .cv-cards-wrapper {
     align-items: flex-start;
-    padding-top: 5.6rem;
+    padding-top: 7.4rem;
     padding-left: 0.9rem;
     padding-right: 0.9rem;
     overflow-x: hidden;
@@ -1776,6 +1785,305 @@ body.overlay-open #menuToggle {
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
 }
 
+/* ===== TEST: YATAY AKORDEON (hover ile açılır) ===== */
+.competency-grid--accordion {
+  display: flex !important;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.8rem;
+  height: 360px;
+  grid-template-columns: none !important;
+}
+
+.competency-grid--accordion .comp-option {
+  position: relative;
+  flex: 1;
+  min-width: 56px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 18px;
+  transition: flex-grow 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+/* Kapalı durumda diğer kartlar */
+.competency-grid--accordion .comp-option:hover {
+  flex-grow: 8;
+  transform: none;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 193, 7, 0.45);
+}
+
+/* Sekme etiketi (kapalıyken görünür) */
+.competency-grid--accordion .comp-tab {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.competency-grid--accordion .comp-tab i {
+  font-size: 45px;
+}
+
+.competency-grid--accordion .comp-tab-name {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+/* İç içerik (açılınca görünür) */
+.competency-grid--accordion .comp-body {
+  height: 100%;
+  padding: 1.5rem 2.4rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.45s ease 0.1s, transform 0.45s ease 0.1s;
+  overflow-y: auto;
+}
+
+.competency-grid--accordion .comp-option:hover .comp-tab {
+  opacity: 0;
+}
+
+.competency-grid--accordion .comp-option:hover .comp-body {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.competency-grid--accordion .comp-body h4 {
+  margin-bottom: 0.6rem;
+}
+
+/* Akordeon: ikon/yazı dengesi + sis (glow) kaldırma */
+.competency-grid--accordion .comp-body .competency-stack.project-tech {
+  grid-template-columns: repeat(4, 56px);
+  justify-content: center;
+  column-gap: 4rem !important;
+  row-gap: 3rem !important;
+  padding: 0;
+  margin: 0;
+}
+
+.competency-grid--accordion .comp-body .competency-stack .project-tech-icon,
+.competency-grid--accordion .comp-body .competency-stack .project-tech-img {
+  width: 46px;
+  height: 46px;
+  font-size: 46px;
+}
+
+.competency-grid--accordion .comp-option:hover .comp-body .competency-stack.project-tech {
+  filter: none;
+}
+
+.competency-grid--accordion .comp-body h4 {
+  color: var(--accent);
+  font-size: 1.28rem;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.competency-grid--accordion .comp-body p:last-child {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 90%;
+  margin-bottom: 1.4rem;
+}
+
+/* ===== AKORDEON — MOBİL / DOKUNMATİK (dikey, tıkla-aç) ===== */
+@media (max-width: 900px), (pointer: coarse) {
+  .competency-grid--accordion {
+    flex-direction: column;
+    height: 560px;
+    gap: 0.9rem;
+  }
+
+  .competency-grid--accordion .comp-option {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    max-height: none;
+    overflow: hidden;
+    transition: flex-grow 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  }
+
+  /* Hover ile genişlemeyi mobilde iptal et */
+  .competency-grid--accordion .comp-option:hover {
+    flex-grow: 1;
+  }
+
+  /* Kapalı sekme: yatay (ikon + başlık yan yana) */
+  .competency-grid--accordion .comp-tab {
+    flex-direction: row;
+    gap: 0.8rem;
+    inset: 0;
+  }
+
+  .competency-grid--accordion .comp-tab i {
+    font-size: 34px;
+  }
+
+  .competency-grid--accordion .comp-tab-name {
+    font-size: 1.1rem;
+  }
+
+  /* İçerik kapalıyken gizli kalsın (hover ile değil, is-open ile açılır) */
+  .competency-grid--accordion .comp-option:hover .comp-tab {
+    opacity: 1;
+  }
+
+  .competency-grid--accordion .comp-option:hover .comp-body {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  /* AÇIK kart */
+  .competency-grid--accordion .comp-option.is-open {
+    flex-grow: 8;
+  }
+
+  .competency-grid--accordion .comp-option.is-open .comp-tab {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .competency-grid--accordion .comp-option.is-open .comp-body {
+    opacity: 1;
+    transform: none;
+  }
+
+  .competency-grid--accordion .comp-body {
+    padding: 4rem 1.4rem 1.8rem;
+    gap: 1.3rem;
+    overflow: hidden;
+    transition: opacity 0.35s ease 0.25s, transform 0.35s ease 0.25s;
+  }
+
+  .competency-grid--accordion .comp-body .competency-stack.project-tech {
+    grid-template-columns: repeat(4, 44px);
+    column-gap: 1.6rem !important;
+    row-gap: 1.6rem !important;
+  }
+
+  .competency-grid--accordion .comp-body .competency-stack .project-tech-icon,
+  .competency-grid--accordion .comp-body .competency-stack .project-tech-img {
+    width: 34px;
+    height: 34px;
+    font-size: 34px;
+  }
+
+  .competency-grid--accordion .comp-body h4 {
+    font-size: 1.18rem;
+  }
+
+  .competency-grid--accordion .comp-body p:last-child {
+    font-size: 0.96rem;
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .competency-grid--accordion .comp-body .competency-stack.project-tech {
+    grid-template-columns: repeat(4, 38px);
+    column-gap: 1rem !important;
+    row-gap: 1.3rem !important;
+  }
+
+  .competency-grid--accordion .comp-body .competency-stack .project-tech-icon,
+  .competency-grid--accordion .comp-body .competency-stack .project-tech-img {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+  }
+}
+
+/* ===== KART İÇİ SIRALI SLIDE-IN (overlay açılışı) ===== */
+#cvCardContainer .competency-card h4,
+#cvCardContainer .competency-card .project-tech-icon,
+#cvCardContainer .competency-card .project-tech-img,
+#cvCardContainer .competency-card .project-tech-fallback,
+#cvCardContainer .competency-card > p {
+  opacity: 0;
+  transform: translateX(38px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#cvCardContainer .competency-card.is-active h4,
+#cvCardContainer .competency-card.is-active .project-tech-icon,
+#cvCardContainer .competency-card.is-active .project-tech-img,
+#cvCardContainer .competency-card.is-active .project-tech-fallback,
+#cvCardContainer .competency-card.is-active > p {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#cvCardContainer .competency-card.is-active h4 {
+  transition-delay: 0.05s;
+}
+
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(1),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(1),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(1) {
+  transition-delay: 0.14s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(2),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(2),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(2) {
+  transition-delay: 0.2s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(3),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(3),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(3) {
+  transition-delay: 0.26s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(4),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(4),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(4) {
+  transition-delay: 0.32s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(5),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(5),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(5) {
+  transition-delay: 0.38s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(6),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(6),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(6) {
+  transition-delay: 0.44s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(7),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(7),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(7) {
+  transition-delay: 0.5s;
+}
+#cvCardContainer .competency-card.is-active .project-tech-icon:nth-child(8),
+#cvCardContainer .competency-card.is-active .project-tech-img:nth-child(8),
+#cvCardContainer .competency-card.is-active .project-tech-fallback:nth-child(8) {
+  transition-delay: 0.56s;
+}
+
+#cvCardContainer .competency-card.is-active > p:last-child {
+  transition-delay: 0.64s;
+}
+
 .competency-card h4 {
   color: #ffffff;
   font-size: 1.02rem;
@@ -1797,15 +2105,15 @@ body.overlay-open #menuToggle {
 .competency-stack.project-tech {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 33px);
+  grid-template-columns: repeat(4, 1fr);
   place-content: center;
   justify-items: center;
   align-items: center;
-  gap: 2rem !important;
+  gap: 1.6rem !important;
   flex: 1;
   width: 100%;
   margin: 0 auto;
-  padding: 3.1rem 0.9rem 1rem;
+  padding: 3.1rem 0.9rem 2.7rem;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -1821,10 +2129,10 @@ body.overlay-open #menuToggle {
 .competency-stack .project-tech-img {
   position: relative;
   z-index: 1;
-  width: 33px;
-  height: 33px;
+  width: 36px;
+  height: 36px;
   margin-right: 0;
-  font-size: 33px;
+  font-size: 36px;
   opacity: 0.95;
   transition: transform 0.22s ease, opacity 0.22s ease;
 }
@@ -1958,6 +2266,17 @@ body.overlay-open #menuToggle {
   font-size: 13px;
   line-height: 1.5;
   color: #f1f1f1;
+}
+
+/* Liste olarak kullanılan card-text (Python bölümü) taşmasın */
+ul.card-text {
+  padding-left: 1.1rem;
+  margin: 0;
+  list-style-position: outside;
+}
+
+ul.card-text li {
+  overflow-wrap: anywhere;
 }
 
 .status-completed{
@@ -2505,7 +2824,7 @@ input:-webkit-autofill{
   }
 
   .cv-cards-wrapper {
-    padding-top: 5.2rem;
+    padding-top: 7.4rem;
     padding-inline: 0.8rem;
   }
 
@@ -2516,7 +2835,7 @@ input:-webkit-autofill{
   .close-btn {
     top: 4.6rem;
     right: 1rem;
-    font-size: 1.55rem;
+    font-size: 1.5rem;
   }
 
   #cvCardContainer {

@@ -163,9 +163,9 @@ function setMenuState(isOpen) {
   } else if (isMenuOpen() || dom.navLinks.classList.contains("closing")) {
     dom.navLinks.classList.add("closing");
     dom.navLinks.classList.remove("open");
+    document.body.classList.remove("open-menu");
     menuCloseTimer = setTimeout(() => {
       dom.navLinks.classList.remove("closing");
-      document.body.classList.remove("open-menu");
     }, MENU_CLOSE_RESET_MS);
   } else {
     dom.navLinks.classList.remove("open", "closing");
@@ -544,32 +544,41 @@ const contentMap = {
             </p>
           </div>
 
-          <div class="competency-grid">
-            <article class="competency-card">
-              <h4>Backend</h4>
-              <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
-              <p>
-                <strong>Praktische Anwendung:</strong> CRM, SaaS-Backend, REST APIs,
-                Authentifizierung mit JWT, Datenmodellierung und serverseitige Geschäftslogik.
-              </p>
+          <div class="competency-grid competency-grid--accordion">
+            <article class="competency-card comp-option">
+              <span class="comp-tab"><i class='bx bx-server'></i><span class="comp-tab-name">Backend</span></span>
+              <div class="comp-body">
+                <h4>Backend</h4>
+                <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
+                <p>
+                  <strong>Praktische Anwendung:</strong> CRM, SaaS-Backend, REST APIs,
+                  Authentifizierung mit JWT, Datenmodellierung und serverseitige Geschäftslogik.
+                </p>
+              </div>
             </article>
 
-            <article class="competency-card">
-              <h4>Frontend</h4>
-              <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite 8, React Router 7, Axios</p>
-              <p>
-                <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
-                responsive Layouts, Portfolio-UI und API-Anbindung im Client.
-              </p>
+            <article class="competency-card comp-option">
+              <span class="comp-tab"><i class='bx bx-code-alt'></i><span class="comp-tab-name">Frontend</span></span>
+              <div class="comp-body">
+                <h4>Frontend</h4>
+                <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite 8, React Router 7, Axios</p>
+                <p>
+                  <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
+                  responsive Layouts, Portfolio-UI und API-Anbindung im Client.
+                </p>
+              </div>
             </article>
 
-            <article class="competency-card">
-              <h4>Tools & Workflow</h4>
-              <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Docker2, GitHub Actions, GitHub, Git, npm, Ollama</p>
-              <p>
-                <strong>Praktische Anwendung:</strong> Versionskontrolle, API-Dokumentation,
-                Containerisierung, Deployment-Schritte und nachvollziehbare Projektübergabe.
-              </p>
+            <article class="competency-card comp-option">
+              <span class="comp-tab"><i class='bx bx-wrench'></i><span class="comp-tab-name">Tools & Workflow</span></span>
+              <div class="comp-body">
+                <h4>Tools & Workflow</h4>
+                <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Docker2, GitHub Actions, GitHub, Git, npm, Ollama</p>
+                <p>
+                  <strong>Praktische Anwendung:</strong> Versionskontrolle, API-Dokumentation,
+                  Containerisierung, Deployment-Schritte und nachvollziehbare Projektübergabe.
+                </p>
+              </div>
             </article>
           </div>
         </section>
@@ -1108,6 +1117,24 @@ dom.container.addEventListener("click", (e) => {
   }
 
   card.classList.toggle("is-focused");
+});
+
+/* Akordeon: dokunmatik/mobilde tıkla-aç */
+dom.container.addEventListener("click", (e) => {
+  const option = e.target.closest(".competency-grid--accordion .comp-option");
+  if (!option) return;
+  if (e.target.closest("a, button")) return;
+
+  const grid = option.closest(".competency-grid--accordion");
+  const wasOpen = option.classList.contains("is-open");
+
+  grid.querySelectorAll(".comp-option.is-open").forEach((el) => {
+    el.classList.remove("is-open");
+  });
+
+  if (!wasOpen) {
+    option.classList.add("is-open");
+  }
 });
 
 
