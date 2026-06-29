@@ -1004,7 +1004,7 @@ const contentMap = {
               </form>
 
               <p class="mail-fallback">
-              oder direkt: <span id="kontaktMail" style="color: inherit;"></span>
+              oder direkt: <span id="kontaktMail" ></span>
               </p>
            </div>
         `

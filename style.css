@@ -2440,8 +2440,13 @@ ul.card-text li {
 
 
 #kontaktMail{
-  color:#ffc107;
-  font: 1em sans-serif;
+  color:var(--accent);
+  
+  font: 1.1rem sans-serif;
+}
+#kontaktMail a {
+  color: inherit !important;
+  text-decoration: none;
 }
 /* CHROME AUTOFILL BACKGROUND FIX */
 input:-webkit-autofill,
