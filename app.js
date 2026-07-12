@@ -31,7 +31,9 @@ function renderProjectTechIcons() {
     "Tailwind CSS": "devicon-tailwindcss-plain colored",
     "jQuery": "devicon-jquery-plain colored",
     "React": "devicon-react-plain colored",
+    "Vite": "devicon-vitejs-plain colored",
     "Vite 8": "devicon-vitejs-plain colored",
+    "React Router": "devicon-reactrouter-plain colored",
     "React Router 7": "devicon-reactrouter-plain colored",
     "Axios": "devicon-axios-plain colored",
     "GitHub": "devicon-github-plain white",
@@ -54,6 +56,9 @@ function renderProjectTechIcons() {
     "Kernel Memory": "",   // ikon yok
     "Ollama": "",     // ikon yok
     "Qdrant": "",     // ikon yok
+    "Cursor": "",     // ikon yok (fallback metin)
+    "GitHub Copilot": "", // ikon yok
+    "Codex": "",      // ikon yok
     "Identity/JWT": "", // ikon yok
     "Recharts": "",   // ikon yok
     "Serilog": "",    // ikon yok
@@ -62,7 +67,7 @@ function renderProjectTechIcons() {
   const ollamaIconCdn = "https://cdn.jsdelivr.net/npm/simple-icons/icons/ollama.svg";
 
   document.querySelectorAll(".project-tech").forEach(div => {
-    const techs = div.textContent.split(",").map(t => t.trim());
+    const techs = div.textContent.split(",").map(t => t.trim()).filter(Boolean);
     div.innerHTML = "";
 
     techs.forEach(t => {
@@ -419,7 +424,7 @@ const contentMap = {
   /* ===== üBER MICH ===== */
   "uber-mich": `
           <div class="card uber-mich">
-             <img src="./img/DSC_0169.JPG" alt="Gökhan" class="profile-image" />
+             <img src="./img/DSC_0169_web.jpg" alt="Porträt von Onur Gökhan Bicer" class="profile-image" loading="lazy" />
 
 
             <h3 class="title">Über mich</h3>
@@ -455,6 +460,10 @@ const contentMap = {
 
           <div class="docs-grid">
               <div class="pdf-wrapper doc-card">
+                <div class="doc-card-head">
+                  <h4 class="title">Lebenslauf</h4>
+                  <span class="doc-badge">PDF · 147 KB</span>
+                </div>
                  <iframe 
                  class="cv-pdf-frame"
                   src="dokumente/lebenslauf/Lebenslauf.pdf"
@@ -468,11 +477,15 @@ const contentMap = {
                   rel="noopener"
                   class="pdf-open"
                 >
-                  Vollansicht öffnen
+                  PDF öffnen ↗
                 </a>
              </div>
 
               <div class="pdf-wrapper doc-card">
+                <div class="doc-card-head">
+                  <h4 class="title">Arbeitszeugnisse</h4>
+                  <span class="doc-badge">PDF · 1.9 MB</span>
+                </div>
                  <iframe
                    class="cv-pdf-frame"
                    src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
@@ -485,11 +498,15 @@ const contentMap = {
                   rel="noopener"
                   class="pdf-open"
                 >
-                  Vollansicht öffnen
+                  PDF öffnen ↗
                 </a>
               </div>
 
             <div class="pdf-wrapper doc-card">
+                <div class="doc-card-head">
+                  <h4 class="title">Schulische &amp; akademische Bildung</h4>
+                  <span class="doc-badge">PDF · 1.5 MB</span>
+                </div>
                 <iframe
                  class="cv-pdf-frame"
                  src="dokumente/schulische_akademische/Bildung.pdf"
@@ -502,11 +519,15 @@ const contentMap = {
                   rel="noopener noreferrer"
                   class="pdf-open"
                 >
-                  Vollansicht öffnen
+                  PDF öffnen ↗
                 </a>
               </div>
 
             <div class="pdf-wrapper doc-card">
+                <div class="doc-card-head">
+                  <h4 class="title">Ehrenamtliche Nachweise</h4>
+                  <span class="doc-badge">PDF · 605 KB</span>
+                </div>
                 <iframe
                  class="cv-pdf-frame"
                  src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
@@ -519,7 +540,7 @@ const contentMap = {
                   rel="noopener noreferrer"
                   class="pdf-open"
                 >
-                  Vollansicht öffnen
+                  PDF öffnen ↗
                 </a>
               </div>
           </div>
@@ -539,8 +560,13 @@ const contentMap = {
           <div class="competency-intro">
             <h3 class="competency-title">Kompetenzbereiche</h3>
             <p class="competency-subtitle">
-              Keine Prozentwerte, sondern Technologien im praktischen Zusammenhang:
-              womit ich gearbeitet habe und wo der Einsatz sichtbar wird.
+              Ein Überblick über die Technologien, mit denen ich bisher gearbeitet habe –
+              gruppiert nach Bereich und mit Verweis auf die zugehörigen Projekte.
+            </p>
+            <p class="competency-legend">
+              <span class="comp-level comp-level--solid">Vertraut</span>
+              <span class="comp-level comp-level--adv">Fortgeschritten</span>
+              <span class="comp-level comp-level--learn">In Übung</span>
             </p>
           </div>
 
@@ -548,11 +574,15 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-server'></i><span class="comp-tab-name">Backend</span></span>
               <div class="comp-body">
-                <h4>Backend</h4>
+                <h4>Backend <span class="comp-level comp-level--adv">Fortgeschritten</span></h4>
                 <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
                 <p>
-                  <strong>Praktische Anwendung:</strong> CRM, SaaS-Backend, REST APIs,
-                  Authentifizierung mit JWT, Datenmodellierung und serverseitige Geschäftslogik.
+                  <strong>Praktische Anwendung:</strong> REST-APIs, JWT-Authentifizierung,
+                  Rollen- und Rechte-Modelle, Datenmodellierung und serverseitige Geschäftslogik.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>Vista.Core / Vista.CoreX</em>, <em>CRM-Anwendung</em>, <em>VISTA-SPA</em>
                 </p>
               </div>
             </article>
@@ -560,23 +590,47 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-code-alt'></i><span class="comp-tab-name">Frontend</span></span>
               <div class="comp-body">
-                <h4>Frontend</h4>
-                <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite 8, React Router 7, Axios</p>
+                <h4>Frontend <span class="comp-level comp-level--solid">Vertraut</span></h4>
+                <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite, React Router, Axios</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
-                  responsive Layouts, Portfolio-UI und API-Anbindung im Client.
+                  responsive Layouts, State-Handling und API-Anbindung im Client.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>VISTA-SPA</em>, <em>GoAI ChatLab</em>, <em>Portfolio-Website</em>
                 </p>
               </div>
             </article>
 
             <article class="competency-card comp-option">
-              <span class="comp-tab"><i class='bx bx-wrench'></i><span class="comp-tab-name">Tools & Workflow</span></span>
+              <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & Data</span></span>
               <div class="comp-body">
-                <h4>Tools & Workflow</h4>
-                <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Docker2, GitHub Actions, GitHub, Git, npm, Ollama</p>
+                <h4>AI &amp; Data <span class="comp-level comp-level--learn">In Übung</span></h4>
+                <p class="competency-stack project-tech">Ollama, Qdrant, Semantic Kernel, RAG, OpenRouter</p>
                 <p>
-                  <strong>Praktische Anwendung:</strong> Versionskontrolle, API-Dokumentation,
-                  Containerisierung, Deployment-Schritte und nachvollziehbare Projektübergabe.
+                  <strong>Praktische Anwendung:</strong> Aufbau eines RAG-Assistenten mit lokalem LLM,
+                  Vektor-Indexierung von Dokumenten, dateibasierte Kontextverarbeitung im Chat.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>Vista.CoreX (RAG)</em>, <em>GoAI ChatLab</em>
+                </p>
+              </div>
+            </article>
+
+            <article class="competency-card comp-option">
+              <span class="comp-tab"><i class='bx bx-wrench'></i><span class="comp-tab-name">Tools &amp; Workflow</span></span>
+              <div class="comp-body">
+                <h4>Tools &amp; Workflow <span class="comp-level comp-level--solid">Vertraut</span></h4>
+                <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Cursor, GitHub Copilot, Codex, Docker, GitHub Actions, GitHub, Git, npm</p>
+                <p>
+                  <strong>Praktische Anwendung:</strong> Versionskontrolle mit Git,
+                  Containerisierung mit Docker, CI/CD-Workflows und nachvollziehbare Projektübergabe.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>GoAI ChatLab (CI/CD)</em>, <em>Vista.Core</em>, <em>alle Repositories</em>
                 </p>
               </div>
             </article>
@@ -593,10 +647,10 @@ const contentMap = {
                 <div class="project-card">
                   <div class="project-image">
                     <a href="projekte/CoreXDark.png" target="_blank">
-                      <img src="projekte/CoreXDark.png" alt="SaaS Plattform Vorschau">
+                      <img src="projekte/CoreXDark.png" alt="Vista.CoreX – Dashboard im Dark Mode" loading="lazy">
                     </a>
                     <a href="projekte/CoreXLight.png" target="_blank">
-                      <img src="projekte/CoreXLight.png" alt="SaaS Plattform Vorschau">
+                      <img src="projekte/CoreXLight.png" alt="Vista.CoreX – Dashboard im Light Mode" loading="lazy">
                     </a>
                 </div>
 
@@ -606,17 +660,28 @@ const contentMap = {
                   </div>
                   <h4 class="project-title">Vista.Core + Vista.CoreX <small>Full-Stack SaaS mit RAG-AI Assistent</small></h4>
 
-                  <p class="project-desc">
-                    <strong>Vista.Core / Vista.CoreX</strong> ist eine modulare Full-Stack-SaaS-Plattform für CRM- und operative Geschäftsprozesse.
+                  <p class="project-lead">
+                    <strong>Vista.Core / Vista.CoreX</strong> ist eine modulare SaaS-Plattform für CRM- und operative Prozesse mit integriertem KI-Assistenten.
                   </p>
 
-                  <p class="project-desc">
-                    <strong>Fokus:</strong> Der Schwerpunkt liegt auf Backend-Architektur mit .NET Web API, Identity/JWT, EF Core, SQL Server und Echtzeit-Kommunikation. Ergänzend wurde ein KI-Assistent mit RAG-Ansatz integriert, um dokumenten- und kontextbezogene Antworten innerhalb der Anwendung zu ermöglichen.
-                  </p>
-
-                  <p class="project-desc">
-                    <strong>Rolle & Beitrag:</strong> Konzeption, Datenmodellierung, API-Umsetzung, Frontend-Anbindung mit React/Vite, Docker-Setup und CI/CD-Grundstruktur mit GitHub Actions.
-                  </p>
+                  <dl class="project-meta">
+                    <div class="project-meta-row">
+                      <dt>Problem</dt>
+                      <dd>CRM-Verwaltung und ein Assistent, der auf eigene Dokumente antwortet, sollten in einer Anwendung zusammenlaufen &ndash; ohne dass Firmendaten an externe LLM-Anbieter gehen.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ansatz</dt>
+                      <dd>.NET Web API + EF Core als Backend-Kern, JWT für Auth, SignalR für Live-Updates. Für den KI-Teil ein RAG-Setup mit <code>Ollama</code> + <code>Qdrant</code>, damit Antworten auf indexierten Dokumenten basieren.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ergebnis</dt>
+                      <dd>Funktionsfähiges Grundgerüst: Auth, CRM-Module und ein Chat-Assistent, der Fragen zu hochgeladenen Dokumenten beantwortet. Läuft lokal per <code>docker compose</code>.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Rolle</dt>
+                      <dd>Alleinige Umsetzung als Lernprojekt &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.</dd>
+                    </div>
+                  </dl>
 
                   <div class="project-tech">
                     C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel
@@ -635,12 +700,12 @@ const contentMap = {
               <div class="project-card">
                 <div class="project-image">
                   <a href="projekte/GoAI1.png" target="_blank">
-                    <img src="projekte/GoAI1.png" alt="GoAI ChatLab Vorschau">
+                    <img src="projekte/GoAI1.png" alt="GoAI ChatLab – Chat-Oberfläche" loading="lazy">
                    
                   </a>
                   
                   <a href="projekte/GoAI3.png" target="_blank">
-                    <img src="projekte/GoAI3.png" alt="GoAI ChatLab Vorschau">
+                    <img src="projekte/GoAI3.png" alt="GoAI ChatLab – Datei-Upload und Antwortansicht" loading="lazy">
                   </a>
                 </div>
                
@@ -659,25 +724,30 @@ const contentMap = {
                       <span>›</span><span>›</span><span>›</span>
                     </span>
                   </div>
-                  <h4 class="project-title">GoAI ChatLab <small>AI-Agent & Chat Assistant</small></h4>  
-                      
-                     <p class="project-desc">  
-                      GoAI ChatLab ist eine Full-Stack-Anwendung für die Arbeit mit KI-Chatfunktionen und dateibasierten Eingaben.
-                    </p>
-                    
-                    <p class="project-desc">
-                      <strong>Fokus:</strong> 
-                      
-                      Der Schwerpunkt liegt auf einem Express.js-Proxy-Backend, sauberer API-Anbindung und der Verarbeitung von Dateien im Frontend. Die Architektur ist so vorbereitet, dass sie später um RAG-Funktionen erweitert werden kann.
-                    </p>
+                  <h4 class="project-title">GoAI ChatLab <small>AI-Agent & Chat Assistant</small></h4>
 
-                  
+                  <p class="project-lead">
+                    Ein Chat-Client mit KI-Anbindung und dateibasierten Eingaben &ndash; live deployed auf Hugging Face Spaces.
+                  </p>
 
-                    <p class="project-desc">
-                      <strong>Rolle & Beitrag:</strong>
-                      
-                      Konzeption und Umsetzung mit React, Node.js und Express. Dazu gehören UI-Struktur, Backend-Proxy, API-Integration, Docker-Containerisierung und ein GitHub-Actions-Workflow für Deployment-Schritte.
-                    </p>
+                  <dl class="project-meta">
+                    <div class="project-meta-row">
+                      <dt>Problem</dt>
+                      <dd>Ein Chat-Client, der API-Keys nicht im Browser preisgibt und Dokumente (txt, md, pdf) als Kontext verarbeiten kann.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ansatz</dt>
+                      <dd>Express-Proxy als Backend, damit der API-Key serverseitig bleibt. File-Parsing im Client, sodass der Server nur reinen Text weiterreicht. Aufbau ist auf spätere RAG-Erweiterung vorbereitet.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ergebnis</dt>
+                      <dd>Öffentlich erreichbare Demo unter <em>GoAI-Lab</em>. Chat funktioniert stabil mit Datei-Uploads; Deployment automatisiert über GitHub Actions + Docker.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Rolle</dt>
+                      <dd>Konzept, React-Frontend, Express-Proxy, Docker-Setup und CI/CD-Workflow.</dd>
+                    </div>
+                  </dl>
 
                     <div class="project-tech">
                       React, Node.js, Express.js, JavaScript, HTML5, CSS3, GitHub Actions, Docker, REST APIs, Client-side File Parsing, OpenRouter AI
@@ -700,35 +770,47 @@ const contentMap = {
             <div class="project-card">
               <div class="project-image">
                 <a href="projekte/crmlogin.png" target="_blank">
-                  <img src="projekte/crmlogin.png" alt="CRM Anwendung Vorschau">
+                  <img src="projekte/crmlogin.png" alt="CRM-Anwendung – Login mit Zwei-Faktor-Authentifizierung" loading="lazy">
                 </a>
                 <a href="projekte/crmpanel.png" target="_blank">
-                  <img src="projekte/crmpanel.png" alt="CRM Anwendung Vorschau">
+                  <img src="projekte/crmpanel.png" alt="CRM-Anwendung – Admin-Dashboard" loading="lazy">
                 </a>
               </div>
 
 
               <div class="project-content">
-                  <h4 class="project-title">CRM-Anwendung</h4> 
+                  <h4 class="project-title">CRM-Anwendung <small>IHK-Abschlussprojekt</small></h4>
 
-                  <p class="project-desc">
-                   CRM-System mit ASP.NET MVC zur Verwaltung von Kunden, Mitarbeitern, Projekten und Berichten. Enthalten sind Rollenverwaltung, Zwei-Faktor-Authentifizierung, Dashboard-Ansichten, Excel/PDF-Export und eine REST-API.
+                  <p class="project-lead">
+                    CRM-System zur Verwaltung von Kunden, Mitarbeitern, Projekten und Berichten &ndash; entstanden unter realitätsnahen IHK-Anforderungen.
                   </p>
 
-                  <p class="project-desc">
-                  <strong>Rolle & Beitrag :</strong>  
-                  Eigenverantwortliche Umsetzung von Datenbankstruktur, Backend-Logik, Authentifizierung, API-Schnittstellen und Benutzeroberfläche. Das Projekt entstand im Rahmen eines IHK-Projekts unter realitätsnahen Anforderungen.
-                </p>
+                  <dl class="project-meta">
+                    <div class="project-meta-row">
+                      <dt>Problem</dt>
+                      <dd>Klassisches Kundenmanagement für einen fiktiven KMU-Kunden mit Fokus auf Rollen, Rechte und Reporting.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ansatz</dt>
+                      <dd>ASP.NET MVC + EF Core, 2FA über SMS (<code>Twilio</code>) und Mail (<code>MailKit</code>), Excel/PDF-Export sowie eine dokumentierte REST-API für spätere Anbindungen.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Ergebnis</dt>
+                      <dd>Lauffähige Anwendung mit Rollenmodell (Admin/Mitarbeiter), Dashboard-Statistiken und getesteten API-Endpunkten. Wird schrittweise weiterentwickelt.</dd>
+                    </div>
+                    <div class="project-meta-row">
+                      <dt>Rolle</dt>
+                      <dd>Alleinige Umsetzung: DB-Design, Backend-Logik, Auth, API und UI.</dd>
+                    </div>
+                  </dl>
                    
 
                   <div class="project-tech">
-                   
-                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3 , Bootstrap, JavaScript, jQuery, JWT ,  GitHub, Twilio, RESTful APIs, MailKit
-                    
+                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3, Bootstrap, JavaScript, jQuery, JWT, GitHub, Twilio, RESTful APIs, MailKit
                   </div>
 
                 <div class="project-links">
-                  <span class="status-ongoing">Projekt in Entwicklung</span>
+                  <span class="status-ongoing">In Entwicklung</span>
                   <a href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -740,34 +822,45 @@ const contentMap = {
             <div class="project-card">
               <div class="project-image">
                  <a href="projekte/portfolio1.png" target="_blank">
-                  <img src="projekte/portfolio1.png" alt="Portfolio Vorschau">
+                  <img src="projekte/portfolio1.png" alt="Portfolio Website – Startseite" loading="lazy">
                 </a>
                 <a href="projekte/portfolio2.png" target="_blank">
-                  <img src="projekte/portfolio2.png" alt="Portfolio Vorschau">
+                  <img src="projekte/portfolio2.png" alt="Portfolio Website – Projektübersicht" loading="lazy">
                 </a>
               </div>
 
               <div class="project-content">
                 <h4 class="project-title">Portfolio Website</h4>
 
-                <p class="project-desc">
-                  Selbstständig entwickeltes UI-Projekt zur praktischen Anwendung von <strong>HTML, CSS</strong> und <strong>JavaScript</strong>.
+                <p class="project-lead">
+                  Die Seite, auf der Sie sich gerade befinden &ndash; bewusst ohne Framework, um Grundlagen zu vertiefen.
                 </p>
 
-                <p class="project-desc">
-                  <strong>Rolle:</strong> Konzeption, UI-Design, technische Umsetzung, Deployment
-                </p>
-
-                <p class="project-desc">
-                  <strong>Fokus:</strong> Responsives Layout, Navigation, Animationen und saubere Präsentation der Inhalte
-                </p>
+                <dl class="project-meta">
+                  <div class="project-meta-row">
+                    <dt>Problem</dt>
+                    <dd>Eine schlanke, wartbare Präsentationsseite ohne unnötigen Framework-Overhead.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ansatz</dt>
+                    <dd>Vanilla HTML/CSS/JS, alle Sektionen aus einer <code>contentMap</code> gerendert, Overlay-Struktur statt getrennter Seiten. Cookie-Banner nach DSGVO-Grundprinzipien.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ergebnis</dt>
+                    <dd>Drei Dateien, ca. 50&nbsp;KB JS. Läuft ohne Build-Schritt, responsive auf Mobile und Desktop.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Rolle</dt>
+                    <dd>Konzept, UI-Design, Umsetzung und Deployment.</dd>
+                  </div>
+                </dl>
 
                 <div class="project-tech">
                  Visual Studio Code, HTML5, CSS3, JavaScript
                 </div>
 
                 <div class="project-links">
-                  <span class="status-completed">Abgeschlossen </span>
+                  <span class="status-completed">Abgeschlossen</span>
                   <a href="https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -778,40 +871,48 @@ const contentMap = {
             <div class="project-card">
               <div class="project-image">
                  <a href="projekte/vistaperson.png" target="_blank">
-                  <img src="projekte/vistaperson.png" alt="Portfolio Vorschau">
+                  <img src="projekte/vistaperson.png" alt="VISTA – Personenverwaltung im React-Frontend" loading="lazy">
                 </a>
                 <a href="projekte/vistakanban.png" target="_blank">
-                  <img src="projekte/vistakanban.png" alt="Portfolio Vorschau">
+                  <img src="projekte/vistakanban.png" alt="VISTA – Kanban-Board Ansicht" loading="lazy">
                 </a>
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">VISTA – React SPA für ASP.NET CRM</h4>
+                <h4 class="project-title">VISTA <small>React SPA für ASP.NET CRM</small></h4>
 
-                      <p class="project-desc">
-                        <strong>VISTA</strong> ist ein persönliches Projekt zur Integration eines <strong>ASP.NET-basierten CRM-Systems</strong> in ein modernes <strong>React-Frontend</strong>.
-                        Ziel war es, <strong>REST-API-Integration</strong> praxisnah umzusetzen und React-Kompetenz mit Client-Side-Rendering zu vertiefen.
-                      </p>
+                <p class="project-lead">
+                  <strong>VISTA</strong> hebt das bestehende ASP.NET-CRM auf eine moderne React-Oberfläche &ndash; als Übung für saubere API-Anbindung.
+                </p>
 
-                      <p class="project-desc">
-                        Die Anwendung wurde als <strong>modulare Single Page Application (SPA)</strong> mit React entwickelt.
-                        Das <strong>Frontend</strong> kommuniziert über eine selbst entwickelte <strong>REST-API</strong> mit dem Backend.
-                      </p>
-
-                      <p class="project-desc">
-                        <strong>Rolle:</strong> UI-Design, technische Umsetzung und API-Anbindung
-                      </p>
+                <dl class="project-meta">
+                  <div class="project-meta-row">
+                    <dt>Problem</dt>
+                    <dd>Das MVC-CRM sollte zusätzlich als SPA nutzbar sein, damit UI-Interaktionen flüssiger und clientseitig gerendert werden.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ansatz</dt>
+                    <dd>React + React Router, JWT-basierter Login gegen die eigene REST-API. Kanban-Board als bewusste Übung für State-Handling.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ergebnis</dt>
+                    <dd>Login-Flow, Personen-CRUD und Kanban-Ansicht arbeiten stabil gegen die API. Grundstruktur steht, weitere Module in Entwicklung.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Rolle</dt>
+                    <dd>UI-Design, React-Umsetzung und API-Anbindung.</dd>
+                  </div>
+                </dl>
                 
 
 
                 <div class="project-tech">
-                  
-                  Visual Studio Code, HTML5, CSS3, JavaScript, React ,React Router, JWT 
+                  Visual Studio Code, HTML5, CSS3, JavaScript, React, React Router, JWT
                 </div>
 
                 <div class="project-links">
                  
-                  <span class="status-ongoing">in der Entwicklung</span>
+                  <span class="status-ongoing">In Entwicklung</span>
                   <a href="https://github.com/Daddarios/Vista.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -822,26 +923,45 @@ const contentMap = {
             <div class="project-card">
               <div class="project-image">
                  <a href="projekte/klinikall.png" target="_blank">
-                  <img src="projekte/klinikall.png" alt="Portfolio Vorschau">
+                  <img src="projekte/klinikall.png" alt="Klinik Raum Stuttgart – Übersicht der Verwaltung" loading="lazy">
                 </a>
                 <a href="projekte/klinik3.png" target="_blank">
-                  <img src="projekte/klinik3.png" alt="Portfolio Vorschau">
+                  <img src="projekte/klinik3.png" alt="Klinik Raum Stuttgart – Detailansicht" loading="lazy">
                 </a>
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Klinik Raum Stuttgart</h4>
+                <h4 class="project-title">Klinik Raum Stuttgart <small>Desktop-Lernprojekt</small></h4>
 
-                <p class="project-desc">
-                  Klinik Raum Stuttgart ist eine Desktop-Anwendung als Lernprojekt zur Entwicklung einer einfachen Klinikverwaltungssoftware mit C# und .NET Framework.
+                <p class="project-lead">
+                  Einstiegs-Lernprojekt zur Desktop-Entwicklung mit Datenbindung.
                 </p>
+
+                <dl class="project-meta">
+                  <div class="project-meta-row">
+                    <dt>Problem</dt>
+                    <dd>Übung an einem klar umrissenen Fall: kleine Klinikverwaltung mit Patienten- und Termindaten.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ansatz</dt>
+                    <dd>Windows Forms auf .NET Framework, SQL-Server-Anbindung, klassische CRUD-Struktur mit Fokus auf sauberer Datenbindung.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ergebnis</dt>
+                    <dd>Abgeschlossenes Lernprojekt mit funktionierenden CRUD-Operationen &ndash; erster praktischer Kontakt mit C# und SQL Server.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Rolle</dt>
+                    <dd>Alleinige Umsetzung im Rahmen der Weiterbildung.</dd>
+                  </div>
+                </dl>
 
                 <div class="project-tech">
                      Visual Studio, C#,  SQL Server
                 </div>
 
                 <div class="project-links">
-                <span class="status-completed">Abgeschlossen </span>
+                <span class="status-completed">Abgeschlossen</span>
                   <a href="https://github.com/Daddarios/Klinikum_Stuttgart.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -853,31 +973,46 @@ const contentMap = {
             <div class="project-card">
               <div class="project-image">
                  <a href="projekte/perpage1.png" target="_blank">
-                  <img src="projekte/perpage1.png" alt="Portfolio Vorschau">
+                  <img src="projekte/perpage1.png" alt="Photo Blog – Startseite mit Bildergalerie" loading="lazy">
                 </a>
                 <a href="projekte/perpage2.png" target="_blank">
-                  <img src="projekte/perpage2.png" alt="Portfolio Vorschau">
+                  <img src="projekte/perpage2.png" alt="Photo Blog – Responsive Mobilansicht" loading="lazy">
                 </a>
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Photo BLOG – Responsive UI mit HTML & CSS</h4>
+                <h4 class="project-title">Photo BLOG <small>Responsive UI mit HTML & CSS</small></h4>
 
-                <p class="project-desc"> 
-                  Frontend-Projekt zur praktischen Anwendung von <strong>HTML</strong>, <strong>CSS</strong> und Responsive Design. Ziel war eine mobilfreundliche Oberfläche für einen Foto-Blog.
+                <p class="project-lead">
+                  Frühes Frontend-Übungsprojekt mit Fokus auf Responsive Design.
                 </p>
 
-                <p class="project-desc">
-                  <strong>Rolle:</strong> UI-Konzeption, Layoutstruktur, CSS-Design, Responsive Umsetzung mit Media Queries
-                </p>
+                <dl class="project-meta">
+                  <div class="project-meta-row">
+                    <dt>Problem</dt>
+                    <dd>Eine mobilfreundliche Foto-Blog-Oberfläche, die auf allen Bildschirmgrößen sauber wirkt.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ansatz</dt>
+                    <dd>Mobile-First mit Media Queries, Flexbox und Grid &ndash; bewusst ohne JS-Framework, um die Grundlagen zu festigen.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Ergebnis</dt>
+                    <dd>Layout skaliert stabil von Mobile bis Desktop. Diente als Basis für spätere komplexere Projekte.</dd>
+                  </div>
+                  <div class="project-meta-row">
+                    <dt>Rolle</dt>
+                    <dd>UI-Konzept, Layoutstruktur und CSS-Umsetzung.</dd>
+                  </div>
+                </dl>
 
 
                 <div class="project-tech">
-                  Visual Studio Code , HTML5, CSS3,
+                  Visual Studio Code, HTML5, CSS3
                 </div>
 
                 <div class="project-links">
-                <span class="status-completed">Abgeschlossen </span>
+                <span class="status-completed">Abgeschlossen</span>
                   <a href="https://github.com/Daddarios/Personal-Page.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
@@ -1031,6 +1166,114 @@ function enhanceProjectMedia() {
 
 let overlayCardObserver = null;
 let activeOverlaySource = null;
+let projectsProgressCleanup = null;
+let overlayScrollBarCleanup = null;
+
+function setupOverlayScrollBar() {
+  if (overlayScrollBarCleanup) {
+    overlayScrollBarCleanup();
+    overlayScrollBarCleanup = null;
+  }
+
+  const bar = document.createElement("div");
+  bar.className = "custom-scrollbar custom-scrollbar--overlay";
+  bar.setAttribute("aria-hidden", "true");
+
+  const fill = document.createElement("div");
+  fill.className = "custom-scrollbar-fill";
+  bar.appendChild(fill);
+  document.body.appendChild(bar);
+
+  const update = () => {
+    const scroller = dom.wrapper;
+    const maxScroll = Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+    const ratio = scroller.scrollTop / maxScroll;
+    fill.style.height = `${ratio * 100}%`;
+  };
+
+  update();
+  dom.wrapper.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+
+  overlayScrollBarCleanup = () => {
+    dom.wrapper.removeEventListener("scroll", update);
+    window.removeEventListener("resize", update);
+    bar.remove();
+  };
+}
+
+function setupProjectsProgress() {
+  if (projectsProgressCleanup) {
+    projectsProgressCleanup();
+    projectsProgressCleanup = null;
+  }
+
+  const cards = Array.from(dom.container.querySelectorAll(".project-grid .project-card"));
+  if (!cards.length) return;
+
+  const scroller = dom.wrapper;
+
+  const rail = document.createElement("nav");
+  rail.className = "projects-progress";
+  rail.setAttribute("aria-label", "Projekt-Navigation");
+
+  const dots = cards.map((card, i) => {
+    const titleEl = card.querySelector(".project-title");
+    const raw = titleEl ? titleEl.childNodes[0]?.textContent?.trim() : `Projekt ${i + 1}`;
+    const label = (raw || `Projekt ${i + 1}`).replace(/\s+/g, " ");
+
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "pp-dot";
+    dot.setAttribute("aria-label", `Zu ${label} springen`);
+    dot.innerHTML = `<span class="pp-label">${label}</span>`;
+    dot.addEventListener("click", () => {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    rail.appendChild(dot);
+    return dot;
+  });
+
+  document.body.appendChild(rail);
+  requestAnimationFrame(() => rail.classList.add("is-visible"));
+
+  const setActive = (idx) => {
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+  };
+
+  const updateActive = () => {
+    const nearBottom =
+      scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4;
+    if (nearBottom) {
+      setActive(cards.length - 1);
+      return;
+    }
+
+    // Viewport merkezine en yakın kart aktif
+    const viewCenter = scroller.scrollTop + scroller.clientHeight / 2;
+    let bestIdx = 0;
+    let bestDist = Infinity;
+    cards.forEach((card, i) => {
+      const c = card.offsetTop + card.offsetHeight / 2;
+      const d = Math.abs(c - viewCenter);
+      if (d < bestDist) {
+        bestDist = d;
+        bestIdx = i;
+      }
+    });
+    setActive(bestIdx);
+  };
+
+  updateActive();
+
+  const onScroll = () => updateActive();
+  scroller.addEventListener("scroll", onScroll, { passive: true });
+
+  projectsProgressCleanup = () => {
+    scroller.removeEventListener("scroll", onScroll);
+    rail.remove();
+  };
+}
 
 function setupOverlayCardReveal(type) {
   if (overlayCardObserver) {
@@ -1104,6 +1347,10 @@ document.addEventListener("click", e => {
   enhanceProjectMedia();
   normalizeBlankLinks(dom.container);
   setupOverlayCardReveal(type);
+  setupOverlayScrollBar();
+  if (type === "projekte") {
+    setupProjectsProgress();
+  }
 });
 
 dom.container.addEventListener("click", (e) => {
@@ -1149,6 +1396,16 @@ function closeOverlay() {
   if (overlayCardObserver) {
     overlayCardObserver.disconnect();
     overlayCardObserver = null;
+  }
+
+  if (projectsProgressCleanup) {
+    projectsProgressCleanup();
+    projectsProgressCleanup = null;
+  }
+
+  if (overlayScrollBarCleanup) {
+    overlayScrollBarCleanup();
+    overlayScrollBarCleanup = null;
   }
 
   dom.wrapper.classList.remove("active");
