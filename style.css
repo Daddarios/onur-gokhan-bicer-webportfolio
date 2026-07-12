@@ -536,22 +536,28 @@ body:not(.open-menu)::before {
 
 /* Tablet boyutları için (örnek: iPad, Galaxy Tab, 768px ve altı) */
 @media (max-width: 768px) {
+  .cv-section {
+    padding: 0 1.5rem;
+  }
   .cv-content {
-    max-width: 90%; /* Ekranın %90’ını kaplasın */
-    min-width: unset; /* Sabit genişlik zorlamasını kaldır */
-    padding: 2rem; /* Daha kompakt görünüm */
+    max-width: 78%;
+    min-width: unset;
+    padding: 1.9rem 1.6rem;
   }
 }
 
 /* Küçük telefon ekranları için (örnek: iPhone SE, Galaxy A20, 480px ve altı) */
 @media (max-width: 480px) {
+  .cv-section {
+    padding: 0 1.2rem;
+  }
   .cv-content {
-    max-width: 95%;
-    padding: 1.5rem;
+    max-width: 82%;
+    padding: 1.6rem 1.3rem;
   }
 
   .section-title {
-    font-size: 1.2rem !important; /* Başlığı biraz küçült */
+    font-size: 1.15rem !important;
   }
 
   .cv-content button {
