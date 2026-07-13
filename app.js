@@ -563,18 +563,17 @@ const contentMap = {
               Ein Überblick über die Technologien, mit denen ich bisher gearbeitet habe –
               gruppiert nach Bereich und mit Verweis auf die zugehörigen Projekte.
             </p>
-            <p class="competency-legend">
+            <!--<p class="competency-legend">
               <span class="comp-level comp-level--solid">Vertraut</span>
               <span class="comp-level comp-level--adv">Fortgeschritten</span>
               <span class="comp-level comp-level--learn">In Übung</span>
-            </p>
+            </p>-->
           </div>
 
           <div class="competency-grid competency-grid--accordion">
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-server'></i><span class="comp-tab-name">Backend</span></span>
               <div class="comp-body">
-                <h4>Backend <span class="comp-level comp-level--adv">Fortgeschritten</span></h4>
                 <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> REST-APIs, JWT-Authentifizierung,
@@ -590,7 +589,7 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-code-alt'></i><span class="comp-tab-name">Frontend</span></span>
               <div class="comp-body">
-                <h4>Frontend <span class="comp-level comp-level--solid">Vertraut</span></h4>
+                
                 <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite, React Router, Axios</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
@@ -606,7 +605,6 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & Data</span></span>
               <div class="comp-body">
-                <h4>AI &amp; Data <span class="comp-level comp-level--learn">In Übung</span></h4>
                 <p class="competency-stack project-tech">Ollama, Qdrant, Semantic Kernel, RAG, OpenRouter</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> Aufbau eines RAG-Assistenten mit lokalem LLM,
@@ -622,7 +620,7 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-wrench'></i><span class="comp-tab-name">Tools &amp; Workflow</span></span>
               <div class="comp-body">
-                <h4>Tools &amp; Workflow <span class="comp-level comp-level--solid">Vertraut</span></h4>
+                
                 <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Cursor, GitHub Copilot, Codex, Docker, GitHub Actions, GitHub, Git, npm</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> Versionskontrolle mit Git,
@@ -810,7 +808,7 @@ const contentMap = {
                   </div>
 
                 <div class="project-links">
-                  <span class="status-ongoing">In Entwicklung</span>
+                  <span class="status-completed">Abgeschlossen</span>
                   <a href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
                 </div>
               </div>
