@@ -399,12 +399,18 @@ body:not(.open-menu)::before {
 
 .hero-content h1 {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
 }
 
 .hero-content p {
   margin-top: 0.8rem;
 
+}
+.heroTech {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
 }
 
 .hero-kicker {
@@ -418,10 +424,11 @@ body:not(.open-menu)::before {
 
 .hero-role {
   color: var(--accent);
-  font-size: 1.1rem;
+  font-size: 2rem;
   font-weight: 600;
   padding-top: 2.5rem;
   margin-bottom: 1.5rem;
+  
 }
 
 .hero-note {

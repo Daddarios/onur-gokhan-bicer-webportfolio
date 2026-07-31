@@ -17,7 +17,7 @@ function renderProjectTechIcons() {
     "C#": "devicon-csharp-plain colored",
     "ASP.NET MVC": "devicon-dot-net-plain colored",
     "ASP.NET": "devicon-dot-net-plain-wordmark colored",
-    "ASP.NET Core":"devicon-dotnetcore-plain",
+    "ASP.NET Core":"devicon-dotnetcore-plain colored",
     "EF Core": "devicon-entityframeworkcore-plain colored",
     "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
@@ -94,6 +94,27 @@ function renderProjectTechIcons() {
         div.appendChild(span);
       }
     });
+  });
+}
+
+function renderHeroIcons() {
+  const heroRole = document.querySelector(".hero-role");
+  if (!heroRole) return;
+
+  const heroTechs = [
+    { key: "C#",         cls: "devicon-csharp-plain colored" },
+    {key: "ASP.NET",     cls: "devicon-dot-net-plain colored" },
+    
+    { key: "Reacts",      cls: "devicon-react-plain colored" },
+    { key: "JavaScript", cls: "devicon-javascript-plain colored" }
+  ];
+
+  heroRole.innerHTML = "";
+  heroTechs.forEach(({ key, cls }) => {
+    const icon = document.createElement("i");
+    icon.className = cls;
+    icon.title = key;
+    heroRole.appendChild(icon);
   });
 }
 
@@ -1539,6 +1560,7 @@ ${message}`
    COOKIE BANNER & GOOGLE ANALYTICS (DSGVO)
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
+  renderHeroIcons();
   const cookieBanner = document.getElementById("cookieBanner");
   const btnAccept = document.getElementById("acceptCookies");
   const btnReject = document.getElementById("rejectCookies");
