@@ -429,7 +429,7 @@ const contentMap = {
 
             <h3 class="title">Über mich</h3>
 
-            <p>Hallo, mein Name ist Gökhan. Ich bin Junior Full-Stack-Entwickler mit Schwerpunkt auf C#, ASP.NET, JavaScript und React. Mich motiviert es, fachliche Anforderungen in funktionierende Anwendungen zu übersetzen und dabei Schritt für Schritt saubere, nachvollziehbare Lösungen aufzubauen.</p>
+            <p>Hallo, mein Name ist Gökhan. Ich bin Full-Stack-Entwickler mit Schwerpunkt auf C#, ASP.NET, JavaScript und React. Mich motiviert es, fachliche Anforderungen in funktionierende Anwendungen zu übersetzen und dabei Schritt für Schritt saubere, nachvollziehbare Lösungen aufzubauen.</p>
 
             <p>Mein Weg in die Softwareentwicklung war bewusst praxisorientiert. Nach ersten Studien- und Berufserfahrungen in Deutschland habe ich mich für eine Ausbildung im IT-Bereich entschieden und diese als IT-Anwendungsentwickler erfolgreich abgeschlossen. Seitdem arbeite ich daran, meine Backend-Kenntnisse zu vertiefen und gleichzeitig klare, verständliche Benutzeroberflächen zu entwickeln.</p>
 
