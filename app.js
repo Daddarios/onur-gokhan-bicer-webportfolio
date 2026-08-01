@@ -698,7 +698,7 @@ const contentMap = {
                     </div>
                     <div class="project-meta-row">
                       <dt>Rolle</dt>
-                      <dd>Alleinige Umsetzung als Lernprojekt &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.</dd>
+                      <dd>Alleinige Umsetzung  &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.</dd>
                     </div>
                   </dl>
 
@@ -950,10 +950,10 @@ const contentMap = {
               </div>
 
               <div class="project-content">
-                <h4 class="project-title">Klinik Raum Stuttgart <small>Desktop-Lernprojekt</small></h4>
+                <h4 class="project-title">Klinik Raum Stuttgart <small>Desktop</small></h4>
 
                 <p class="project-lead">
-                  Einstiegs-Lernprojekt zur Desktop-Entwicklung mit Datenbindung.
+                  Einstiegsprojekt zur Desktop-Entwicklung mit Datenbindung.
                 </p>
 
                 <dl class="project-meta">
