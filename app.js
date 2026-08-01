@@ -342,7 +342,7 @@ const sections = [
   { id: "uber-mich", title: "Über mich", desc: "Beruflicher Hintergrund und Arbeitsweise" },
   { id: "fahigkeiten", title: "Lebenslauf & Dokumente", desc: "Unterlagen und Nachweise" },
   { id: "kompetenzen", title: "Kompetenzbereiche", desc: "Technologien mit praktischem Einsatzkontext" },
-  { id: "projekte", title: "Entwicklung & Projekte", desc: "Ausgewählte Anwendungen und Lernprojekte" },
+  { id: "projekte", title: "Entwicklung & Projekte", desc: "Softwareprojekte im Überblick" },
   { id: "kurs", title: "Weiterbildungen", desc: "Aktuelle Lernfelder und Fortbildungen" },
   { id: "kontakt", title: "Kontakt", desc: "Direkter Kontakt für Rückfragen" }
 ];
