@@ -103,9 +103,8 @@ function renderHeroIcons() {
 
   const heroTechs = [
     { key: "C#",         cls: "devicon-csharp-plain colored" },
-    {key: "ASP.NET",     cls: "devicon-dot-net-plain colored" },
-    
-    { key: "Reacts",      cls: "devicon-react-plain colored" },
+    { key: "ASP.NET",    cls: "devicon-dot-net-plain colored" },
+    { key: "React",      cls: "devicon-react-plain colored" },
     { key: "JavaScript", cls: "devicon-javascript-plain colored" }
   ];
 
@@ -438,6 +437,187 @@ dom.topbar.querySelector(".logo")?.addEventListener("click", () => {
   closeMenu();
 });
 
+/* ===== PROJEKTE: DATEN ===== */
+const projectsData = [
+  {
+    title: "Vista.Core + Vista.CoreX",
+    subtitle: "Full-Stack SaaS mit RAG-AI Assistent",
+    aiIcon: true,
+    images: [
+      { src: "CoreXDark.png", alt: "Vista.CoreX – Dashboard im Dark Mode" },
+      { src: "CoreXLight.png", alt: "Vista.CoreX – Dashboard im Light Mode" }
+    ],
+    lead: "<strong>Vista.Core / Vista.CoreX</strong> ist eine modulare SaaS-Plattform für CRM- und operative Prozesse mit integriertem KI-Assistenten.",
+    problem: "CRM-Verwaltung und ein Assistent, der auf eigene Dokumente antwortet, sollten in einer Anwendung zusammenlaufen &ndash; ohne dass Firmendaten an externe LLM-Anbieter gehen.",
+    ansatz: ".NET Web API + EF Core als Backend-Kern, JWT für Auth, SignalR für Live-Updates. Für den KI-Teil ein RAG-Setup mit <code>Ollama</code> + <code>Qdrant</code>, damit Antworten auf indexierten Dokumenten basieren.",
+    ergebnis: "Funktionsfähiges Grundgerüst: Auth, CRM-Module und ein Chat-Assistent, der Fragen zu hochgeladenen Dokumenten beantwortet. Läuft lokal per <code>docker compose</code>.",
+    rolle: "Alleinige Umsetzung &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.",
+    tech: "C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
+    status: "completed",
+    github: "https://github.com/Daddarios/vista-saas-backend"
+  },
+  {
+    title: "GoAI ChatLab",
+    subtitle: "AI-Agent & Chat Assistant",
+    aiIcon: true,
+    aiIconDelayed: true,
+    labLink: { href: "https://huggingface.co/spaces/Daddarios/GoAI-Lab", text: "GoAI-Lab" },
+    images: [
+      { src: "GoAI1.png", alt: "GoAI ChatLab – Chat-Oberfläche" },
+      { src: "GoAI3.png", alt: "GoAI ChatLab – Datei-Upload und Antwortansicht" }
+    ],
+    lead: "Ein Chat-Client mit KI-Anbindung und dateibasierten Eingaben &ndash; live deployed auf Hugging Face Spaces.",
+    problem: "Ein Chat-Client, der API-Keys nicht im Browser preisgibt und Dokumente (txt, md, pdf) als Kontext verarbeiten kann.",
+    ansatz: "Express-Proxy als Backend, damit der API-Key serverseitig bleibt. File-Parsing im Client, sodass der Server nur reinen Text weiterreicht. Aufbau ist auf spätere RAG-Erweiterung vorbereitet.",
+    ergebnis: "Öffentlich erreichbare Demo unter <em>GoAI-Lab</em>. Chat funktioniert stabil mit Datei-Uploads; Deployment automatisiert über GitHub Actions + Docker.",
+    rolle: "Konzept, React-Frontend, Express-Proxy, Docker-Setup und CI/CD-Workflow.",
+    tech: "React, Node.js, Express.js, JavaScript, HTML5, CSS3, GitHub Actions, Docker, REST APIs, Client-side File Parsing, OpenRouter AI",
+    status: "completed",
+    github: "https://github.com/Daddarios/GoAI-Chat-Assistant"
+  },
+  {
+    title: "CRM-Anwendung",
+    subtitle: "IHK-Abschlussprojekt",
+    images: [
+      { src: "crmlogin.png", alt: "CRM-Anwendung – Login mit Zwei-Faktor-Authentifizierung" },
+      { src: "crmpanel.png", alt: "CRM-Anwendung – Admin-Dashboard" }
+    ],
+    lead: "CRM-System zur Verwaltung von Kunden, Mitarbeitern, Projekten und Berichten &ndash; entstanden unter realitätsnahen IHK-Anforderungen.",
+    problem: "Klassisches Kundenmanagement für einen fiktiven KMU-Kunden mit Fokus auf Rollen, Rechte und Reporting.",
+    ansatz: "ASP.NET MVC + EF Core, 2FA über SMS (<code>Twilio</code>) und Mail (<code>MailKit</code>), Excel/PDF-Export sowie eine dokumentierte REST-API für spätere Anbindungen.",
+    ergebnis: "Lauffähige Anwendung mit Rollenmodell (Admin/Mitarbeiter), Dashboard-Statistiken und getesteten API-Endpunkten. Wird schrittweise weiterentwickelt.",
+    rolle: "Alleinige Umsetzung: DB-Design, Backend-Logik, Auth, API und UI.",
+    tech: "Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3, Bootstrap, JavaScript, jQuery, JWT, GitHub, Twilio, RESTful APIs, MailKit",
+    status: "completed",
+    github: "https://github.com/Daddarios/CrmAPP"
+  },
+  {
+    title: "Portfolio Website",
+    images: [
+      { src: "portfolio1.png", alt: "Portfolio Website – Startseite" },
+      { src: "portfolio2.png", alt: "Portfolio Website – Projektübersicht" }
+    ],
+    lead: "Die Seite, auf der Sie sich gerade befinden &ndash; bewusst ohne Framework, um Grundlagen zu vertiefen.",
+    problem: "Eine schlanke, wartbare Präsentationsseite ohne unnötigen Framework-Overhead.",
+    ansatz: "Vanilla HTML/CSS/JS, alle Sektionen aus einer <code>contentMap</code> gerendert, Overlay-Struktur statt getrennter Seiten. Cookie-Banner nach DSGVO-Grundprinzipien.",
+    ergebnis: "Drei Dateien, ca. 50&nbsp;KB JS. Läuft ohne Build-Schritt, responsive auf Mobile und Desktop.",
+    rolle: "Konzept, UI-Design, Umsetzung und Deployment.",
+    tech: "Visual Studio Code, HTML5, CSS3, JavaScript",
+    status: "completed",
+    github: "https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git"
+  },
+  {
+    title: "VISTA",
+    subtitle: "React SPA für ASP.NET CRM",
+    images: [
+      { src: "vistaperson.png", alt: "VISTA – Personenverwaltung im React-Frontend" },
+      { src: "vistakanban.png", alt: "VISTA – Kanban-Board Ansicht" }
+    ],
+    lead: "<strong>VISTA</strong> hebt das bestehende ASP.NET-CRM auf eine moderne React-Oberfläche &ndash; als Übung für saubere API-Anbindung.",
+    problem: "Das MVC-CRM sollte zusätzlich als SPA nutzbar sein, damit UI-Interaktionen flüssiger und clientseitig gerendert werden.",
+    ansatz: "React + React Router, JWT-basierter Login gegen die eigene REST-API. Kanban-Board als bewusste Übung für State-Handling.",
+    ergebnis: "Login-Flow, Personen-CRUD und Kanban-Ansicht arbeiten stabil gegen die API. Grundstruktur steht, weitere Module in Entwicklung.",
+    rolle: "UI-Design, React-Umsetzung und API-Anbindung.",
+    tech: "Visual Studio Code, HTML5, CSS3, JavaScript, React, React Router, JWT",
+    status: "ongoing",
+    github: "https://github.com/Daddarios/Vista.git"
+  },
+  {
+    title: "Klinik Raum Stuttgart",
+    subtitle: "Desktop",
+    images: [
+      { src: "klinikall.png", alt: "Klinik Raum Stuttgart – Übersicht der Verwaltung" },
+      { src: "klinik3.png", alt: "Klinik Raum Stuttgart – Detailansicht" }
+    ],
+    lead: "Anwendungsprojekt zur Desktop-Entwicklung mit Datenbindung.",
+    problem: "Übung an einem klar umrissenen Fall: kleine Klinikverwaltung mit Patienten- und Termindaten.",
+    ansatz: "Windows Forms auf .NET Framework, SQL-Server-Anbindung, klassische CRUD-Struktur mit Fokus auf sauberer Datenbindung.",
+    ergebnis: "Abgeschlossenes Projekt mit funktionierenden CRUD-Operationen &ndash; erster praktischer Kontakt mit C# und SQL Server.",
+    rolle: "Alleinige Umsetzung im Rahmen der Weiterbildung.",
+    tech: "Visual Studio, C#, SQL Server",
+    status: "completed",
+    github: "https://github.com/Daddarios/Klinikum_Stuttgart.git"
+  },
+  {
+    title: "Photo BLOG",
+    subtitle: "Responsive UI mit HTML & CSS",
+    images: [
+      { src: "perpage1.png", alt: "Photo Blog – Startseite mit Bildergalerie" },
+      { src: "perpage2.png", alt: "Photo Blog – Responsive Mobilansicht" }
+    ],
+    lead: "Frühes Frontend-Übungsprojekt mit Fokus auf Responsive Design.",
+    problem: "Eine mobilfreundliche Foto-Blog-Oberfläche, die auf allen Bildschirmgrößen sauber wirkt.",
+    ansatz: "Mobile-First mit Media Queries, Flexbox und Grid &ndash; bewusst ohne JS-Framework, um die Grundlagen zu festigen.",
+    ergebnis: "Layout skaliert stabil von Mobile bis Desktop. Diente als Basis für spätere komplexere Projekte.",
+    rolle: "UI-Konzept, Layoutstruktur und CSS-Umsetzung.",
+    tech: "Visual Studio Code, HTML5, CSS3",
+    status: "completed",
+    github: "https://github.com/Daddarios/Personal-Page.git"
+  }
+];
+
+/* ===== PROJEKTE: RENDER ===== */
+function renderProjectImages(images) {
+  return images.map(img => `
+    <a href="projekte/${img.src}" target="_blank">
+      <img src="projekte/${img.src}" alt="${img.alt}" loading="lazy">
+    </a>`).join("");
+}
+
+function renderProjectTopMeta(p) {
+  if (!p.aiIcon && !p.labLink) return "";
+  const delayed = p.aiIconDelayed ? " notification-ai-icon--delayed" : "";
+  const icon = p.aiIcon
+    ? `<span class="vscode-icons--file-type-gemini notification-ai-icon${delayed}"></span>`
+    : "";
+  const lab = p.labLink
+    ? `
+      <a class="lab-link lab-link--mini" href="${p.labLink.href}" target="_blank" rel="noopener noreferrer">${p.labLink.text}</a>
+      <span class="lab-arrow-flow" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>`
+    : "";
+  return `
+    <div class="project-top-meta">
+      ${icon}${lab}
+    </div>`;
+}
+
+function renderProjectCard(p) {
+  const subtitle = p.subtitle ? ` <small>${p.subtitle}</small>` : "";
+  const status = p.status === "ongoing"
+    ? `<span class="status-ongoing">In Entwicklung</span>`
+    : `<span class="status-completed">Abgeschlossen</span>`;
+  const metaRows = [
+    ["Problem", p.problem],
+    ["Ansatz", p.ansatz],
+    ["Ergebnis", p.ergebnis],
+    ["Rolle", p.rolle]
+  ].map(([label, text]) => `
+    <div class="project-meta-row">
+      <dt>${label}</dt>
+      <dd>${text}</dd>
+    </div>`).join("");
+
+  return `
+  <div class="project-card">
+    <div class="project-image">${renderProjectImages(p.images)}</div>
+    <div class="project-content">
+      ${renderProjectTopMeta(p)}
+      <h4 class="project-title">${p.title}${subtitle}</h4>
+      <p class="project-lead">${p.lead}</p>
+      <dl class="project-meta">${metaRows}</dl>
+      <div class="project-tech">${p.tech}</div>
+      <div class="project-links">
+        ${status}
+        <a href="${p.github}" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildProjectsHTML() {
+  return `<div class="project-grid">${projectsData.map(renderProjectCard).join("")}</div>`;
+}
+
 /* ===== CONTENT MAP ===== */
 const contentMap = {
 
@@ -660,385 +840,7 @@ const contentMap = {
 
 
   /* ===== PROJEKTE ===== */
-  "projekte": `
-              <div class="project-grid">
-              <!-- Vista.Core + Vista.CoreX -->
-                <div class="project-card">
-                  <div class="project-image">
-                    <a href="projekte/CoreXDark.png" target="_blank">
-                      <img src="projekte/CoreXDark.png" alt="Vista.CoreX – Dashboard im Dark Mode" loading="lazy">
-                    </a>
-                    <a href="projekte/CoreXLight.png" target="_blank">
-                      <img src="projekte/CoreXLight.png" alt="Vista.CoreX – Dashboard im Light Mode" loading="lazy">
-                    </a>
-                </div>
-
-                <div class="project-content">
-                  <div class="project-top-meta">
-                    <span class="vscode-icons--file-type-gemini notification-ai-icon"></span>
-                  </div>
-                  <h4 class="project-title">Vista.Core + Vista.CoreX <small>Full-Stack SaaS mit RAG-AI Assistent</small></h4>
-
-                  <p class="project-lead">
-                    <strong>Vista.Core / Vista.CoreX</strong> ist eine modulare SaaS-Plattform für CRM- und operative Prozesse mit integriertem KI-Assistenten.
-                  </p>
-
-                  <dl class="project-meta">
-                    <div class="project-meta-row">
-                      <dt>Problem</dt>
-                      <dd>CRM-Verwaltung und ein Assistent, der auf eigene Dokumente antwortet, sollten in einer Anwendung zusammenlaufen &ndash; ohne dass Firmendaten an externe LLM-Anbieter gehen.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ansatz</dt>
-                      <dd>.NET Web API + EF Core als Backend-Kern, JWT für Auth, SignalR für Live-Updates. Für den KI-Teil ein RAG-Setup mit <code>Ollama</code> + <code>Qdrant</code>, damit Antworten auf indexierten Dokumenten basieren.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ergebnis</dt>
-                      <dd>Funktionsfähiges Grundgerüst: Auth, CRM-Module und ein Chat-Assistent, der Fragen zu hochgeladenen Dokumenten beantwortet. Läuft lokal per <code>docker compose</code>.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Rolle</dt>
-                      <dd>Alleinige Umsetzung  &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.</dd>
-                    </div>
-                  </dl>
-
-                  <div class="project-tech">
-                    C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel
-                  </div>
-
-                  <div class="project-links">
-                    <span class="status-completed">Abgeschlossen</span>
-                     <a href="https://github.com/Daddarios/vista-saas-backend" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
-                  </div>  
-                </div>
-              </div>
-
-                <!-- GoAI Assistant -->
-            
-              
-              <div class="project-card">
-                <div class="project-image">
-                  <a href="projekte/GoAI1.png" target="_blank">
-                    <img src="projekte/GoAI1.png" alt="GoAI ChatLab – Chat-Oberfläche" loading="lazy">
-                   
-                  </a>
-                  
-                  <a href="projekte/GoAI3.png" target="_blank">
-                    <img src="projekte/GoAI3.png" alt="GoAI ChatLab – Datei-Upload und Antwortansicht" loading="lazy">
-                  </a>
-                </div>
-               
-                <div class="project-content">
-                  <div class="project-top-meta">
-                    <span class="vscode-icons--file-type-gemini notification-ai-icon notification-ai-icon--delayed"></span>
-                    <a
-                      class="lab-link lab-link--mini"
-                      href="https://huggingface.co/spaces/Daddarios/GoAI-Lab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GoAI-Lab
-                    </a>
-                    <span class="lab-arrow-flow" aria-hidden="true">
-                      <span>›</span><span>›</span><span>›</span>
-                    </span>
-                  </div>
-                  <h4 class="project-title">GoAI ChatLab <small>AI-Agent & Chat Assistant</small></h4>
-
-                  <p class="project-lead">
-                    Ein Chat-Client mit KI-Anbindung und dateibasierten Eingaben &ndash; live deployed auf Hugging Face Spaces.
-                  </p>
-
-                  <dl class="project-meta">
-                    <div class="project-meta-row">
-                      <dt>Problem</dt>
-                      <dd>Ein Chat-Client, der API-Keys nicht im Browser preisgibt und Dokumente (txt, md, pdf) als Kontext verarbeiten kann.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ansatz</dt>
-                      <dd>Express-Proxy als Backend, damit der API-Key serverseitig bleibt. File-Parsing im Client, sodass der Server nur reinen Text weiterreicht. Aufbau ist auf spätere RAG-Erweiterung vorbereitet.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ergebnis</dt>
-                      <dd>Öffentlich erreichbare Demo unter <em>GoAI-Lab</em>. Chat funktioniert stabil mit Datei-Uploads; Deployment automatisiert über GitHub Actions + Docker.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Rolle</dt>
-                      <dd>Konzept, React-Frontend, Express-Proxy, Docker-Setup und CI/CD-Workflow.</dd>
-                    </div>
-                  </dl>
-
-                    <div class="project-tech">
-                      React, Node.js, Express.js, JavaScript, HTML5, CSS3, GitHub Actions, Docker, REST APIs, Client-side File Parsing, OpenRouter AI
-                    </div>
-                   
-                 
-                     
-                  <div class="project-links">
-                    <span class="status-completed">Abgeschlossen</span>
-                   
-                    <a href="https://github.com/Daddarios/GoAI-Chat-Assistant" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'></i></a>
-                  </div>
-                  
-                  </div>  
-                </div>
-
-
-             <!-- CRM -->
-
-            <div class="project-card">
-              <div class="project-image">
-                <a href="projekte/crmlogin.png" target="_blank">
-                  <img src="projekte/crmlogin.png" alt="CRM-Anwendung – Login mit Zwei-Faktor-Authentifizierung" loading="lazy">
-                </a>
-                <a href="projekte/crmpanel.png" target="_blank">
-                  <img src="projekte/crmpanel.png" alt="CRM-Anwendung – Admin-Dashboard" loading="lazy">
-                </a>
-              </div>
-
-
-              <div class="project-content">
-                  <h4 class="project-title">CRM-Anwendung <small>IHK-Abschlussprojekt</small></h4>
-
-                  <p class="project-lead">
-                    CRM-System zur Verwaltung von Kunden, Mitarbeitern, Projekten und Berichten &ndash; entstanden unter realitätsnahen IHK-Anforderungen.
-                  </p>
-
-                  <dl class="project-meta">
-                    <div class="project-meta-row">
-                      <dt>Problem</dt>
-                      <dd>Klassisches Kundenmanagement für einen fiktiven KMU-Kunden mit Fokus auf Rollen, Rechte und Reporting.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ansatz</dt>
-                      <dd>ASP.NET MVC + EF Core, 2FA über SMS (<code>Twilio</code>) und Mail (<code>MailKit</code>), Excel/PDF-Export sowie eine dokumentierte REST-API für spätere Anbindungen.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Ergebnis</dt>
-                      <dd>Lauffähige Anwendung mit Rollenmodell (Admin/Mitarbeiter), Dashboard-Statistiken und getesteten API-Endpunkten. Wird schrittweise weiterentwickelt.</dd>
-                    </div>
-                    <div class="project-meta-row">
-                      <dt>Rolle</dt>
-                      <dd>Alleinige Umsetzung: DB-Design, Backend-Logik, Auth, API und UI.</dd>
-                    </div>
-                  </dl>
-                   
-
-                  <div class="project-tech">
-                     Visual Studio, C#, ASP.NET MVC, Entity Framework, SQL Server, HTML5, CSS3, Bootstrap, JavaScript, jQuery, JWT, GitHub, Twilio, RESTful APIs, MailKit
-                  </div>
-
-                <div class="project-links">
-                  <span class="status-completed">Abgeschlossen</span>
-                  <a href="https://github.com/Daddarios/CrmAPP" target="_blank" rel="noopener noreferrer" title="auf GitHub"> <i class='bx bxl-github'  ></i></a>
-                </div>
-              </div>
-            </div>
-
-        
-            <!-- WEB-PORTFOLIO -->
-
-            <div class="project-card">
-              <div class="project-image">
-                 <a href="projekte/portfolio1.png" target="_blank">
-                  <img src="projekte/portfolio1.png" alt="Portfolio Website – Startseite" loading="lazy">
-                </a>
-                <a href="projekte/portfolio2.png" target="_blank">
-                  <img src="projekte/portfolio2.png" alt="Portfolio Website – Projektübersicht" loading="lazy">
-                </a>
-              </div>
-
-              <div class="project-content">
-                <h4 class="project-title">Portfolio Website</h4>
-
-                <p class="project-lead">
-                  Die Seite, auf der Sie sich gerade befinden &ndash; bewusst ohne Framework, um Grundlagen zu vertiefen.
-                </p>
-
-                <dl class="project-meta">
-                  <div class="project-meta-row">
-                    <dt>Problem</dt>
-                    <dd>Eine schlanke, wartbare Präsentationsseite ohne unnötigen Framework-Overhead.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ansatz</dt>
-                    <dd>Vanilla HTML/CSS/JS, alle Sektionen aus einer <code>contentMap</code> gerendert, Overlay-Struktur statt getrennter Seiten. Cookie-Banner nach DSGVO-Grundprinzipien.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ergebnis</dt>
-                    <dd>Drei Dateien, ca. 50&nbsp;KB JS. Läuft ohne Build-Schritt, responsive auf Mobile und Desktop.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Rolle</dt>
-                    <dd>Konzept, UI-Design, Umsetzung und Deployment.</dd>
-                  </div>
-                </dl>
-
-                <div class="project-tech">
-                 Visual Studio Code, HTML5, CSS3, JavaScript
-                </div>
-
-                <div class="project-links">
-                  <span class="status-completed">Abgeschlossen</span>
-                  <a href="https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- VISTA -->
-            <div class="project-card">
-              <div class="project-image">
-                 <a href="projekte/vistaperson.png" target="_blank">
-                  <img src="projekte/vistaperson.png" alt="VISTA – Personenverwaltung im React-Frontend" loading="lazy">
-                </a>
-                <a href="projekte/vistakanban.png" target="_blank">
-                  <img src="projekte/vistakanban.png" alt="VISTA – Kanban-Board Ansicht" loading="lazy">
-                </a>
-              </div>
-
-              <div class="project-content">
-                <h4 class="project-title">VISTA <small>React SPA für ASP.NET CRM</small></h4>
-
-                <p class="project-lead">
-                  <strong>VISTA</strong> hebt das bestehende ASP.NET-CRM auf eine moderne React-Oberfläche &ndash; als Übung für saubere API-Anbindung.
-                </p>
-
-                <dl class="project-meta">
-                  <div class="project-meta-row">
-                    <dt>Problem</dt>
-                    <dd>Das MVC-CRM sollte zusätzlich als SPA nutzbar sein, damit UI-Interaktionen flüssiger und clientseitig gerendert werden.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ansatz</dt>
-                    <dd>React + React Router, JWT-basierter Login gegen die eigene REST-API. Kanban-Board als bewusste Übung für State-Handling.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ergebnis</dt>
-                    <dd>Login-Flow, Personen-CRUD und Kanban-Ansicht arbeiten stabil gegen die API. Grundstruktur steht, weitere Module in Entwicklung.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Rolle</dt>
-                    <dd>UI-Design, React-Umsetzung und API-Anbindung.</dd>
-                  </div>
-                </dl>
-                
-
-
-                <div class="project-tech">
-                  Visual Studio Code, HTML5, CSS3, JavaScript, React, React Router, JWT
-                </div>
-
-                <div class="project-links">
-                 
-                  <span class="status-ongoing">In Entwicklung</span>
-                  <a href="https://github.com/Daddarios/Vista.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- KLINIK RAUM  STUTTGART -->
-            <div class="project-card">
-              <div class="project-image">
-                 <a href="projekte/klinikall.png" target="_blank">
-                  <img src="projekte/klinikall.png" alt="Klinik Raum Stuttgart – Übersicht der Verwaltung" loading="lazy">
-                </a>
-                <a href="projekte/klinik3.png" target="_blank">
-                  <img src="projekte/klinik3.png" alt="Klinik Raum Stuttgart – Detailansicht" loading="lazy">
-                </a>
-              </div>
-
-              <div class="project-content">
-                <h4 class="project-title">Klinik Raum Stuttgart <small>Desktop</small></h4>
-
-                <p class="project-lead">
-                  Anwendungsprojekt zur Desktop-Entwicklung mit Datenbindung.
-                </p>
-
-                <dl class="project-meta">
-                  <div class="project-meta-row">
-                    <dt>Problem</dt>
-                    <dd>Übung an einem klar umrissenen Fall: kleine Klinikverwaltung mit Patienten- und Termindaten.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ansatz</dt>
-                    <dd>Windows Forms auf .NET Framework, SQL-Server-Anbindung, klassische CRUD-Struktur mit Fokus auf sauberer Datenbindung.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ergebnis</dt>
-                    <dd>Abgeschlossenes Projekt mit funktionierenden CRUD-Operationen &ndash; erster praktischer Kontakt mit C# und SQL Server.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Rolle</dt>
-                    <dd>Alleinige Umsetzung im Rahmen der Weiterbildung.</dd>
-                  </div>
-                </dl>
-
-                <div class="project-tech">
-                     Visual Studio, C#,  SQL Server
-                </div>
-
-                <div class="project-links">
-                <span class="status-completed">Abgeschlossen</span>
-                  <a href="https://github.com/Daddarios/Klinikum_Stuttgart.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
-                </div>
-              </div>
-            </div>
-          
-
-
-            <!-- Photo BLOG-Personal PAGE (Photocamera & REISE) -->
-            <div class="project-card">
-              <div class="project-image">
-                 <a href="projekte/perpage1.png" target="_blank">
-                  <img src="projekte/perpage1.png" alt="Photo Blog – Startseite mit Bildergalerie" loading="lazy">
-                </a>
-                <a href="projekte/perpage2.png" target="_blank">
-                  <img src="projekte/perpage2.png" alt="Photo Blog – Responsive Mobilansicht" loading="lazy">
-                </a>
-              </div>
-
-              <div class="project-content">
-                <h4 class="project-title">Photo BLOG <small>Responsive UI mit HTML & CSS</small></h4>
-
-                <p class="project-lead">
-                  Frühes Frontend-Übungsprojekt mit Fokus auf Responsive Design.
-                </p>
-
-                <dl class="project-meta">
-                  <div class="project-meta-row">
-                    <dt>Problem</dt>
-                    <dd>Eine mobilfreundliche Foto-Blog-Oberfläche, die auf allen Bildschirmgrößen sauber wirkt.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ansatz</dt>
-                    <dd>Mobile-First mit Media Queries, Flexbox und Grid &ndash; bewusst ohne JS-Framework, um die Grundlagen zu festigen.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Ergebnis</dt>
-                    <dd>Layout skaliert stabil von Mobile bis Desktop. Diente als Basis für spätere komplexere Projekte.</dd>
-                  </div>
-                  <div class="project-meta-row">
-                    <dt>Rolle</dt>
-                    <dd>UI-Konzept, Layoutstruktur und CSS-Umsetzung.</dd>
-                  </div>
-                </dl>
-
-
-                <div class="project-tech">
-                  Visual Studio Code, HTML5, CSS3
-                </div>
-
-                <div class="project-links">
-                <span class="status-completed">Abgeschlossen</span>
-                  <a href="https://github.com/Daddarios/Personal-Page.git" target="_blank" title="auf GitHub" rel="noopener noreferrer"> <i class='bx bxl-github'  ></i></a>
-                </div>
-              </div>
-            </div>
-
-              </div>
-      `
+  "projekte": buildProjectsHTML()
 
   ,
 /* ===== Weiterbildung ===== */
@@ -1437,28 +1239,54 @@ function closeOverlay() {
   unlockMainPageScroll();
 }
 
-/* ===== PARALLAX ===== */
-let cur = 0;
-let tgt = 0;
-let vel = 0;
-function animate() {
-  tgt = window.scrollY;
-  const diff = tgt - cur;
-  vel += diff * 0.04;
-  vel *= 0.82;
-  cur += vel;
+/* ===== PARALLAX =====
+   Feder-Physik mit Idle-Stop: Loop läuft nur solange Bewegung
+   vorhanden ist und respektiert prefers-reduced-motion. */
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  const bgY = -cur * 0.06;
-  const midY = -cur * 0.12;
-  const frontY = -cur * 0.2;
+const parallax = {
+  cur: 0,
+  vel: 0,
+  running: false
+};
 
-  dom.bg.style.setProperty("--bg-y", `${bgY}px`);
-  dom.bg.style.setProperty("--mid-y", `${midY}px`);
-  dom.bg.style.setProperty("--front-y", `${frontY}px`);
+function parallaxStep() {
+  const diff = window.scrollY - parallax.cur;
+  parallax.vel += diff * 0.04;
+  parallax.vel *= 0.82;
+  parallax.cur += parallax.vel;
 
-  requestAnimationFrame(animate);
+  // Bewegung abgeschlossen → Loop stoppen (CPU/Akku sparen)
+  if (Math.abs(diff) < 0.1 && Math.abs(parallax.vel) < 0.05) {
+    parallax.cur = window.scrollY;
+    parallax.vel = 0;
+    dom.bg.style.setProperty("--bg-y", `${-parallax.cur * 0.06}px`);
+    parallax.running = false;
+    return;
+  }
+
+  dom.bg.style.setProperty("--bg-y", `${-parallax.cur * 0.06}px`);
+  requestAnimationFrame(parallaxStep);
 }
-animate();
+
+function startParallax() {
+  if (parallax.running || reducedMotionQuery.matches) return;
+  parallax.running = true;
+  requestAnimationFrame(parallaxStep);
+}
+
+window.addEventListener("scroll", startParallax, { passive: true });
+
+// Reduced-Motion zur Laufzeit umgeschaltet → Hintergrund neutral setzen
+reducedMotionQuery.addEventListener("change", (e) => {
+  if (e.matches) {
+    dom.bg.style.setProperty("--bg-y", "0px");
+  } else {
+    startParallax();
+  }
+});
+
+startParallax();
 
 
 /* ===== FOOTER ===== */
