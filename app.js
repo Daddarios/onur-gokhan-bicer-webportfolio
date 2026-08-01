@@ -953,7 +953,7 @@ const contentMap = {
                 <h4 class="project-title">Klinik Raum Stuttgart <small>Desktop</small></h4>
 
                 <p class="project-lead">
-                  Einstiegsprojekt zur Desktop-Entwicklung mit Datenbindung.
+                  Anwendungsprojekt zur Desktop-Entwicklung mit Datenbindung.
                 </p>
 
                 <dl class="project-meta">
@@ -967,7 +967,7 @@ const contentMap = {
                   </div>
                   <div class="project-meta-row">
                     <dt>Ergebnis</dt>
-                    <dd>Abgeschlossenes Lernprojekt mit funktionierenden CRUD-Operationen &ndash; erster praktischer Kontakt mit C# und SQL Server.</dd>
+                    <dd>Abgeschlossenes Projekt mit funktionierenden CRUD-Operationen &ndash; erster praktischer Kontakt mit C# und SQL Server.</dd>
                   </div>
                   <div class="project-meta-row">
                     <dt>Rolle</dt>
