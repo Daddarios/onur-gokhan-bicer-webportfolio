@@ -1312,6 +1312,10 @@ footer.innerHTML = `
     <i class='bx bxl-linkedin' ></i>
   </a>
 
+  <a href="https://www.xing.com/profile/OnurGoekhan_Bicer/web_profiles?nwt_nav=profile_icon" target="_blank" rel="noopener noreferrer" aria-label="Xing">
+    <i class='bx bxl-xing' ></i>
+  </a>
+
   <a href="https://x.com/yokhannn" target="_blank" rel="noopener noreferrer" aria-label="X">
     <i class='bx bxl-twitter'></i>
   </a>

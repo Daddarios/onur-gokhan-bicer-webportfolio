@@ -1407,6 +1407,12 @@ body.overlay-open #menuToggle {
   color: #1DA1F2;
 }
 
+.footer-right .bxl-xing {
+  background: linear-gradient(135deg, #cfdc00 0%, #cfdc00 35%, #026466 65%, #026466 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ============================= 
   Mouse
