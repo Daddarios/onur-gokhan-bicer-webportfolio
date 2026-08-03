@@ -450,10 +450,10 @@ const projectsData = [
     lead: "<strong>Vista.Core / Vista.CoreX</strong> ist eine modulare SaaS-Plattform für CRM- und operative Prozesse mit integriertem KI-Assistenten.",
     problem: "CRM-Verwaltung und ein Assistent, der auf eigene Dokumente antwortet, sollten in einer Anwendung zusammenlaufen &ndash; ohne dass Firmendaten an externe LLM-Anbieter gehen.",
     ansatz: ".NET Web API + EF Core als Backend-Kern, JWT für Auth, SignalR für Live-Updates. Für den KI-Teil ein RAG-Setup mit <code>Ollama</code> + <code>Qdrant</code>, damit Antworten auf indexierten Dokumenten basieren.",
-    ergebnis: "Funktionsfähiges Grundgerüst: Auth, CRM-Module und ein Chat-Assistent, der Fragen zu hochgeladenen Dokumenten beantwortet. Läuft lokal per <code>docker compose</code>.",
+    ergebnis: "Funktionsfähiges Grundgerüst: Auth, CRM-Module und ein Chat-Assistent, der Fragen zu hochgeladenen Dokumenten beantwortet. Läuft lokal per <code>docker compose</code>. Wird aktiv weiterentwickelt.",
     rolle: "Alleinige Umsetzung &ndash; Datenmodell, API, RAG-Integration, React-Frontend und Docker-Setup.",
     tech: "C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
-    status: "completed",
+    status: "ongoing",
     github: "https://github.com/Daddarios/vista-saas-backend"
   },
   {
