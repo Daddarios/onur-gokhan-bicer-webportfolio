@@ -574,7 +574,8 @@ function renderProjectTopMeta(p) {
   const lab = p.labLink
     ? `
       <a class="lab-link lab-link--mini" href="${p.labLink.href}" target="_blank" rel="noopener noreferrer">${p.labLink.text}</a>
-      <span class="lab-arrow-flow" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>`
+      <span class="lab-arrow-flow" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>
+      <span class="lab-sleep-hint" title="Hugging Face Free Tier – startet bei Inaktivität neu (ca. 30 Sek.)">⏱ ggf. Kaltstart</span>`
     : "";
   return `
     <div class="project-top-meta">
