@@ -443,11 +443,13 @@ const projectsData = [
     title: "Vista.Core + Vista.CoreX",
     subtitle: "Full-Stack SaaS · RAG-KI · CRM",
     aiIcon: true,
+    aiIconDelayed: true,
+    labLink: { href: "https://daddarios.github.io/vcorex-demo/", text: "Live View" },
     images: [
       { src: "CoreXDark.png", alt: "Vista.CoreX – Dashboard im Dark Mode" },
       { src: "CoreXLight.png", alt: "Vista.CoreX – Dashboard im Light Mode" }
     ],
-    lead: "<strong>Vista.Core / Vista.CoreX</strong> ist eine modulare SaaS-Plattform, die CRM-Prozesse mit einem datenschutzkonformen KI-Assistenten verbindet &ndash; Firmendaten verlassen dabei nie den eigenen Server.",
+    lead: "Vista.Core / Vista.CoreX ist eine modulare SaaS-Plattform, die CRM-Prozesse mit einem datenschutzkonformen KI-Assistenten verbindet &ndash; Firmendaten verlassen dabei nie den eigenen Server.",
     problem: "Unternehmen wollen KI-gestützte Auskunft auf interne Dokumente, ohne sensible Daten an externe Anbieter wie OpenAI weiterzugeben. Gleichzeitig sollen CRM, Aufgaben und Kommunikation in einer einzigen Oberfläche laufen.",
     ansatz: "Backend: .NET Web API mit EF Core, JWT-Auth und SignalR für Echtzeit-Updates. KI-Schicht: lokales RAG-Setup mit <code>Ollama</code> als LLM-Runner und <code>Qdrant</code> als Vektordatenbank &ndash; Antworten basieren ausschließlich auf hochgeladenen Firmendokumenten. Gesamte Infrastruktur per <code>docker compose</code> reproduzierbar.",
     ergebnis: "Produktionsreifes Grundgerüst mit vollständigem Auth-Flow, CRM-Modulen und einem Chat-Assistenten, der Dokumente semantisch durchsucht und präzise antwortet. Architektur ist bewusst auf spätere Mandantenfähigkeit ausgelegt. Wird aktiv weiterentwickelt.",
@@ -461,7 +463,8 @@ const projectsData = [
     subtitle: "KI-Chat · Datei-Upload · Live Demo",
     aiIcon: true,
     aiIconDelayed: true,
-    labLink: { href: "https://huggingface.co/spaces/Daddarios/GoAI-Lab", text: "GoAI-Lab" },
+    sleepHint: true,
+    labLink: { href: "https://huggingface.co/spaces/Daddarios/GoAI-Lab", text: "Live Preview" },
     images: [
       { src: "GoAI1.png", alt: "GoAI ChatLab – Chat-Oberfläche" },
       { src: "GoAI3.png", alt: "GoAI ChatLab – Datei-Upload und Antwortansicht" }
@@ -571,11 +574,14 @@ function renderProjectTopMeta(p) {
   const icon = p.aiIcon
     ? `<span class="vscode-icons--file-type-gemini notification-ai-icon${delayed}"></span>`
     : "";
+  const sleepHint = p.sleepHint
+    ? `<span class="lab-sleep-hint" title="Hugging Face Free Tier – startet bei Inaktivität neu (ca. 30 Sek.)">⏱ ggf. Kaltstart</span>`
+    : "";
   const lab = p.labLink
     ? `
       <a class="lab-link lab-link--mini" href="${p.labLink.href}" target="_blank" rel="noopener noreferrer">${p.labLink.text}</a>
       <span class="lab-arrow-flow" aria-hidden="true"><span>›</span><span>›</span><span>›</span></span>
-      <span class="lab-sleep-hint" title="Hugging Face Free Tier – startet bei Inaktivität neu (ca. 30 Sek.)">⏱ ggf. Kaltstart</span>`
+      ${sleepHint}`
     : "";
   return `
     <div class="project-top-meta">
@@ -844,6 +850,7 @@ const contentMap = {
   /* ===== PROJEKTE ===== */
   "projekte": buildProjectsHTML()
 
+  
   ,
 /* ===== Weiterbildung ===== */
 "kurs": `
