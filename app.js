@@ -1325,7 +1325,7 @@ footer.innerHTML = `
     <i class='bx bxl-xing' ></i>
   </a>
 
-  <a href="https://x.com/yokhannn" target="_blank" rel="noopener noreferrer" aria-label="X">
+  <a href="#" onclick="return false;" aria-label="X">
     <i class='bx bxl-twitter'></i>
   </a>
 
