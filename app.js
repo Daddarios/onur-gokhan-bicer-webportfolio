@@ -48,6 +48,7 @@ function renderProjectTechIcons() {
     "scikit-learn": "devicon-scikitlearn-plain colored",
     "Docker": "devicon-docker-plain-wordmark colored",
     "Docker2": "devicon-docker-plain colored",
+    "Azure": "devicon-azure-plain colored",
     "Swagger":"devicon-swagger-plain  colored",
     "AJAX": "",       // ikon yok, fallback gösterilecek
     "MailKit": "",    // ikon yok
@@ -454,7 +455,7 @@ const projectsData = [
     ansatz: "Backend: .NET Web API mit EF Core, JWT-Auth und SignalR für Echtzeit-Updates. KI-Schicht: lokales RAG-Setup mit <code>Ollama</code> als LLM-Runner und <code>Qdrant</code> als Vektordatenbank &ndash; Antworten basieren ausschließlich auf hochgeladenen Firmendokumenten. Gesamte Infrastruktur per <code>docker compose</code> reproduzierbar.",
     ergebnis: "Produktionsreifes Grundgerüst mit vollständigem Auth-Flow, CRM-Modulen und einem Chat-Assistenten, der Dokumente semantisch durchsucht und präzise antwortet. Architektur ist bewusst auf spätere Mandantenfähigkeit ausgelegt. Wird aktiv weiterentwickelt.",
     rolle: "Eigenverantwortliche Umsetzung von Grund auf: Datenbankmodell, REST-API, RAG-Pipeline, React-Frontend (Dark/Light Mode) und Docker-Setup.",
-    tech: "C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Bootstrap, Swagger, Redis, Docker, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
+    tech: "C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Axios, Bootstrap, Swagger, Redis, Docker, Azure, GitHub Actions, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
     status: "ongoing",
     github: "https://github.com/Daddarios/vista-saas-backend"
   },
