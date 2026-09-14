@@ -977,8 +977,8 @@ const contentMap = {
 
 
 function renderKontaktMail() {
-  const user = "ongb";
-  const domain = "gmx.de";
+  const user = "og.bicer";
+  const domain = "web.de";
   const mail = `${user}@${domain}`;
   const span = document.getElementById("kontaktMail");
   if (span) {
@@ -1343,12 +1343,12 @@ const legalContent = {
     <strong>Datenschutzerklärung</strong>
     <span>Diese Website verwendet Google Analytics erst nach Ihrer ausdrücklichen Zustimmung. Ohne Zustimmung werden keine Analytics-Skripte geladen.</span>
     <span>Die Zustimmung wird lokal im Browser gespeichert und kann durch Löschen des Browser-Speichers zurückgesetzt werden.</span>
-    <span>Kontakt für Datenschutzfragen: <a href="mailto:ongb@gmx.de">ongb@gmx.de</a></span>
+    <span>Kontakt für Datenschutzfragen: <a href="mailto:og.bicer@web.de">og.bicer@web.de</a></span>
   `,
   imprint: `
     <strong>Impressum</strong>
     <span>Onur Gökhan Bicer</span>
-    <span>Kontakt: <a href="mailto:ongb@gmx.de">ongb@gmx.de</a></span>
+    <span>Kontakt: <a href="mailto:og.bicer@web.de">og.bicer@web.de</a></span>
     <span class="legal-warning">Hinweis: Die ladungsfähige Anschrift muss vor öffentlichem produktivem Betrieb ergänzt werden. Ich trage hier bewusst keine erfundene Adresse ein.</span>
   `
 };
@@ -1380,7 +1380,7 @@ document.addEventListener("submit", function(e){
     const email=document.getElementById("email").value;
     const message=document.getElementById("message").value;
 
-    const mail="ongb@gmx.de";
+    const mail="og.bicer@web.de";
 
     const subject=encodeURIComponent("Portfolio Kontakt von "+name);
     const body=encodeURIComponent(
