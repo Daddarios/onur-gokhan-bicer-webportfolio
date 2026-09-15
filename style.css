@@ -2417,7 +2417,7 @@ body.overlay-open #menuToggle {
 @media (max-width: 900px), (max-width: 1024px) and (pointer: coarse) {
   .competency-grid--accordion {
     flex-direction: column;
-    height: 720px;
+    height: 770px;
     gap: 0.9rem;
   }
 
