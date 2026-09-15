@@ -1739,6 +1739,12 @@ body.overlay-open #menuToggle {
   opacity: 0.95;
 }
 
+.project-tech-img--color {
+  filter: none;
+  opacity: 1;
+  object-fit: contain;
+}
+
 .project-tech-fallback {
   color: #f0f0f0;
   font-size: 10px;
@@ -2215,7 +2221,11 @@ body.overlay-open #menuToggle {
   font-weight: 600;
   letter-spacing: 0.05em;
   font-size: 0.88rem;
-  white-space: nowrap;
+  text-align: center;
+  white-space: normal;
+  max-width: 100%;
+  padding: 0 8px;
+  overflow-wrap: break-word;
 }
 
 /* İç içerik (açılınca görünür) */
@@ -2255,12 +2265,41 @@ body.overlay-open #menuToggle {
 
 /* Akordeon: ikon/yazı dengesi + sis (glow) kaldırma */
 .competency-grid--accordion .comp-body .competency-stack.project-tech {
-  grid-template-columns: repeat(5, 56px);
+  display: grid;
+  grid-template-columns: repeat(5, 66px);
   justify-content: center;
-  column-gap: 2.6rem;
-  row-gap: 2.4rem;
+  align-items: flex-start;
+  column-gap: 1.8rem;
+  row-gap: 1.6rem;
   padding: 0;
   margin: 0;
+}
+
+/* DevOps & Tools kutusu: 6 kolonlu dizilim */
+.competency-grid--accordion .comp-option--devops .comp-body .competency-stack.project-tech {
+  grid-template-columns: repeat(6, 66px);
+}
+
+/* Icon + altına teknoloji adı */
+.tech-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 66px;
+}
+
+.tech-label {
+  font-size: 0.68rem;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  word-break: break-word;
+}
+
+.tech-item--textonly {
+  justify-content: center;
+  min-height: 40px;
 }
 
 /* Kompetenzen icin GitHub icon: beyaz */
@@ -2361,7 +2400,7 @@ body.overlay-open #menuToggle {
 }
 
 /* ===== AKORDEON — MOBİL / DOKUNMATİK (dikey, tıkla-aç) ===== */
-@media (max-width: 900px), (pointer: coarse) {
+@media (max-width: 900px), (max-width: 1024px) and (pointer: coarse) {
   .competency-grid--accordion {
     flex-direction: column;
     height: 560px;
@@ -2431,9 +2470,17 @@ body.overlay-open #menuToggle {
   }
 
   .competency-grid--accordion .comp-body .competency-stack.project-tech {
-    grid-template-columns: repeat(4, 44px);
-    column-gap: 1.6rem;
-    row-gap: 1.6rem;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.6rem;
+    row-gap: 1.4rem;
+  }
+
+  .competency-grid--accordion .comp-option--devops .comp-body .competency-stack.project-tech {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .competency-grid--accordion .comp-body .tech-item {
+    width: 100%;
   }
 
   .competency-grid--accordion .comp-body .competency-stack .project-tech-icon,
@@ -2456,9 +2503,13 @@ body.overlay-open #menuToggle {
 
 @media (max-width: 480px) {
   .competency-grid--accordion .comp-body .competency-stack.project-tech {
-    grid-template-columns: repeat(4, 38px);
-    column-gap: 1rem;
-    row-gap: 1.3rem;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 0.5rem;
+    row-gap: 1.2rem;
+  }
+
+  .competency-grid--accordion .comp-option--devops .comp-body .competency-stack.project-tech {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .competency-grid--accordion .comp-body .competency-stack .project-tech-icon,
@@ -2609,6 +2660,11 @@ body.overlay-open #menuToggle {
 
 .competency-stack .project-tech-img {
   filter: brightness(0) invert(1);
+}
+
+.competency-stack .project-tech-img--color {
+  filter: none;
+  opacity: 1;
 }
 
 .competency-stack .project-tech-icon:hover,

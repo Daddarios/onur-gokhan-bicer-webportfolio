@@ -65,34 +65,65 @@ function renderProjectTechIcons() {
     "Serilog": "",    // ikon yok
     "JWT": ""         // ikon yok
   };
-  const ollamaIconCdn = "https://cdn.jsdelivr.net/npm/simple-icons/icons/ollama.svg";
+  const ollamaIconCdn = "https://cdn.simpleicons.org/ollama/e8e8e8";
+  const imgIconMap = {
+    "Ollama": ollamaIconCdn,
+    "Qdrant": "https://cdn.simpleicons.org/qdrant",
+    "OpenRouter": "https://cdn.simpleicons.org/openrouter/e8e8e8",
+    "Cursor": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://cursor.com&size=128",
+    "GitHub Copilot": "https://cdn.simpleicons.org/githubcopilot/e8e8e8",
+    "Antigravity": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://antigravity.google&size=128"
+  };
 
   document.querySelectorAll(".project-tech").forEach(div => {
     const techs = div.textContent.split(",").map(t => t.trim()).filter(Boolean);
     div.innerHTML = "";
 
+    const withLabel = !!div.closest(".competency-grid--accordion");
+
     techs.forEach(t => {
       const className = iconMap[t];
 
+      let node;
+      let isFallback = false;
       if (className) {
         const icon = document.createElement("i");
         icon.className = `${className} project-tech-icon`;
         icon.title = t;
-        div.appendChild(icon);
-      } else if (t === "Ollama") {
+        node = icon;
+      } else if (imgIconMap[t]) {
         const img = document.createElement("img");
-        img.src = ollamaIconCdn;
+        img.src = imgIconMap[t];
         img.alt = t;
         img.title = t;
-        img.className = "project-tech-img";
-        div.appendChild(img);
+        img.className = "project-tech-img project-tech-img--color";
+        node = img;
       } else {
         // ikon yoksa yazıyla sade etiket
         const span = document.createElement("span");
         span.textContent = t;
         span.title = t;
         span.className = "project-tech-fallback";
-        div.appendChild(span);
+        node = span;
+        isFallback = true;
+      }
+
+      if (withLabel) {
+        const item = document.createElement("span");
+        item.className = "tech-item";
+        if (!isFallback) {
+          item.appendChild(node);
+          const label = document.createElement("span");
+          label.className = "tech-label";
+          label.textContent = t;
+          item.appendChild(label);
+        } else {
+          item.classList.add("tech-item--textonly");
+          item.appendChild(node);
+        }
+        div.appendChild(item);
+      } else {
+        div.appendChild(node);
       }
     });
   });
@@ -455,7 +486,7 @@ const projectsData = [
     ansatz: "Backend: .NET Web API mit EF Core, JWT-Auth und SignalR für Echtzeit-Updates. KI-Schicht: lokales RAG-Setup mit <code>Ollama</code> als LLM-Runner und <code>Qdrant</code> als Vektordatenbank &ndash; Antworten basieren ausschließlich auf hochgeladenen Firmendokumenten. Gesamte Infrastruktur per <code>docker compose</code> reproduzierbar.",
     ergebnis: "Produktionsreifes Grundgerüst mit vollständigem Auth-Flow, CRM-Modulen und einem Chat-Assistenten, der Dokumente semantisch durchsucht und präzise antwortet. Architektur ist bewusst auf spätere Mandantenfähigkeit ausgelegt. Wird aktiv weiterentwickelt.",
     rolle: "Eigenverantwortliche Umsetzung von Grund auf: Datenbankmodell, REST-API, RAG-Pipeline, React-Frontend (Dark/Light Mode) und Docker-Setup.",
-    tech: "C#, ASP.NET Core, EF Core, SQL Server, React, Vite, Axios, Bootstrap, Swagger, Redis, Docker, Azure, GitHub Actions, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
+    tech: "C#, ASP.NET Core, EF Core, SQL Server, JavaScript, React, Vite, Axios, Bootstrap, Swagger, Redis, Docker, Azure, xUnit, GitHub Actions, SignalR, JWT, Recharts, Ollama, Qdrant, Semantic Kernel",
     status: "ongoing",
     github: "https://github.com/Daddarios/vista-saas-backend"
   },
@@ -784,7 +815,7 @@ const contentMap = {
             <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-server'></i><span class="comp-tab-name">Backend</span></span>
               <div class="comp-body">
-                <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Razor, Blazor, Swagger</p>
+                <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Mysql, Redis, Swagger, Node.js, Express.js</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> REST-APIs, JWT-Authentifizierung,
                   Rollen- und Rechte-Modelle, Datenmodellierung und serverseitige Geschäftslogik.
@@ -800,7 +831,7 @@ const contentMap = {
               <span class="comp-tab"><i class='bx bx-code-alt'></i><span class="comp-tab-name">Frontend</span></span>
               <div class="comp-body">
                 
-                <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite, React Router, Axios</p>
+                <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite, Blazor, React Router, Axios</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
                   responsive Layouts, State-Handling und API-Anbindung im Client.
@@ -813,7 +844,7 @@ const contentMap = {
             </article>
 
             <article class="competency-card comp-option">
-              <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & Data</span></span>
+              <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & LLM</span></span>
               <div class="comp-body">
                 <p class="competency-stack project-tech">Ollama, Qdrant, Semantic Kernel, RAG, OpenRouter</p>
                 <p>
@@ -828,10 +859,25 @@ const contentMap = {
             </article>
 
             <article class="competency-card comp-option">
-              <span class="comp-tab"><i class='bx bx-wrench'></i><span class="comp-tab-name">Tools &amp; Workflow</span></span>
+              <span class="comp-tab"><i class='bx bx-test-tube'></i><span class="comp-tab-name">Testing</span></span>
+              <div class="comp-body">
+                <p class="competency-stack project-tech">xUnit, Moq</p>
+                <p>
+                  <strong>Praktische Anwendung:</strong> Unit-Tests mit xUnit,
+                  Mocking von Abhängigkeiten mit Moq und testgetriebene Absicherung der Logik.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>Vista.Core / Vista.CoreX</em>, <em>CRM-Anwendung</em>
+                </p>
+              </div>
+            </article>
+
+            <article class="competency-card comp-option comp-option--devops">
+              <span class="comp-tab"><i class='bx bx-infinite'></i><span class="comp-tab-name">DevOps & Tools</span></span>
               <div class="comp-body">
                 
-                <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Cursor, GitHub Copilot, Codex, Docker, GitHub Actions, GitHub, Git, npm</p>
+                <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Cursor, GitHub Copilot, Antigravity, Docker, Azure, GitHub Actions, GitHub, Git, npm</p>
                 <p>
                   <strong>Praktische Anwendung:</strong> Versionskontrolle mit Git,
                   Containerisierung mit Docker, CI/CD-Workflows und nachvollziehbare Projektübergabe.
