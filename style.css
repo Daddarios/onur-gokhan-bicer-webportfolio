@@ -2236,7 +2236,7 @@ body.overlay-open #menuToggle {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.6rem;
+  gap: 1rem;
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.45s ease 0.1s, transform 0.45s ease 0.1s;
@@ -2333,8 +2333,22 @@ body.overlay-open #menuToggle {
   font-size: 1.1rem;
   line-height: 1.7;
   text-align: center;
-  max-width: 90%;
+  max-width: 70%;
   margin-bottom: 1.4rem;
+}
+
+/* Praktische Anwendung açıklama paragrafı */
+.competency-grid--accordion .comp-body .comp-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.competency-grid--accordion .comp-body .comp-desc strong {
+  color: var(--accent);
 }
 
 /* Seviye rozetleri */
@@ -2403,7 +2417,7 @@ body.overlay-open #menuToggle {
 @media (max-width: 900px), (max-width: 1024px) and (pointer: coarse) {
   .competency-grid--accordion {
     flex-direction: column;
-    height: 560px;
+    height: 720px;
     gap: 0.9rem;
   }
 
@@ -2449,7 +2463,7 @@ body.overlay-open #menuToggle {
 
   /* AÇIK kart */
   .competency-grid--accordion .comp-option.is-open {
-    flex-grow: 8;
+    flex-grow: 14;
   }
 
   .competency-grid--accordion .comp-option.is-open .comp-tab {
@@ -2460,11 +2474,13 @@ body.overlay-open #menuToggle {
   .competency-grid--accordion .comp-option.is-open .comp-body {
     opacity: 1;
     transform: none;
+    overflow-y: auto;
+    justify-content: safe center;
   }
 
   .competency-grid--accordion .comp-body {
-    padding: 4rem 1.4rem 1.8rem;
-    gap: 1.3rem;
+    padding: 1.2rem 1.4rem 1.8rem;
+    gap: 0.9rem;
     overflow: hidden;
     transition: opacity 0.35s ease 0.25s, transform 0.35s ease 0.25s;
   }
@@ -2499,17 +2515,22 @@ body.overlay-open #menuToggle {
     max-width: 100%;
     margin-bottom: 0;
   }
+
+  .competency-grid--accordion .comp-body .comp-desc {
+    font-size: 0.96rem;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
   .competency-grid--accordion .comp-body .competency-stack.project-tech {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 0.5rem;
     row-gap: 1.2rem;
   }
 
   .competency-grid--accordion .comp-option--devops .comp-body .competency-stack.project-tech {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .competency-grid--accordion .comp-body .competency-stack .project-tech-icon,

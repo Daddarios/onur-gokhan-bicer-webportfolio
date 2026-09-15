@@ -816,7 +816,7 @@ const contentMap = {
               <span class="comp-tab"><i class='bx bx-server'></i><span class="comp-tab-name">Backend</span></span>
               <div class="comp-body">
                 <p class="competency-stack project-tech">C#, ASP.NET Core, ASP.NET MVC, EF Core, SQL Server, Mysql, Redis, Swagger, Node.js, Express.js</p>
-                <p>
+                <p class="comp-desc">
                   <strong>Praktische Anwendung:</strong> REST-APIs, JWT-Authentifizierung,
                   Rollen- und Rechte-Modelle, Datenmodellierung und serverseitige Geschäftslogik.
                 </p>
@@ -832,7 +832,7 @@ const contentMap = {
               <div class="comp-body">
                 
                 <p class="competency-stack project-tech">HTML5, CSS3, Bootstrap, JavaScript, React, Vite, Blazor, React Router, Axios</p>
-                <p>
+                <p class="comp-desc">
                   <strong>Praktische Anwendung:</strong> SPA-Strukturen, Dashboard-Oberflächen,
                   responsive Layouts, State-Handling und API-Anbindung im Client.
                 </p>
@@ -847,7 +847,7 @@ const contentMap = {
               <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & LLM</span></span>
               <div class="comp-body">
                 <p class="competency-stack project-tech">Ollama, Qdrant, Semantic Kernel, RAG, OpenRouter</p>
-                <p>
+                <p class="comp-desc">
                   <strong>Praktische Anwendung:</strong> Aufbau eines RAG-Assistenten mit lokalem LLM,
                   Vektor-Indexierung von Dokumenten, dateibasierte Kontextverarbeitung im Chat.
                 </p>
@@ -862,7 +862,7 @@ const contentMap = {
               <span class="comp-tab"><i class='bx bx-test-tube'></i><span class="comp-tab-name">Testing</span></span>
               <div class="comp-body">
                 <p class="competency-stack project-tech">xUnit, Moq</p>
-                <p>
+                <p class="comp-desc">
                   <strong>Praktische Anwendung:</strong> Unit-Tests mit xUnit,
                   Mocking von Abhängigkeiten mit Moq und testgetriebene Absicherung der Logik.
                 </p>
@@ -878,7 +878,7 @@ const contentMap = {
               <div class="comp-body">
                 
                 <p class="competency-stack project-tech">Visual Studio, Visual Studio Code, Cursor, GitHub Copilot, Antigravity, Docker, Azure, GitHub Actions, GitHub, Git, npm</p>
-                <p>
+                <p class="comp-desc">
                   <strong>Praktische Anwendung:</strong> Versionskontrolle mit Git,
                   Containerisierung mit Docker, CI/CD-Workflows und nachvollziehbare Projektübergabe.
                 </p>
