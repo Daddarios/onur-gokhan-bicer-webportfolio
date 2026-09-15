@@ -511,22 +511,6 @@ const projectsData = [
     github: "https://github.com/Daddarios/GoAI-Chat-Assistant"
   },
   {
-    title: "CRM-Anwendung",
-    subtitle: "IHK-Abschlussprojekt · Full-Stack · .NET",
-    images: [
-      { src: "crmlogin.png", alt: "CRM-Anwendung – Login mit Zwei-Faktor-Authentifizierung" },
-      { src: "crmpanel.png", alt: "CRM-Anwendung – Admin-Dashboard" }
-    ],
-    lead: "Vollständiges CRM-System für Kunden-, Mitarbeiter- und Projektverwaltung &ndash; unter IHK-Prüfungsbedingungen entwickelt und mit Note bestanden.",
-    problem: "Ein mittelständisches Unternehmen benötigt eine zentrale Verwaltungslösung mit klar definierten Rollen, nachvollziehbarem Reporting und sicherer Anmeldung &ndash; ohne externe SaaS-Abhängigkeit.",
-    ansatz: "ASP.NET MVC mit EF Core als solide Basis. Sicherheit: 2FA per SMS (<code>Twilio</code>) und E-Mail (<code>MailKit</code>). Datenexport: Excel und PDF. Dokumentierte REST-API für externe Anbindungen. Rollenmodell mit separaten Admin- und Mitarbeiter-Berechtigungen.",
-    ergebnis: "Abgenommene, lauffähige Anwendung mit vollständigem Auth-Flow, rollenbasiertem Dashboard und exportfähigem Reporting. Alle API-Endpunkte getestet und dokumentiert. Projekt wurde nach der Prüfung weiterentwickelt.",
-    rolle: "Eigenständige Umsetzung aller Schichten: Datenbankdesign, Backend-Logik, Authentifizierung, REST-API und Benutzeroberfläche.",
-    tech: "C#, ASP.NET MVC, Entity Framework Core, SQL Server, HTML5, CSS3, Bootstrap, JavaScript, jQuery, JWT, Twilio, MailKit, RESTful APIs, GitHub",
-    status: "completed",
-    github: "https://github.com/Daddarios/CrmAPP"
-  },
-  {
     title: "Portfolio Website",
     subtitle: "Vanilla JS · DSGVO · No-Build",
     images: [
@@ -538,7 +522,7 @@ const projectsData = [
     ansatz: "Vanilla HTML/CSS/JS: alle Sektionen werden aus einer zentralen <code>contentMap</code> gerendert, Overlay-Struktur ersetzt separate Seiten. Cookie-Banner nach DSGVO-Grundprinzipien, kein Third-Party-Tracking ohne Zustimmung.",
     ergebnis: "Gesamte Anwendungslogik in drei Dateien, ~50&nbsp;KB JavaScript. Kein Build-Schritt, kein Dependency-Overhead &ndash; deployed in Sekunden, vollständig responsive.",
     rolle: "Konzept, UI-Design, Implementierung und Deployment.",
-    tech: "HTML5, CSS3, JavaScript (Vanilla)",
+    tech: "HTML5, CSS3, JavaScript, Bootstrap, GitHub",
     status: "completed",
     github: "https://github.com/Daddarios/onur-gokhan-bicer-webportfolio.git"
   },
@@ -557,6 +541,22 @@ const projectsData = [
     tech: "React, React Router, JavaScript, HTML5, CSS3, JWT, REST APIs",
     status: "ongoing",
     github: "https://github.com/Daddarios/Vista.git"
+  },
+  {
+    title: "CRM-Anwendung",
+    subtitle: "IHK-Abschlussprojekt · Full-Stack · .NET",
+    images: [
+      { src: "crmlogin.png", alt: "CRM-Anwendung – Login mit Zwei-Faktor-Authentifizierung" },
+      { src: "crmpanel.png", alt: "CRM-Anwendung – Admin-Dashboard" }
+    ],
+    lead: "Vollständiges CRM-System für Kunden-, Mitarbeiter- und Projektverwaltung &ndash; unter IHK-Prüfungsbedingungen entwickelt und mit Note bestanden.",
+    problem: "Ein mittelständisches Unternehmen benötigt eine zentrale Verwaltungslösung mit klar definierten Rollen, nachvollziehbarem Reporting und sicherer Anmeldung &ndash; ohne externe SaaS-Abhängigkeit.",
+    ansatz: "ASP.NET MVC mit EF Core als solide Basis. Sicherheit: 2FA per SMS (<code>Twilio</code>) und E-Mail (<code>MailKit</code>). Datenexport: Excel und PDF. Dokumentierte REST-API für externe Anbindungen. Rollenmodell mit separaten Admin- und Mitarbeiter-Berechtigungen.",
+    ergebnis: "Abgenommene, lauffähige Anwendung mit vollständigem Auth-Flow, rollenbasiertem Dashboard und exportfähigem Reporting. Alle API-Endpunkte getestet und dokumentiert. Projekt wurde nach der Prüfung weiterentwickelt.",
+    rolle: "Eigenständige Umsetzung aller Schichten: Datenbankdesign, Backend-Logik, Authentifizierung, REST-API und Benutzeroberfläche.",
+    tech: "C#, ASP.NET MVC, Entity Framework Core, SQL Server, HTML5, CSS3, Bootstrap, JavaScript, jQuery, JWT, Twilio, MailKit, RESTful APIs, GitHub",
+    status: "completed",
+    github: "https://github.com/Daddarios/CrmAPP"
   },
   {
     title: "Klinik Raum Stuttgart",
@@ -586,7 +586,7 @@ const projectsData = [
     ansatz: "Mobile-First-Ansatz mit Media Queries, Flexbox und CSS Grid. Bewusst kein JavaScript-Framework, um ein tiefes Verständnis für Layout-Mechanismen aufzubauen.",
     ergebnis: "Pixel-stabiles Layout von 320px bis 4K. Diente als direktes Fundament für alle späteren Frontends &ndash; die hier gelernten Layoutprinzipien sind in Vista.Core und GoAI sichtbar.",
     rolle: "UI-Konzept, Layoutstruktur und vollständige CSS-Umsetzung.",
-    tech: "HTML5, CSS3 (Flexbox, Grid, Media Queries)",
+    tech: "HTML5, CSS3",
     status: "completed",
     github: "https://github.com/Daddarios/Personal-Page.git"
   }
