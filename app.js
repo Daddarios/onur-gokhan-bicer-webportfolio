@@ -22,6 +22,9 @@ function renderProjectTechIcons() {
     "Entity Framework": "devicon-entityframeworkcore-plain colored",
     "Razor": "devicon-dot-net-plain colored",
     "Blazor": "devicon-blazor-original colored",
+    "WPF": "devicon-dot-net-plain colored",
+    "WinForms": "devicon-csharp-plain colored",
+    "XAML": "",
     "Twilio": "devicon-twilio-plain colored",
     "Mysql": "devicon-mysql-original colored",
     
@@ -72,6 +75,7 @@ function renderProjectTechIcons() {
     "OpenRouter": "https://cdn.simpleicons.org/openrouter/e8e8e8",
     "Cursor": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://cursor.com&size=128",
     "GitHub Copilot": "https://cdn.simpleicons.org/githubcopilot/e8e8e8",
+    "XAML": "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_xaml.svg",
     "Antigravity": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://antigravity.google&size=128"
   };
 
@@ -360,7 +364,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
     e.preventDefault();
     const header = document.querySelector(".topbar");
-    const headerOffset = header ? header.offsetHeight + 10 : 80;
+    const isSidebar = window.innerWidth > 768;
+    const headerOffset = isSidebar ? 24 : (header ? header.offsetHeight + 10 : 80);
     const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
     smoothScrollTo(y);
@@ -439,6 +444,30 @@ observedSections.forEach((section) => {
   sectionObserver.observe(section);
 });
 
+/* Sidebar: aktive Sektion im Menü markieren */
+const navAnchors = [...document.querySelectorAll(".nav-links a[href^='#']")];
+const navTargets = navAnchors
+  .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
+  .filter(Boolean);
+
+function setActiveNavLink(id) {
+  navAnchors.forEach((a) => {
+    a.classList.toggle("is-active", a.getAttribute("href") === `#${id}`);
+  });
+}
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) setActiveNavLink(entry.target.id);
+    });
+  },
+  { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+);
+
+navTargets.forEach((el) => navObserver.observe(el));
+if (navTargets[0]) setActiveNavLink(navTargets[0].id);
+
 function createCustomScrollBar() {
   const bar = document.createElement("div");
   bar.className = "custom-scrollbar";
@@ -454,7 +483,7 @@ function createCustomScrollBar() {
     const scrollTop = window.scrollY;
     const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
     const ratio = scrollTop / maxScroll;
-    fill.style.height = `${ratio * 100}%`;
+    fill.style.width = `${ratio * 100}%`;
   };
 
   update();
@@ -705,13 +734,12 @@ const contentMap = {
                   <h4 class="title">Lebenslauf</h4>
                   <span class="doc-badge">PDF · 147 KB</span>
                 </div>
-                 <iframe 
-                 class="cv-pdf-frame"
-                  src="dokumente/lebenslauf/Lebenslauf.pdf"
+                <iframe
+                  class="cv-pdf-frame"
+                  src="dokumente/lebenslauf/Lebenslauf.pdf#toolbar=0&navpanes=0&scrollbar=0"
                   loading="lazy"
                   title="Lebenslauf Vorschau"
-                >
-                </iframe>
+                ></iframe>
                 <a
                   href="dokumente/lebenslauf/Lebenslauf.pdf"
                   target="_blank"
@@ -727,12 +755,12 @@ const contentMap = {
                   <h4 class="title">Arbeitszeugnisse</h4>
                   <span class="doc-badge">PDF · 1.9 MB</span>
                 </div>
-                 <iframe
-                   class="cv-pdf-frame"
-                   src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
-                   loading="lazy"
-                   title="Arbeitszeugnisse Vorschau"
-                 ></iframe>
+                <iframe
+                  class="cv-pdf-frame"
+                  src="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  loading="lazy"
+                  title="Arbeitszeugnisse Vorschau"
+                ></iframe>
                 <a
                   href="dokumente/arbeitszeugnis/arbeitszeugnisse.pdf"
                   target="_blank"
@@ -749,10 +777,10 @@ const contentMap = {
                   <span class="doc-badge">PDF · 1.5 MB</span>
                 </div>
                 <iframe
-                 class="cv-pdf-frame"
-                 src="dokumente/schulische_akademische/Bildung.pdf"
-                 loading="lazy"
-                 title="Bildung Vorschau"
+                  class="cv-pdf-frame"
+                  src="dokumente/schulische_akademische/Bildung.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  loading="lazy"
+                  title="Bildung Vorschau"
                 ></iframe>
                 <a
                   href="dokumente/schulische_akademische/Bildung.pdf"
@@ -770,10 +798,10 @@ const contentMap = {
                   <span class="doc-badge">PDF · 605 KB</span>
                 </div>
                 <iframe
-                 class="cv-pdf-frame"
-                 src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
-                 loading="lazy"
-                 title="Ehrenamtliche Nachweise Vorschau"
+                  class="cv-pdf-frame"
+                  src="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  loading="lazy"
+                  title="Ehrenamtliche Nachweise Vorschau"
                 ></iframe>
                 <a
                   href="dokumente/ehrenamtlich/Ehrenamtliche+Nachweise_Onur_Gokhan_Bicer.pdf"
@@ -844,6 +872,21 @@ const contentMap = {
             </article>
 
             <article class="competency-card comp-option">
+              <span class="comp-tab"><i class='bx bx-desktop'></i><span class="comp-tab-name">Desktop</span></span>
+              <div class="comp-body">
+                <p class="competency-stack project-tech">WPF, WinForms, XAML</p>
+                <p class="comp-desc">
+                  <strong>Praktische Anwendung:</strong> Desktop-Verwaltungssystem mit Windows Forms,
+                  Datenbindung an SQL Server und CRUD-Operationen für Patienten-, Termin- und Raumverwaltung.
+                </p>
+                <p class="comp-refs">
+                  <span>Zu sehen in:</span>
+                  <em>Klinik Raum Stuttgart</em>
+                </p>
+              </div>
+            </article>
+
+            <article class="competency-card comp-option">
               <span class="comp-tab"><i class='bx bx-brain'></i><span class="comp-tab-name">AI & LLM</span></span>
               <div class="comp-body">
                 <p class="competency-stack project-tech">Ollama, Qdrant, Semantic Kernel, RAG, OpenRouter</p>
@@ -908,80 +951,28 @@ const contentMap = {
             <div class="education-grid">
               
               <div class="education-card">
-                <h4 class="card-title">C# & ASP.NET Core</h4>
-                <p class="card-text">OOP, Entity Framework & ASP.NET Core (Version 6 / 7 / 8)</p>
+                <div class="udemy-badge"><img class="udemy-logo" src="https://cdn.simpleicons.org/udemy/a435f0" alt="Udemy" loading="lazy"><span>Udemy</span></div>
+                <h4 class="card-title">C# OOP & Entity Framework & ASP.NET Core (6/9)</h4>
+                <p class="card-text">RESTful API</p>
               </div>
 
               <div class="education-card">
-                <h4 class="card-title">Netzwerktechnik Grundlagen</h4>
-                <p class="card-text">IP-Adressierung, Subnetting & Netzwerkarchitektur</p>
-              </div>
-
-              <div class="education-card">
-                <h4 class="card-title">IP-Adressierung & Subnetting</h4>
-                <p class="card-text">Teil 1 & 2 – Netzwerkgrundlagen</p>
-              </div>
-
-              <div class="education-card">
-                <h4 class="card-title">Projektmanagement</h4>
-                <p class="card-text">.NET MVC5 – Anwendung von Grund auf</p>
-              </div>
-
-              <div class="education-card">
+                <div class="udemy-badge"><img class="udemy-logo" src="https://cdn.simpleicons.org/udemy/a435f0" alt="Udemy" loading="lazy"><span>Udemy</span></div>
                 <h4 class="card-title">Frontend Camp</h4>
-                <p class="card-text">HTML5, CSS3, Bootstrap & Tailwind CSS, JavaScript & React</p>
-                <span class="immernoch">Aktuell in Weiterbildung</span>
+                <p class="card-text">HTML5, CSS3, Bootstrap, JavaScript, React 19</p>
               </div>
 
               <div class="education-card">
-                <h4 class="card-title">RESTful APIs</h4>
-                <p class="card-text">RESTful API Fundamentals – Architektur & Design Patterns</p>
+                <div class="udemy-badge"><img class="udemy-logo" src="https://cdn.simpleicons.org/udemy/a435f0" alt="Udemy" loading="lazy"><span>Udemy</span></div>
+                <h4 class="card-title">Grundlagen der Netzwerktechnik</h4>
+                <p class="card-text">IP, Subnetting</p>
               </div>
 
               <div class="education-card">
-                <h4 class="card-title">GitHub Schulung</h4>
-                <p class="card-text">Versionskontrolle & Projektverwaltung mit GitHub</p>
+                <div class="udemy-badge"><img class="udemy-logo" src="https://cdn.simpleicons.org/udemy/a435f0" alt="Udemy" loading="lazy"><span>Udemy</span></div>
+                <h4 class="card-title">Microsoft Azure Fundamentals</h4>
+                <p class="card-text">Cloud-Grundlagen mit Microsoft Azure</p>
               </div>
-
-              <div class="education-card">
-                <h4 class="card-title">Swift & iOS 16</h4>
-                <p class="card-text">MVVM Detailkurs – Ohne Storyboard</p>
-                <span class="immernoch">Aktuell in Weiterbildung</span>
-              </div>
-
-              <div class="education-card">
-                    <h4 class="card-title">Python & Data Science / Machine Learning</h4>
-                    <ul class="card-text">
-                      <li>Python – Grundlagen für Data Science</li>
-                      <li>NumPy – Numerische Berechnungen und mathematische Operationen</li>
-                      <li>Pandas – Datenaufbereitung, -manipulation und -analyse</li>
-                      <li>Matplotlib & Seaborn – Datenvisualisierung und statistische Auswertung</li>
-                      <li>Scikit-Learn – Entwicklung und Training von Machine-Learning-Modellen</li>
-
-                      <li>Lineare und polynomiale Regression</li>
-                      <li>Ridge-, Lasso- und ElasticNet-Regression</li>
-                      <li>Logistische Regression</li>
-                      <li>Decision Trees und Random Forest</li>
-                      <li>AdaBoost und Gradient Boosting</li>
-                      <li>K-Nearest Neighbors (KNN)</li>
-                      <li>Support Vector Machines (SVM)</li>
-                      <li>K-Means Clustering</li>
-                      <li>Hierarchisches Clustering</li>
-                      <li>DBSCAN Clustering</li>
-
-                      <li>Machine-Learning-Methoden: Regression, Klassifikation und Clustering</li>
-                      <li>Theoretische und praktische Anwendung von ML-Algorithmen</li>
-                      <li>Arbeit mit realen Datensätzen und praxisnahen Projekten</li>
-                      <li>Entwicklung von Data-Science-Projekten im vollständigen Workflow</li>
-                    </ul>
-
-                    <p class="tech">
-                    <strong>Technologien:</strong> Python, Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn
-                    </p>
-
-                    <span class="immernoch">Aktuell in Weiterbildung</span>
-                    
-                  </div>
 
             </div>
           </div>
@@ -1065,7 +1056,7 @@ function setupOverlayScrollBar() {
     const scroller = dom.wrapper;
     const maxScroll = Math.max(1, scroller.scrollHeight - scroller.clientHeight);
     const ratio = scroller.scrollTop / maxScroll;
-    fill.style.height = `${ratio * 100}%`;
+    fill.style.width = `${ratio * 100}%`;
   };
 
   update();
@@ -1224,7 +1215,6 @@ document.addEventListener("click", e => {
   enhanceProjectMedia();
   normalizeBlankLinks(dom.container);
   setupOverlayCardReveal(type);
-  setupOverlayScrollBar();
   if (type === "projekte") {
     setupProjectsProgress();
   }
